@@ -1,0 +1,167 @@
+# source: http://localhost:4000
+# timestamp: Sun Mar 31 2019 21:09:46 GMT+0800 (China Standard Time)
+
+type Attendance {
+  id: ID!
+  classSession: ClassSession!
+  createdAt: DateTime!
+  student: Student!
+  event: AttendanceEvent!
+}
+
+enum AttendanceEvent {
+  Arrived
+  Left
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type ClassSession {
+  id: ID!
+  startsAt: DateTime!
+  endsAt: DateTime!
+  group: Group!
+  points: [Point!]!
+  attendances: [Attendance!]!
+  stage: Stage!
+}
+
+input ClassSessionInput {
+  startsAt: DateTime!
+  endsAt: DateTime!
+  stage: Stage
+}
+
+scalar DateTime
+
+enum Gender {
+  M
+  F
+}
+
+type Group {
+  id: ID!
+  name: String!
+  semester: Semester!
+  students: [Student!]!
+}
+
+type Mutation {
+  createUser(username: String!, password: String!): User
+  updateUser(id: ID!, input: UserInput!): User
+  deleteUser(id: ID!): User
+  login(username: String!, password: String!): AuthPayload!
+  changePassword(id: ID!, newPassword: String!): User
+  createStudent(input: StudentInput!, groupId: ID): Student
+  updateStudent(id: ID!, input: StudentInput!): Student
+  deleteStudent(id: ID!): Student
+  addStudentToGroup(studentId: ID!, groupId: ID!): Student
+  removeStudentFromGroup(studentId: ID!, groupId: ID!): Student
+  createGroup(name: String!, semesterId: ID!): Group
+  updateGroup(id: ID!, name: String, semesterId: ID): Group
+  deleteGroup(id: ID!): Group
+  createSemester(input: SemesterInput!): Semester
+  updateSemester(id: ID!, input: SemesterInput!): Semester
+  deleteSemester(id: ID!): Semester
+  addPoint(input: PointInput!): Point
+  undoPoint(id: ID!): Point
+  createClassSession(input: ClassSessionInput!, groupId: ID!): ClassSession
+  updateClassSession(id: ID!, input: ClassSessionInput!, groupId: ID): ClassSession
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type Point {
+  id: ID!
+  value: Int!
+  student: Student!
+  classSession: ClassSession!
+}
+
+input PointInput {
+  value: Int!
+  studentId: ID!
+  classSessionId: ID!
+}
+
+type Query {
+  me: User
+  user(id: ID!): User
+  users: [User!]!
+  student(id: ID!): Student
+  students: [Student!]!
+  group(id: ID!): Group
+  groups: [Group!]!
+  semester(id: ID!): Semester
+  semesters: [Semester!]!
+  classSession(id: ID!): ClassSession
+  classSessions: [ClassSession!]!
+  points: [Point!]!
+  attendances: [Attendance!]!
+}
+
+enum Role {
+  Admin
+}
+
+type Semester {
+  id: ID!
+  startDate: DateTime!
+  endDate: DateTime!
+  name: String!
+  groups: [Group!]!
+}
+
+input SemesterInput {
+  startDate: DateTime
+  endDate: DateTime
+  name: String
+}
+
+enum Stage {
+  Inactive
+  Active
+  Started
+  Ended
+}
+
+type Student {
+  id: ID!
+  chineseName: String!
+  englishName: String!
+  pinyinName: String
+  gender: Gender
+  birthdate: DateTime!
+  groups: [Group!]!
+  points: [Point!]!
+  pointsTally: Int
+}
+
+input StudentInput {
+  chineseName: String
+  englishName: String
+  pinyinName: String
+  birthdate: DateTime
+}
+
+type Subscription {
+  semesters: Semester
+}
+
+type User {
+  id: ID!
+  username: String!
+  role: Role
+}
+
+input UserInput {
+  username: String
+  role: Role
+}
