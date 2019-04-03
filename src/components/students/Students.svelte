@@ -8,7 +8,7 @@
   import StudentList from './StudentList'
 
   let errors
-
+  
   onMount(async () => {
     try {
       await students.get();

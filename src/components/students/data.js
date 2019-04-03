@@ -16,8 +16,16 @@ const createstudentstore = () => {
   return {
     subscribe,
     get: async (orderBy, searchString) => {
+      console.log(orderBy, searchString)
       const getres = await request(GET_STUDENTS, { orderBy, searchString })
       set(getres.students)
+    },
+    sort: (orderBy, direction) => {
+      update(previous => {
+        return previous.slice().sort((a, b) => {
+          return a[orderBy].localeCompare(b[orderBy]) * direction
+        })
+      })
     },
     create: async (input, groupId) => {
       const response = await request(CREATE_STUDENT, { input, groupId })
