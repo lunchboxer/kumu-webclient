@@ -2,12 +2,7 @@
   export let url = ""
   export let text = ""
   export let icon = null
-
-  // $: active = () => {
-  //   if (url === "/" && !segment) return true;
-  //   return segment === url;
-  // }
-
+  export let active = ""
 </script>
 <style>
   i {
@@ -15,7 +10,7 @@
   }
 </style>
 
-<a class="navbar-item" href={url}>
+<a class="navbar-item" class:is-active={active===url} href={url}>
   {#if icon}
   <i class="fas {icon}"></i>
   {/if}

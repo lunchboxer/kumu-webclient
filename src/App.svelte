@@ -12,7 +12,7 @@
 
   let Route, params, active;
   let uri = location.pathname;
-  $: active = uri.split('/')[1] || 'home';
+  $: active = uri.split('/')[1] || '/';
 
   function draw(m, obj) {
     params = obj || {};
@@ -51,7 +51,7 @@
 </style>
 
 <div>
-  <Navbar />
+  <Navbar {active} />
 
   <main>
 

@@ -4,7 +4,7 @@
   import { notifications } from './notifications'
   import { fly } from 'svelte/transition'
   let showMenu = false
-
+  export let active
   const logout = async () => {
     const username = await auth.logout()
     notifications.add({ text: `Logged out user '${username}'`, type: 'success' })
@@ -32,7 +32,7 @@
       bottom: 0;
       transition: 200ms ease-in-out;
       height: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      background: black;
     }
 
     .navbar-burger {
@@ -41,7 +41,6 @@
 
     #navmenu.is-active {
       transform: translate(-15rem);
-
     }
   }
 </style>
@@ -79,11 +78,11 @@
     >
       <div class="navbar-start">
         {#if $auth.username}
-        <NavbarLink url="/" text="Dashboard" />
-        <NavbarLink url="sessions" text="Schedule" />
-        <NavbarLink url="groups" text="Groups" />
-        <NavbarLink url="students" text="Students" />
-        <NavbarLink url="semesters" text="Semesters" />
+        <NavbarLink url="/" text="Dashboard" {active} />
+        <NavbarLink url="sessions" text="Schedule" {active} />
+        <NavbarLink url="groups" text="Groups" {active} />
+        <NavbarLink url="students" text="Students" {active}/>
+        <NavbarLink url="semesters" text="Semesters" {active} />
         {/if}
       </div>
   
