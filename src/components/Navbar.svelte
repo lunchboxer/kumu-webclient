@@ -2,6 +2,7 @@
   import { auth } from '../data/auth'
   import NavbarLink from './NavbarLink'
   import { notifications } from './notifications'
+  import { fly } from 'svelte/transition'
   let showMenu = false
 
   const logout = async () => {
@@ -18,6 +19,30 @@
   .navbar {
     background: transparent;
     margin: 0;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    #navmenu {
+      padding: 1rem;
+      position: fixed;
+      right: -15rem;
+      width: 15rem;
+      display: inherit;
+      top: 0;
+      bottom: 0;
+      transition: 200ms ease-in-out;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+    }
+
+    .navbar-burger {
+      z-index: 10;
+    }
+
+    #navmenu.is-active {
+      transform: translate(-15rem);
+
+    }
   }
 </style>
 
@@ -55,6 +80,7 @@
       <div class="navbar-start">
         {#if $auth.username}
         <NavbarLink url="/" text="Dashboard" />
+        <NavbarLink url="sessions" text="Schedule" />
         <NavbarLink url="groups" text="Groups" />
         <NavbarLink url="students" text="Students" />
         <NavbarLink url="semesters" text="Semesters" />
