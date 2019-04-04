@@ -154,7 +154,7 @@
   }
 </style>
 
-<div class="card" in:fly="{{x: 400}}" out:fly="{{x: -400}}">
+<div class="card">
   <div class="card-content">
     <div class="media" on:click={()=> expanded = !expanded }>
       <div class="media-left">

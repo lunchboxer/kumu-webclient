@@ -44,7 +44,7 @@
 
   {#if $students && $students.length && semesters}
 
-    <div class="student-list" transition:fade>
+    <div class="student-list">
       {#each $students as student (student.id)}
       <StudentListItem {student} {semesters} />
       {/each}
