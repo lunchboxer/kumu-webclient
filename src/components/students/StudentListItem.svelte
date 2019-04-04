@@ -5,6 +5,7 @@
   import DeleteStudent from './DeleteStudent'
   import EditStudent from './EditStudent'
   import EditStudentGroups from './EditStudentGroups'
+  import DL from '../DL'
 
   export let student = {}
   export let semesters = {}
@@ -134,7 +135,7 @@
 
   .groups-list {
     list-style: none;
-    margin: 0 0 1rem 1rem;
+    margin: 0;
   }
 
   .media {
@@ -169,19 +170,24 @@
       <i class="expand-button fas fa-angle-{expanded ? 'up' : 'down'}"></i>
     </div>
     {#if expanded}
-    <div class="content" transition:slide|local="{{duration: 200}}">
-      <li>Groups:
-        <ul class="groups-list">
-          {#each student.groups as group}
-<li>{group.name} - {group.semester.name}</li>
-        {:else}
-        none
-        {/each}
-      </ul>
-      </li>
-      <li>Pinyin: {student.pinyinName}</li>
-      <li>Birthdate:  {birthdate}</li>
-      <li>Total points: {student.pointsTally}</li>
+    <div transition:slide|local="{{duration: 200}}">
+      <DL>
+        <dt>Groups:</dt>
+        <dd>
+          <ul class="groups-list">
+              {#each student.groups as group}
+    <li>{group.name} - {group.semester.name}</li>
+            {:else}
+            none
+            {/each}
+          </ul>
+        </dd>
+
+        <dt>Pinyin:</dt><dd>{student.pinyinName}</dd>
+        <dt>Birthdate:</dt><dd>{birthdate}</dd>
+          <dt>Total points:</dt><dd>{student.pointsTally}</dd>
+      </DL>
+      
     </div>
     {/if}
   </div>
