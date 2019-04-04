@@ -9,12 +9,8 @@
 </script>
 
 <style>
-  .student-list {
-    margin-left: 1rem;
-  }
-
   .card {
-    min-width: 200px;
+    min-width: 150px;
     margin: 0.3rem;
     display: flex;
     border-radius: 4px;
@@ -22,9 +18,15 @@
     justify-content: space-between;
   }
 
-  @media only screen and (max-width: 510px) {
+  @media only screen and (max-width: 352px) {
     .card {
       width: 100%;
+    }
+  }
+
+  @media only screen and (min-width: 352px) and (max-width: 510px) {
+    .card {
+      width: calc(50% - 0.6rem)
     }
   }
 
@@ -40,12 +42,18 @@
     color: #cb2d6f;
     background: #2f2f2f;
   }
+
+  .list-heading {
+    text-decoration: underline;
+  }
 </style>
 
 <li class="card" in:fly="{{x: 400}}" out:fly="{{x: -400}}">
   <div class="card-content">
-    <span class="title is-4">{group.name} class</span> {group.semester.name} ({group.students.length} students)
+    <h3 class="title is-4">{group.name} class</h3>
+    <h4 class="subtitle is-6">{group.semester.name}</h4>
     {#if group.students && group.students.length}
+    <p class="list-heading">{group.students.length} students</p>
         <ul class="student-list">
         {#each group.students as student}
           <li>{student.chineseName} {student.englishName}</li>
