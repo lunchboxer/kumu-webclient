@@ -19,10 +19,6 @@
     background: transparent;
     margin: 0;
   }
-
-  .user i {
-    margin-right: 0.3rem;
-  }
 </style>
 
 <nav class="navbar is-black" role="navigation" aria-label="main navigation">
@@ -59,23 +55,23 @@
       <div class="navbar-start">
         {#if $auth.username}
         <NavbarLink url="/" text="Dashboard" />
-        <NavbarLink url="sessions" text="Schedule" />
+        <NavbarLink url="groups" text="Groups" />
         <NavbarLink url="students" text="Students" />
         <NavbarLink url="semesters" text="Semesters" />
-        <NavbarLink url="profile" text="Profile" />
         {/if}
       </div>
   
       <div class="navbar-end">
         {#if $auth.username}
-        <div class="navbar-item user">
-          <i class="fas fa-user"></i> {$auth.username}
+        
+          <NavbarLink url="me" icon="fa-user" text={$auth.username}/>
+         
           <div class="buttons">
-              <button class="button is-text" on:click={logout}>
-                   <strong>Log out</strong>
-                </button>
+            <button class="button is-text" on:click={logout}>
+                  <strong>Log out</strong>
+              </button>
           </div>
-        </div>
+
         {/if}
       </div>
     </div>

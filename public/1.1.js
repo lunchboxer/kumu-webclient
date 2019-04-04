@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{5:function(t,n,e){"use strict";e.r(n);var c=e(0);function o(t){var n;return{c(){(n=Object(c.k)("h1")).textContent="About"},m(t,e){Object(c.o)(t,n,e)},p:c.r,i:c.r,o:c.r,d(t){t&&Object(c.j)(n)}}}n.default=class extends c.a{constructor(t){super(),Object(c.n)(this,t,null,o,c.x,[])}}}}]);

@@ -15,12 +15,10 @@
     "eslint-plugin-svelte3": "^0.4.5",
     "eslint-plugin-unicorn": "^8.0.1",
     "graphql": "^14.2.0",
-    "graphql-cli": "^3.0.11",
     "ignore-loader": "^0.1.2",
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "sass-loader": "^7.1.0",
-    "serve": "^10.1.2",
     "style-loader": "^0.23.1",
     "svelte": "beta",
     "svelte-loader": "2.13.3",
@@ -36,17 +34,17 @@
     "dev": "concurrently npm:watch-*",
     "watch-svelte": "webpack-dev-server --content-base public --host 0.0.0.0",
     "watch-css": "npm run build:css -- --watch",
-    "serve": "serve -s public",
+    "serve": "sirv public --single",
     "lint": "eslint src/**/*"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
-    "cross-fetch": "^3.0.2",
     "flatpickr": "^4.5.7",
     "graphql-request": "^1.8.2",
     "graphql-tag": "^2.10.1",
     "nanographql": "^2.0.0",
     "navaid": "^1.0.0",
+    "sirv-cli": "^0.2.2",
     "subscriptions-transport-ws": "^0.9.16",
     "svelte-flatpickr": "^1.1.0"
   }

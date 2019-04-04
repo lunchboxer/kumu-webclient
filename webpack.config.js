@@ -7,11 +7,14 @@ const prod = mode === 'production'
 const dev = mode === 'development'
 
 module.exports = {
+  devServer: {
+    historyApiFallback: true
+  },
   entry: {
     bundle: ['./src/main.js']
   },
   resolve: {
-    extensions: ['.mjs', '.js', '.svelte']
+    extensions: ['.mjs', '.js', '.svelte', '.html']
   },
   output: {
     path: __dirname + '/public',
