@@ -37,15 +37,18 @@
     }
     return age
   }
-  const getCurrentOrNextClass = () => {
+  $: currentOrNextClass = getCurrentOrNextClass(student.groups)
+
+  const getCurrentOrNextClass = (groups) => {
+    if (!groups) return
     if (semesters.currentSemester) {
-      let currentGroup = student.groups.find(group => {
+      let currentGroup = groups.find(group => {
         return group.semester.id === semesters.currentSemester.id
       })
       if (currentGroup) return `Current ${currentGroup.name} class`
     }
     if (semesters.nextSemester) {
-      let nextGroup = student.groups.find(group => {
+      let nextGroup = groups.find(group => {
         return group.semester.id === semesters.nextSemester.id
       })
       if (nextGroup) return `Next ${nextGroup.name} class`
@@ -160,7 +163,7 @@
       </div>
       <div class="media-content">
         <p><strong>{student.englishName}</strong> <span class="chinese">{student.chineseName}</span></p>
-        <p>{getCurrentOrNextClass()}</p>
+        <p>{currentOrNextClass}</p>
         <p>{getAge(birthdate)} yrs old</p>
       </div>
       <i class="expand-button fas fa-angle-{expanded ? 'up' : 'down'}"></i>

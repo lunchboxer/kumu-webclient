@@ -16,7 +16,6 @@ const createstudentstore = () => {
   return {
     subscribe,
     get: async (orderBy, searchString) => {
-      console.log(orderBy, searchString)
       const getres = await request(GET_STUDENTS, { orderBy, searchString })
       set(getres.students)
     },
