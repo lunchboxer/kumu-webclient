@@ -4,7 +4,8 @@
   import { auth } from './data/auth'
   import Login from './components/Login'
   // import Semesters from "./components/semesters/Semesters"
-  import Students from './components/students/Students'
+  // import Students from './components/students/Students'
+  import Groups from './components/groups/Groups'
   import Navbar from './components/Navbar'
   import { NotificationList } from './components/notifications'
 </script>
@@ -23,7 +24,8 @@
   <main>
 
     {#if $auth.username}
-    <Students />
+      <Groups />
+      <!-- <Students /> -->
       <!-- <Semesters /> -->
     {:else}
       <Login/>
