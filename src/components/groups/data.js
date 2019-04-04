@@ -17,9 +17,7 @@ const createGroupStore = () => {
       update(previous => [...previous, response.createGroup])
     },
     patch: async (id, name, semesterId) => {
-      console.log(id, name, semesterId)
       const response = await request(UPDATE_GROUP, { id, name, semesterId })
-      console.log(response)
       update(previous => previous.map((group) => {
         if (group.id !== id) return group
         return response.updateGroup
