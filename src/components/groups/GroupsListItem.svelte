@@ -42,10 +42,6 @@
     color: #cb2d6f;
     background: #2f2f2f;
   }
-
-  .list-heading {
-    text-decoration: underline;
-  }
 </style>
 
 <li class="card" in:fly="{{x: 400}}" out:fly="{{x: -400}}">
@@ -53,7 +49,7 @@
     <h3 class="title is-4">{group.name} class</h3>
     <h4 class="subtitle is-6">{group.semester.name}</h4>
     {#if group.students && group.students.length}
-    <p class="list-heading">{group.students.length} students</p>
+    <p><strong>{group.students.length} students</strong></p>
         <ul class="student-list">
         {#each group.students as student}
           <li>{student.chineseName} {student.englishName}</li>
