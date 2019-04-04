@@ -8,6 +8,13 @@
   i {
     margin-right: 0.3rem;
   }
+
+  a.is-active {
+    border-radius: 4px;
+    color: #cb2d6f;
+    font-weight: bold;
+    background-color: inherit;
+  }
 </style>
 
 <a class="navbar-item" class:is-active={active===url} href={url}>
