@@ -17,6 +17,7 @@
     min-width: 200px;
     margin: 0.3rem;
     display: flex;
+    border-radius: 4px;
     flex-direction: column;
     justify-content: space-between;
   }
