@@ -1,7 +1,7 @@
 <svelte:head>
-  <title>Class sessions</title>
+  <title>Class schedule</title>
 </svelte:head>
 
 <h1 class="title">
-  Class Sessions
+  Class schedule
 </h1>

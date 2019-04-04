@@ -36,6 +36,7 @@
     .on('/semesters', () => import('./components/semesters/Semesters.svelte').then(draw))
     .on('/students', () => import('./components/students/Students.svelte').then(draw))
     .on('/groups', () => import('./components/groups/Groups.svelte').then(draw))
+    .on('/sessions', () => import('./components/sessions/Sessions.svelte').then(draw))
     .on('/me', () => import('./components/profile/Profile.svelte').then(draw))
     .listen();
   onDestroy(router.unlisten);
