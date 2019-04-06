@@ -1,8 +1,13 @@
 <script>
   import { formatDistance, format, formatRelative } from 'date-fns'
+  import DeleteSession from './DeleteSession'
+  import EditSession from './EditSession'
+  import Modal from '../Modal'
 
   export let session
   export let time
+  let showDelete = false
+  let showEdit = false
   let showActions = false
 
   const relativeDate = (date) => {
@@ -47,9 +52,21 @@
   {#if showActions}
   <div class="buttons">
     <button class="button">Go view</button>
-    <button class="button">Edit</button>
-    <button class="button">Delete</button>
+    <button class="button" on:click={()=> showEdit = true}>Edit</button>
+    <button class="button" on:click={()=> showDelete = true}>Delete</button>
   </div>
   {/if}
   </li>
 {/if}
+
+<Modal bind:open={showDelete}>
+  {#if showDelete}
+    <DeleteSession {session} bind:open={showDelete} />
+  {/if}
+</Modal>
+
+<Modal bind:open={showEdit}>
+  {#if showEdit}
+    <EditSession {session} bind:open={showEdit} />
+  {/if}
+</Modal>

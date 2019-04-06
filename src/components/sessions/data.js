@@ -1,7 +1,7 @@
 import { writable, readable, get } from 'svelte/store'
 import { request } from '../../data/fetch-client'
 import { GET_SESSIONS, GET_TODAYS_SESSIONS } from './queries'
-import { CREATE_SESSION } from './mutations'
+import { CREATE_SESSION, DELETE_SESSION, UPDATE_SESSION } from './mutations'
 
 export const semester = writable()
 
@@ -18,6 +18,16 @@ const createSessionsStore = () => {
       const response = await request(CREATE_SESSION, { input, groupId })
       sessions.get()
       return response.createClassSession
+    },
+    remove: async (id) => {
+      const response = await request(DELETE_SESSION, { id })
+      sessions.get()
+      return response.deleteClassSession
+    },
+    update: async (id, input, groupId) => {
+      const response = await request(UPDATE_SESSION, { id, input, groupId})
+      sessions.get()
+      return response.updateClassSession
     }
   }
 }

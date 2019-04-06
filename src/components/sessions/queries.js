@@ -6,6 +6,7 @@ export const GET_SESSIONS = gql`
     id
     startsAt
     endsAt
+    stage
     group {
       id
       name
