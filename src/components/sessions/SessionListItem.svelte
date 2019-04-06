@@ -21,7 +21,7 @@
       const dateString = formatRelative(new Date(date), new Date())
       return ['AM', 'PM'].includes(dateString.slice(-2))
         ? dateString
-        : `${dateString} ${formatTime(time)}`
+        : `${dateString} ${formatTime(date)}`
     }
     return ''
   }
