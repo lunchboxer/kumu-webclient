@@ -1,18 +1,28 @@
-import { writable, readable } from 'svelte/store'
+import { writable, readable, get } from 'svelte/store'
 import { request } from '../../data/fetch-client'
 import { GET_SESSIONS, GET_TODAYS_SESSIONS } from './queries'
+import { CREATE_SESSION } from './mutations'
+
+export const semester = writable()
 
 const createSessionsStore = () => {
-  const { subscribe, set, update } = writable()
-
+  const { subscribe, set } = writable()
   return {
     subscribe,
     get: async () => {
-      const getres = await request(GET_SESSIONS)
-      set(getres.sessions)
+      const where = (get(sessionsFilter))
+      const getres = await request(GET_SESSIONS, { where })
+      set(getres.classSessions)
+    },
+    create: async (input, groupId) => {
+      const response = await request(CREATE_SESSION, { input, groupId })
+      sessions.get()
+      return response.createClassSession
     }
   }
 }
+
+export const sessionsFilter = writable()
 
 export const sessions = createSessionsStore()
 
@@ -31,7 +41,7 @@ const sortSessions = (sessions) => {
     return session.startsAt < time.toISOString() && session.endsAt > time.toISOString()
   })
   const soon = sessions.filter(session => {
-    return session.startsAt > time && session.startsAt < in15Min
+    return session.startsAt > time.toISOString() && session.startsAt < in15Min
   })
   const later = sessions.filter(session => {
     return session.startsAt > in15Min && session.startsAt < in24hrs

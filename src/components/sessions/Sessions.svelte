@@ -3,30 +3,27 @@
   import Upcoming from './UpcomingSessions'
   import SessionsList from './SessionsList'
   import CurrentSession from './CurrentSession'
+  import AddSession from './AddSession'
+  import { sessions, sessionsFilter } from './data'
 
   let activeComponent = Upcoming
   let active = 'upcoming'
-  let where = null
 
   const switchTab = (tab) => {
+    let where = null
     active = tab
-
     if (tab === 'past') {
       where = { endsAt_lt: new Date().toISOString() }
     } else if (tab === 'future') {
       where = { startsAt_gt: new Date().toISOString() }
-    } else if (tab === 'all') {
-      where = null
     }
+    sessionsFilter.set(where)
+    sessions.get()
     activeComponent = tab === 'upcoming' ? Upcoming : SessionsList
   }
 </script>
 
 <style>
-  .add-button {
-    margin-bottom: 1rem;
-  }
-
   nav .button.is-outlined:hover {
     color: white;
     background: inherit;
@@ -43,16 +40,20 @@
 
 <CurrentSession />
 
-<button class="button add-button is-primary"><i class="fas fa-plus"></i>&nbsp;Add a session</button>
+<AddSession />
 
 <nav class="buttons has-addons is-centered">
   <button class="button is-link" class:is-outlined={active!=='upcoming' } on:click={()=>
-    switchTab('upcoming')}>Upcoming</button>
+    switchTab('upcoming')}>
+    24 hours
+  </button>
   <button class="button is-link" class:is-outlined={active!=='past' } on:click={()=> switchTab('past')
-    }>Past</button>
+    }>
+    Past
+  </button>
   <button class="button is-link" class:is-outlined={active!=='future' } on:click={()=>
     switchTab('future')}>Future</button>
   <button class="button is-link" class:is-outlined={active!=='all' } on:click={()=> switchTab('all')}>All</button>
 </nav>
 
-<svelte:component this={activeComponent} bind:where />
+<svelte:component this={activeComponent} />

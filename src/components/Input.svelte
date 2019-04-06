@@ -45,6 +45,10 @@
             <input bind:this={input} {name} class="input" bind:value class:error={error} type="date" pattern="^[0-9]{4}-(1[0-2]|0[1-9])-([1-3][0-9]|0[1-9])$"
              {required} {max} aria-describedby="{descriptionId}" on:input={checkValidity} on:invalid|preventDefault={checkValidity} />
             {/if}
+            {#if type==="datetime-local"}
+            <input bind:this={input} {name} class="input" bind:value class:error={error} type="datetime-local"
+             {required} {max} aria-describedby="{descriptionId}" on:input={checkValidity} on:invalid|preventDefault={checkValidity} />
+            {/if}
             {#if leftIcon}
             <span class="icon is-small is-left">
               <i class="fas fa-{leftIcon}"></i>

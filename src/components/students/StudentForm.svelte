@@ -1,11 +1,11 @@
 <script>
-  import { createEventDispatcher, onMount } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   import { notifications } from '../notifications'
   import { request } from '../../data/fetch-client'
   import { ACTIVE_GROUPS } from '../../data/queries'
   import Error from '../Error'
   import Input from '../Input'
-  import GroupSelect from './GroupSelect'
+  import GroupSelect from '../GroupSelect'
 
   const dispatch = createEventDispatcher();
 

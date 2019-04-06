@@ -1,9 +1,12 @@
 <script>
-  export let errors
+  export let errors = ""
 
-  $: message = (Array.isArray(errors))
-    ? errors.map(e => e.message).join('\n')
-    : !errors.message ? errors : errors.message
+  const getMessage = (errors) => {
+    if (!errors) return false
+    return (Array.isArray(errors))
+      ? errors.map(e => e.message).join('\n')
+      : !errors.message ? errors : errors.message
+  }
 </script>
 
 <style>
@@ -18,13 +21,14 @@
   .error strong {
     color: inherit;
   }
+
   .error-message i {
     margin-right: 0.3rem;
   }
 </style>
 
-{#if message}
+{#if getMessage(errors)}
 <p class="error">
-    <span class="error-message"><i class="fas fa-exclamation-triangle"></i><strong>Error:</strong>&nbsp;{message}</span>
+    <span class="error-message"><i class="fas fa-exclamation-triangle"></i><strong>Error:</strong>&nbsp;{getMessage(errors)}</span>
 </p>
 {/if}
