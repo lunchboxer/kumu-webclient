@@ -9,11 +9,13 @@
     margin-right: 0.3rem;
   }
 
-  a.is-active {
-    border-radius: 4px;
-    color: #cb2d6f;
-    font-weight: bold;
-    background-color: inherit;
+  @media only screen and (max-width: 1024px) {
+    a.is-active {
+      border-radius: 4px;
+      color: #cb2d6f;
+      font-weight: bold;
+      background-color: inherit;
+    }
   }
 </style>
 

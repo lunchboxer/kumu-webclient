@@ -31,7 +31,7 @@
 
 {#if $groups && $groups.length}
 <ul class="group-list">
-  {#each sortedGroups as group}
+  {#each sortedGroups as group (group.id)}
     <GroupsListItem {group} />
   {/each}
 </ul>
