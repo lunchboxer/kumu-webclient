@@ -1,6 +1,6 @@
 {
   "projects": {
-    "kumu": {
+    "kumu-webclient": {
       "schemaPath": "schema.graphql",
       "extensions": {
         "endpoints": {

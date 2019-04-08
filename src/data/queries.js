@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const GET_STUDENT = gql`
+export const GET_STUDENT = `
 query student($id: ID!) { 
   student (id: $id){
     chineseName
@@ -16,7 +14,7 @@ query student($id: ID!) {
 }
 `
 
-export const ME = gql`
+export const ME = `
 {
   me {
     username
@@ -24,7 +22,7 @@ export const ME = gql`
   }
 }`
 
-export const ACTIVE_GROUPS = gql`
+export const ACTIVE_GROUPS = `
 {
   activeGroups {
     id
@@ -36,7 +34,7 @@ export const ACTIVE_GROUPS = gql`
 }
 `
 
-export const CURRENT_NEXT_SEMESTER_GROUPS = gql`
+export const CURRENT_NEXT_SEMESTER_GROUPS = `
 {
   currentSemester {
     id

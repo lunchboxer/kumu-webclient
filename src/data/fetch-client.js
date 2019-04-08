@@ -3,6 +3,7 @@ const fetch = window.fetch
 const endpoint = 'http://192.168.1.9:4000'
 
 export const request = async (query, variables) => {
+  const miniQuery = query.replace(/\s+/g, ' ')
   const coldAuth = window.localStorage.getItem('auth')
   const token = coldAuth ? JSON.parse(coldAuth).token : null
   const response = await fetch(endpoint, {
@@ -11,7 +12,7 @@ export const request = async (query, variables) => {
       'Content-Type': 'application/json',
       'Authorization': token || ''
     },
-    body: query(variables)
+    body: JSON.stringify({ query: miniQuery, variables })
   })
   const result = response && await response.json()
 

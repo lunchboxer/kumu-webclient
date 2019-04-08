@@ -25,7 +25,7 @@ const createSessionsStore = () => {
       return response.deleteClassSession
     },
     update: async (id, input, groupId) => {
-      const response = await request(UPDATE_SESSION, { id, input, groupId})
+      const response = await request(UPDATE_SESSION, { id, input, groupId })
       sessions.get()
       return response.updateClassSession
     }

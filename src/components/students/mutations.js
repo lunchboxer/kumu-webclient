@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const CREATE_STUDENT = gql` 
+export const CREATE_STUDENT = ` 
 mutation createStudent($groupId: ID!, $input: StudentInput!) {
   createStudent(input: $input, groupId: $groupId) {
     id
@@ -22,7 +20,7 @@ mutation createStudent($groupId: ID!, $input: StudentInput!) {
 }
 `
 
-export const DELETE_STUDENT = gql` 
+export const DELETE_STUDENT = ` 
 mutation deleteStudent($id: ID!) {
   deleteStudent(id:$id) {
     id
@@ -32,7 +30,7 @@ mutation deleteStudent($id: ID!) {
 }
 `
 
-export const UPDATE_STUDENT = gql`
+export const UPDATE_STUDENT = `
 mutation updateStudent($id: ID!, $input: StudentInput!) {
   updateStudent(input: $input, id: $id) {
     id
@@ -53,7 +51,7 @@ mutation updateStudent($id: ID!, $input: StudentInput!) {
   }
 }`
 
-export const MOVE_TO_DIFFERENT_GROUP = gql`
+export const MOVE_TO_DIFFERENT_GROUP = `
 mutation moveStudentToDifferentGroup($oldGroupId: ID!, $newGroupId: ID!, $studentId: ID! ) {
   moveStudentToDifferentGroup(studentId: $studentId, oldGroupId: $oldGroupId, newGroupId: $newGroupId) {
     id
@@ -75,7 +73,7 @@ mutation moveStudentToDifferentGroup($oldGroupId: ID!, $newGroupId: ID!, $studen
 }
 `
 
-export const ADD_STUDENT_TO_GROUP = gql`
+export const ADD_STUDENT_TO_GROUP = `
 mutation addStudentToGroup($groupId: ID!, $studentId: ID! ) {
   addStudentToGroup(studentId: $studentId, groupId: $groupId) {
     id
@@ -97,7 +95,7 @@ mutation addStudentToGroup($groupId: ID!, $studentId: ID! ) {
 }
 `
 
-export const REMOVE_STUDENT_FROM_GROUP = gql`
+export const REMOVE_STUDENT_FROM_GROUP = `
 mutation removeStudentFromGroup($groupId: ID!, $studentId: ID! ) {
   removeStudentFromGroup(studentId: $studentId, groupId: $groupId) {
     id

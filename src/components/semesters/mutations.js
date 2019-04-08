@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const CREATE_SEMESTER = gql`
+export const CREATE_SEMESTER = `
   mutation createSemester($input: SemesterInput!) {
     createSemester(input: $input) {
       name
@@ -15,7 +13,7 @@ export const CREATE_SEMESTER = gql`
   }
 `
 
-export const DELETE_SEMESTER = gql`
+export const DELETE_SEMESTER = `
   mutation deleteSemester($id: ID!) {
     deleteSemester(id: $id) {
       id
@@ -24,7 +22,7 @@ export const DELETE_SEMESTER = gql`
   }
 `
 
-export const UPDATE_SEMESTER = gql`
+export const UPDATE_SEMESTER = `
   mutation updateSemester($id: ID!, $input: SemesterInput!) {
   updateSemester(input: $input, id: $id) {
     name
