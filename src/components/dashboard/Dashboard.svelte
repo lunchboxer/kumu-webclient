@@ -1,13 +1,19 @@
 <script>
+  import { onMount } from 'svelte'
   import { subRequest, wsQueryRequest } from '../../data/ws-client'
   import { request } from '../../data/fetch-client'
   import { ACTIVE_GROUPS } from '../../data/queries'
-  import gql from 'nanographql'
+  import { GET_SESSIONS } from '../sessions/queries'
 
   let sessions = []
 
-  const query = gql`
-  subscription TheClassSessions {
+  onMount(async () => {
+    const response = await request(GET_SESSIONS)
+    sessions = response.classSessions
+  })
+
+  const query = `
+  subscription {
   classSessions {
      mutation
       updatedFields
@@ -32,20 +38,30 @@
 }`
 
   const ACTIVE_GROUPS_String = `
-query TheActiveGroups {
-  activeGroups {
-    id
-    name
-    semester {
-      name
+    query {
+      activeGroups {
+        id
+        name
+        semester {
+          name
+        }
+      }
     }
-  }
-}
-`
+  `
 
-  // subRequest(query, null, function (data) {
-  //   console.log(data)
-  // })
+  subRequest(query, null, function (data) {
+    const { mutation, node, previousValues } = data.classSessions
+    if (mutation === "CREATED") {
+      sessions = [...sessions, node]
+    } else if (mutation === "UPDATED") {
+      sessions = sessions.map(s => {
+        if (s.id === node.id) return s
+        return node
+      })
+    } else if (mutation === "DELETED") {
+      sessions = sessions.filter(s => s.id !== previousValues.id)
+    }
+  })
 
   $: console.log(sessions)
   const wsquery = async () => {
