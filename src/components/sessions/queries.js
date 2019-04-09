@@ -5,6 +5,7 @@ export const GET_SESSIONS = `
     startsAt
     endsAt
     stage
+    number
     group {
       id
       name
@@ -22,6 +23,7 @@ query currentSession($now: DateTime){
     startsAt
     endsAt
     stage
+    number
     group {
       id
       name
@@ -39,6 +41,7 @@ query todaysSessions($now: DateTime, $latest: DateTime){
     startsAt
     endsAt
     stage
+    number
     group {
       id
       name
