@@ -1,29 +1,28 @@
 <script>
-  import { onMount } from 'svelte'
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte'
   import { notifications } from '../notifications'
   import Input from '../Input.svelte'
   import SemesterSelect from './SemesterSelect.svelte'
   import Error from '../Error.svelte'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
   let form
   let saveButton
-  export let errors = ""
+  export let errors = ''
   export let loading = false
-  export let name = ""
+  export let name = ''
   export let semesterId = null
   export let id = null
 
   const handleSubmit = () => {
-    const isValid = form.checkValidity();
+    const isValid = form.checkValidity()
     if (!isValid) {
       notifications.add({
-        text: "Please fix form errors first.",
-        type: "danger"
-      });
-      return;
+        text: 'Please fix form errors first.',
+        type: 'danger'
+      })
+      return
     }
     dispatch('submit', { id, name, semesterId })
   }

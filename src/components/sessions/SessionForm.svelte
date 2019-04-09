@@ -1,6 +1,5 @@
 <script>
-  import { format } from 'date-fns'
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte'
   import { notifications } from '../notifications'
   import { semester } from './data'
   import Input from '../Input.svelte'
@@ -8,25 +7,25 @@
   import SemesterSelect from './SemesterSelect.svelte'
   import GroupSelect from '../GroupSelect.svelte'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
   export let errors
   export let loading = false
   let form
   let saveButton
-  export let id = ""
-  export let groupId = ""
-  export let startsAt = ""
-  export let endsAt = ""
+  export let id = ''
+  export let groupId = ''
+  export let startsAt = ''
+  export let endsAt = ''
 
   const handleSubmit = () => {
-    const isValid = form.checkValidity();
+    const isValid = form.checkValidity()
     if (!isValid) {
       notifications.add({
-        text: "Please fix form errors first.",
-        type: "danger"
-      });
-      return;
+        text: 'Please fix form errors first.',
+        type: 'danger'
+      })
+      return
     }
     dispatch('submit', { id, groupId, startsAt, endsAt })
   }

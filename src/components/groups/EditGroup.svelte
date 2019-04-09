@@ -5,11 +5,11 @@
 
   export let open = false
   export let group
-  let errors = ""
+  let errors = ''
   let loading = false
 
   const reset = () => {
-    errors = ""
+    errors = ''
     open = false
   }
 
@@ -22,7 +22,7 @@
       reset()
     } catch (error) {
       errors = error
-      notifications.add({ text: "Could not save changes to group", type: "danger" })
+      notifications.add({ text: 'Could not save changes to group', type: 'danger' })
     } finally {
       loading = false
     }

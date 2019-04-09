@@ -1,5 +1,5 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte'
   import { notifications } from '../notifications'
   import Input from '../Input.svelte'
   import DatePicker from '../DatePicker.svelte'
@@ -11,18 +11,18 @@
   let endDate
   export let errors
   export let loading
-  export let name = ""
+  export let name = ''
   export let defaultDate = null
   let options = {
     inline: true,
-    mode: "range",
+    mode: 'range',
     enableTime: false,
     altInput: true,
     altFormat: 'M j, Y',
-    dateFormat: "Y-m-d"
+    dateFormat: 'Y-m-d'
   }
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
   $: if (saveButton) { saveButton.disabled = loading }
 
@@ -33,13 +33,13 @@
     }
   }
   const handleSubmit = () => {
-    const isValid = form.checkValidity();
+    const isValid = form.checkValidity()
     if (!isValid) {
       notifications.add({
-        text: "Please fix form errors first.",
-        type: "danger"
-      });
-      return;
+        text: 'Please fix form errors first.',
+        type: 'danger'
+      })
+      return
     }
     dispatch('submit', { name, startDate, endDate })
   }

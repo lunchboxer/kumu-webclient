@@ -1,4 +1,4 @@
-export const GET_SEMESTERS = `
+export const GET_SEMESTERS = /* GraphQL */`
   {
     semesters {
       id

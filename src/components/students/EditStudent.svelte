@@ -1,7 +1,6 @@
 <script>
   import { students } from './data'
   import { notifications } from '../notifications'
-  import Modal from '../Modal.svelte'
   import StudentForm from './StudentForm.svelte'
 
   export let open = false
@@ -24,7 +23,7 @@
       reset()
     } catch (error) {
       errors = error
-      notifications.add({ text: "Could not save changes to student", type: "danger" })
+      notifications.add({ text: 'Could not save changes to student', type: 'danger' })
     } finally {
       loading = false
     }

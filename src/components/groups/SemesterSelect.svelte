@@ -1,19 +1,19 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from 'svelte'
   import { semesters } from '../semesters/data'
 
   let selectElement
-  let error = ""
+  let error = ''
   export let edit = false
-  export let value = ""
+  export let value = ''
 
   onMount(() => {
-    if (!$semesters || !$semesters.length) {
+    if (!$semesters || $semesters.length === 0) {
       semesters.get()
     }
   })
 
-  function checkValidity() {
+  function checkValidity () {
     error = !selectElement.validity.valid && selectElement.validationMessage
       ? selectElement.validationMessage
       : ''

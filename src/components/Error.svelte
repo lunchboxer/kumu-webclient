@@ -1,10 +1,10 @@
 <script>
-  export let errors = ""
+  export let errors = ''
 
   const getMessage = (errors) => {
     if (!errors) return false
     return (Array.isArray(errors))
-      ? errors.map(e => e.message).join('\n')
+      ? errors.map(error => error.message).join('\n')
       : !errors.message ? errors : errors.message
   }
 </script>

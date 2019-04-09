@@ -1,4 +1,4 @@
-export const GET_ME = `
+export const GET_ME = /* GraphQL */`
 {
   me {
     id

@@ -1,17 +1,15 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte'
   import { notifications } from '../notifications'
-  import { request } from '../../data/fetch-client'
-  import { ACTIVE_GROUPS } from '../../data/queries'
   import Error from '../Error.svelte'
   import Input from '../Input.svelte'
   import GroupSelect from '../GroupSelect.svelte'
 
-  const dispatch = createEventDispatcher();
+  const dispatch = createEventDispatcher()
 
-  export let chineseName = ""
-  export let pinyinName = ""
-  export let englishName = ""
+  export let chineseName = ''
+  export let pinyinName = ''
+  export let englishName = ''
   export let birthdate = null
   export let groupId = null
   export let id = null
@@ -26,13 +24,13 @@
   $: if (saveButton) { saveButton.disabled = loading }
 
   const handleSubmit = () => {
-    const isValid = form.checkValidity();
+    const isValid = form.checkValidity()
     if (!isValid) {
       notifications.add({
-        text: "Please fix form errors first.",
-        type: "danger"
-      });
-      return;
+        text: 'Please fix form errors first.',
+        type: 'danger'
+      })
+      return
     }
     dispatch('submit', { id, chineseName, birthdate, englishName, pinyinName, gender, groupId })
   }

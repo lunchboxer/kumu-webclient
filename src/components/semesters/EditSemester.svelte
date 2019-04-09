@@ -2,27 +2,26 @@
   import { semesters } from './data'
   import { onMount } from 'svelte'
   import { notifications } from '../notifications'
-  import Modal from '../Modal.svelte'
   import SemesterForm from './SemesterForm.svelte'
 
   export let id
   export let open = false
   export let semester = {}
-  export let name = ""
-  export let startDate = ""
-  export let endDate = ""
+  export let name = ''
+  export let startDate = ''
+  export let endDate = ''
   let loading = false
-  let errors = ""
+  let errors = ''
   let defaultDate = null
 
   onMount(() => {
     defaultDate = startDate && endDate
       ? [startDate, endDate]
-      : null;
+      : null
   })
 
   const reset = () => {
-    errors = ""
+    errors = ''
     open = false
   }
 
@@ -35,9 +34,9 @@
     } catch (error) {
       errors = error
       notifications.add({
-        text: "Could not update semester.",
-        type: "danger"
-      });
+        text: 'Could not update semester.',
+        type: 'danger'
+      })
     } finally {
       loading = false
     }

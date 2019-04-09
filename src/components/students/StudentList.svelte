@@ -1,8 +1,7 @@
 <script>
-  import { onMount } from "svelte";
-  import { fade } from 'svelte/transition'
-  import { students } from "./data";
-  import { request } from "../../data/fetch-client"
+  import { onMount } from 'svelte'
+  import { students } from './data'
+  import { request } from '../../data/fetch-client'
   import { CURRENT_NEXT_SEMESTER_GROUPS } from '../../data/queries'
   import StudentListItem from './StudentListItem.svelte'
   import FilterStudents from './FilterStudents.svelte'

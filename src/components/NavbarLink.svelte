@@ -1,8 +1,8 @@
 <script>
-  export let url = ""
-  export let text = ""
+  export let url = ''
+  export let text = ''
   export let icon = null
-  export let active = ""
+  export let active = ''
 </script>
 <style>
   i {
@@ -23,7 +23,7 @@
 
 <a class="navbar-item" class:is-active={active===url} href={url}>
   {#if icon}
-  <i class="fas fa-{icon}"></i>
+    <i class="fas fa-{icon}"></i>
   {/if}
   {text} 
 </a>

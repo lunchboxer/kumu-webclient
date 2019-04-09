@@ -22,7 +22,7 @@
       reset()
     } catch (error) {
       errors = error
-      notifications.add({ text: "Could not save new student", "type": "danger" })
+      notifications.add({ text: 'Could not save new student', 'type': 'danger' })
     } finally {
       loading = false
     }

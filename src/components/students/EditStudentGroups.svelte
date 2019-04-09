@@ -1,5 +1,5 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from 'svelte'
   import { request } from '../../data/fetch-client'
   import { CURRENT_NEXT_SEMESTER_GROUPS } from '../../data/queries'
   import { notifications } from '../notifications'
@@ -7,12 +7,11 @@
   import Error from '../Error.svelte'
 
   let semesters
-  let groupedIntoSemesters = {}
   let selectCurrent
   let currentSemester
   let nextSemester
   let selectNext
-  let errors = ""
+  let errors = ''
   let currentLoading = false
   let nextLoading = false
   let closeButton
@@ -24,16 +23,11 @@
   })
   $: loading = currentLoading || nextLoading
 
-  function checkValidity() {
-    error = !selectElement.validity.valid && selectElement.validationMessage
-      ? selectElement.validationMessage
-      : ''
-  }
   const isInGroup = (id) => {
     return !!student.groups.find(g => g.id === id)
   }
 
-  async function joinOrChangeGroup(select, semester) {
+  async function joinOrChangeGroup (select, semester) {
     select === selectCurrent ? currentLoading = true : nextLoading = true
     select.disabled = true
     closeButton.disabled = true
@@ -43,7 +37,7 @@
     const sameSemester = semester.groups.find(group => isInGroup(group.id))
     let text = ''
     try {
-      if (selected === "" && sameSemester) {
+      if (selected === '' && sameSemester) {
         await students.removeStudentFromGroup(student.id, sameSemester.id)
         text = `Removed ${student.englishName} from ${sameSemester.name} class`
       } else if (sameSemester) {
@@ -53,10 +47,10 @@
         await students.addStudentToGroup(student.id, selected)
         text = `Added ${student.englishName} to ${groupName} class`
       }
-      notifications.add({ text, type: "success" })
+      notifications.add({ text, type: 'success' })
     } catch (error) {
       errors = error
-      notifications.add({ text: `Unable to change ${student.englishName}'s classes`, type: "danger" })
+      notifications.add({ text: `Unable to change ${student.englishName}'s classes`, type: 'danger' })
     } finally {
       select.disabled = false
       closeButton.disabled = false
@@ -97,29 +91,26 @@
   {#await semesters}
   Loading groups ...
 {:then result}
-  {#if result && result.currentSemester}
 
-        <label class="label" >Current semester</label>
-        <div class="control">
-            <div class="select" class:is-loading={currentLoading}>
-              <select bind:value={currentSemester} bind:this={selectCurrent} on:change={()=>joinOrChangeGroup(selectCurrent, result.currentSemester)}>
-                  <option value="">none</option>
-                  {#each result.currentSemester.groups as group}
-                    <option value={group.id} selected={isInGroup(group.id)}>{group.name}</option>
-                  {/each}
-              </select>
-            </div>
-          </div>
-         
-  
+  {#if result && result.currentSemester}
+    <label class="label" >Current semester</label>
+    <div class="control">
+        <div class="select" class:is-loading={currentLoading}>
+          <select bind:value={currentSemester} bind:this={selectCurrent} on:change={()=>joinOrChangeGroup(selectCurrent, result.currentSemester)}>
+              <option value="">none</option>
+              {#each result.currentSemester.groups as group}
+                <option value={group.id} selected={isInGroup(group.id)}>{group.name}</option>
+              {/each}
+          </select>
+        </div>
+      </div>
   {/if}
 
   {#if result && result.nextSemester}
-  
   <label class="label">{result.nextSemester.name}</label>
   <div class="control">
     <div class="select" class:is-loading={nextLoading}>
-      <select bind:value={nextSemester} bind:this={selectNext} on:change={()=>joinOrChangeGroup(selectNext, result.nextSemester)} on:invalid|preventDefault={checkValidity}>
+      <select bind:value={nextSemester} bind:this={selectNext} on:change={()=>joinOrChangeGroup(selectNext, result.nextSemester)}>
         <option value="">none</option>
         {#each result.nextSemester.groups as group}
           <option value={group.id} selected={isInGroup(group.id)}>{group.name}</option>

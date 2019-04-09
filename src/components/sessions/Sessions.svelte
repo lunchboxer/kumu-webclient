@@ -1,5 +1,4 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
   import { sessions, sessionsFilter } from './data'
   import Upcoming from './UpcomingSessions.svelte'
   import SessionsList from './SessionsList.svelte'

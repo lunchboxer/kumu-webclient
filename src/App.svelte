@@ -5,7 +5,7 @@
   import Login from './components/Login.svelte'
   import Navbar from './components/Navbar.svelte'
 
-  let active = "/"
+  let active = '/'
 </script>
 
 <style>

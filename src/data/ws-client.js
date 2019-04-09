@@ -3,8 +3,9 @@
 
 const randomId = (size = 6) => {
   let id = ''
+  // eslint-disable-next-line no-undef
   let bytes = crypto.getRandomValues(new Uint8Array(size))
-  while (0 < size--) {
+  while (size-- > 0) {
     id += 'Uint8ArdomValuesObj012345679BCDEFGHIJKLMNPQRSTWXYZ_cfghkpqvwxyz-'[bytes[size] & 63]
   }
   return id
@@ -13,6 +14,7 @@ const randomId = (size = 6) => {
 const host = 'ws://localhost:4000'
 const protocol = 'graphql-ws'
 
+// eslint-disable-next-line no-undef
 const ws = new WebSocket(host, protocol)
 
 const formatRequest = (query, variables, id) => {

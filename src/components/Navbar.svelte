@@ -2,7 +2,6 @@
   import { auth } from '../data/auth'
   import NavbarLink from './NavbarLink.svelte'
   import { notifications } from './notifications'
-  import { fly } from 'svelte/transition'
   let showMenu = false
   export let active
   const logout = async () => {

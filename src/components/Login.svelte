@@ -4,9 +4,9 @@
   import Input from './Input.svelte'
   import Error from './Error.svelte'
 
-  let username = ""
-  let password = ""
-  let errors = ""
+  let username = ''
+  let password = ''
+  let errors = ''
   let loading = false
   let show = false
   let submit
@@ -14,13 +14,13 @@
   let form
 
   const login = async () => {
-    const isValid = form.checkValidity();
+    const isValid = form.checkValidity()
     if (!isValid) {
       notifications.add({
-        text: "Please fix form errors first.",
-        type: "danger"
-      });
-      return;
+        text: 'Please fix form errors first.',
+        type: 'danger'
+      })
+      return
     }
     loading = true
     submit.disabled = true
@@ -29,14 +29,14 @@
       notifications.add({ text: `Logged in as '${username}'`, type: 'success' })
     } catch (error) {
       errors = error
-      notifications.add({ text: "Login failed.", type: "danger" })
+      notifications.add({ text: 'Login failed.', type: 'danger' })
       submit.disabled = false
     } finally {
       loading = false
     }
   }
   const showPassword = () => {
-    passInput.type = !show ? "text" : "password"
+    passInput.type = !show ? 'text' : 'password'
     show = !show
   }
 </script>

@@ -1,5 +1,5 @@
 <script>
-  import { groups } from "./data";
+  import { groups } from './data'
   import GroupsListItem from './GroupsListItem.svelte'
   import AddGroup from './AddGroup.svelte'
 
@@ -7,7 +7,7 @@
     const date1 = a.semester.startDate
     const date2 = b.semester.startDate
     return (date1 > date2) - (date1 < date2)
-  }) 
+  })
 </script>
 
 <style>

@@ -1,4 +1,4 @@
-export const GET_STUDENTS = `
+export const GET_STUDENTS = /* GraphQL */ `
   query getStudents ($orderBy: StudentOrderByInput, $searchString: String) {
     students (orderBy: $orderBy, searchString: $searchString){
       id

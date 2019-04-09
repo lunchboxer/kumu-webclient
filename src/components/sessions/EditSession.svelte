@@ -4,7 +4,7 @@
   import { notifications } from '../notifications'
   import SessionForm from './SessionForm.svelte'
 
-  let errors = ""
+  let errors = ''
   let loading = false
   export let open = false
   export let session = {}
@@ -12,7 +12,7 @@
   $: startsAtLocal = format(new Date(session.startsAt), "yyyy-MM-dd'T'HH:mm")
   $: endsAtLocal = format(new Date(session.endsAt), "yyyy-MM-dd'T'HH:mm")
   const reset = () => {
-    errors = ""
+    errors = ''
     open = false
   }
 

@@ -8,22 +8,26 @@
   export let open = false
   export let session = {}
   let loading = false
-  let errors = ""
+  let errors = ''
 
   const handleDelete = async () => {
     deleteButton.disabled = true
+    loading = true
     try {
       await sessions.remove(session.id)
       open = false
-      notifications.add({ text: `Session deleted`, type: "success" })
+      notifications.add({ text: `Session deleted`, type: 'success' })
     } catch (error) {
       errors = error
       notifications.add({
-        text: `Could not delete session'`, type: "danger"
+        text: `Could not delete session'`, type: 'danger'
       })
+    } finally {
+      deleteButton.disabled = false
+      loading = false
     }
   }
-  const close = () => open = false
+  const close = () => { open = false }
   const dateString = (date) => {
     return formatRelative(new Date(date), new Date())
   }
@@ -42,6 +46,7 @@
   {session.group.name} class?
 </p>
 <div class="buttons">
-  <button class="button is-primary" bind:this={deleteButton} on:click={handleDelete}>Delete</button>
+  <button class="button is-primary" class:is-loading={loading} bind:this={deleteButton}
+    on:click={handleDelete}>Delete</button>
   <button class="button" on:click={close}>Keep it</button>
 </div>

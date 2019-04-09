@@ -4,8 +4,8 @@
   export let id
   export let message
 
-  $: text = !message || typeof message === "string" ? message : message.text
-  $: type = !message || typeof message === "string" ? "info" : message.type
+  $: text = !message || typeof message === 'string' ? message : message.text
+  $: type = !message || typeof message === 'string' ? 'info' : message.type
 
   const remove = () => notifications.remove(id)
 </script>

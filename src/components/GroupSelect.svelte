@@ -1,12 +1,12 @@
 <script>
-  import { onMount } from 'svelte';
+  import { onMount } from 'svelte'
   import { request } from '../data/fetch-client'
   import { ACTIVE_GROUPS } from '../data/queries'
 
   export let groups
   let selectElement
-  let error = ""
-  export let groupId = ""
+  let error = ''
+  export let groupId = ''
   export let required = false
 
   onMount(async () => {
@@ -17,7 +17,7 @@
   })
 
   $: console.log(groups)
-  function checkValidity() {
+  function checkValidity () {
     error = !selectElement.validity.valid && selectElement.validationMessage
       ? selectElement.validationMessage
       : ''

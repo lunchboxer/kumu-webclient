@@ -1,9 +1,7 @@
 <script>
   import { formatDistance } from 'date-fns'
   import { todaysSessions } from './data'
-  import Error from '../Error.svelte'
   import Warning from '../Warning.svelte'
-  import Loading from '../Loading.svelte'
   import DL from '../DL.svelte'
 
   const dateString = (date) => {

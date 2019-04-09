@@ -1,4 +1,4 @@
-export const GET_GROUPS = `
+export const GET_GROUPS = /* GraphQL */`
   {
     groups {
       id

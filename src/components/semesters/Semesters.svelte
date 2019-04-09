@@ -1,23 +1,21 @@
 <script>
-  import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
-  import { semesters } from "./data";
+  import { onMount } from 'svelte'
+  import { semesters } from './data'
   import { notifications } from '../notifications'
   import SemesterList from './SemesterList.svelte'
   import AddSemester from './AddSemester.svelte'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
 
-  let showAddForm = false
-  let errors = ""
+  let errors = ''
   onMount(async () => {
     try {
-      await semesters.get();
+      await semesters.get()
     } catch (error) {
       errors = error
-      notifications.add({ text: "Couldn't get semesters from server.", type: "danger" })
+      notifications.add({ text: "Couldn't get semesters from server.", type: 'danger' })
     }
-  });
+  })
 </script>
 
 <svelte:head>

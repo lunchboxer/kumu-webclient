@@ -3,7 +3,7 @@
 
   export let open = false
 
-  const close = () => open = false
+  const close = () => { open = false }
 </script>
 
 <style>

@@ -1,5 +1,5 @@
 <script>
-  export let title = "Warning"
+  export let title = 'Warning'
 </script>
 
 <style>

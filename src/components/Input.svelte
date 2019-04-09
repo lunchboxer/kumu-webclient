@@ -5,22 +5,22 @@
   export let label = ''
   let error = false
   export let required = false
-  export let pattern = "^.+$"
+  export let pattern = '^.+$'
   export let minlength = 1
   export let maxlength = 100
-  export let type = "text"
-  export let description = ""
-  export let width = "40rem"
+  export let type = 'text'
+  export let description = ''
+  export let width = '40rem'
   export let min = null
   export let max = null
   export let rightIcon = null
   export let leftIcon = null
-  export let placeholder = ""
+  export let placeholder = ''
 
   $: name = label.replace(/\W+(.)/g, (match, chr) => chr.toUpperCase())
   $: descriptionId = `description${name}`
 
-  function checkValidity() {
+  function checkValidity () {
     error = !input.validity.valid && input.validationMessage ? input.validationMessage : ''
   }
 </script>

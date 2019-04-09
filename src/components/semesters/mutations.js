@@ -1,4 +1,4 @@
-export const CREATE_SEMESTER = `
+export const CREATE_SEMESTER = /* GraphQL */`
   mutation createSemester($input: SemesterInput!) {
     createSemester(input: $input) {
       name
@@ -13,7 +13,7 @@ export const CREATE_SEMESTER = `
   }
 `
 
-export const DELETE_SEMESTER = `
+export const DELETE_SEMESTER = /* GraphQL */`
   mutation deleteSemester($id: ID!) {
     deleteSemester(id: $id) {
       id
@@ -22,7 +22,7 @@ export const DELETE_SEMESTER = `
   }
 `
 
-export const UPDATE_SEMESTER = `
+export const UPDATE_SEMESTER = /* GraphQL */`
   mutation updateSemester($id: ID!, $input: SemesterInput!) {
   updateSemester(input: $input, id: $id) {
     name

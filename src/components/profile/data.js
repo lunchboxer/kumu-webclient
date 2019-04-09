@@ -3,7 +3,7 @@ import { request } from '../../data/fetch-client'
 import { GET_ME } from './queries'
 
 const createProfileStore = () => {
-  const { subscribe, set, update } = writable()
+  const { subscribe, set } = writable()
 
   return {
     subscribe,

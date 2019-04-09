@@ -1,7 +1,6 @@
 <script>
-  import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
-  import { students } from "./data";
+  import { onMount } from 'svelte'
+  import { students } from './data'
   import { notifications } from '../notifications'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
@@ -11,12 +10,12 @@
 
   onMount(async () => {
     try {
-      await students.get();
+      await students.get()
     } catch (error) {
       errors = error
-      notifications.add({ text: "Couldn't get students from server.", type: "danger" })
+      notifications.add({ text: "Couldn't get students from server.", type: 'danger' })
     }
-  });
+  })
 </script>
 
 <svelte:head>

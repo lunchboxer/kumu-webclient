@@ -1,4 +1,4 @@
-export const GET_STUDENT = `
+export const GET_STUDENT = /* GraphQL */`
 query student($id: ID!) { 
   student (id: $id){
     chineseName
@@ -14,7 +14,7 @@ query student($id: ID!) {
 }
 `
 
-export const ME = `
+export const ME = /* GraphQL */`
 {
   me {
     username
@@ -22,7 +22,7 @@ export const ME = `
   }
 }`
 
-export const ACTIVE_GROUPS = `
+export const ACTIVE_GROUPS = /* GraphQL */`
 {
   activeGroups {
     id
@@ -34,7 +34,7 @@ export const ACTIVE_GROUPS = `
 }
 `
 
-export const CURRENT_NEXT_SEMESTER_GROUPS = `
+export const CURRENT_NEXT_SEMESTER_GROUPS = /* GraphQL */`
 {
   currentSemester {
     id

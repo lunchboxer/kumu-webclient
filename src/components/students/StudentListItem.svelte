@@ -1,6 +1,6 @@
 <script>
-  import { onMount } from 'svelte'
-  import { fly, slide } from 'svelte/transition'
+
+  import { slide } from 'svelte/transition'
   import Modal from '../Modal.svelte'
   import DeleteStudent from './DeleteStudent.svelte'
   import EditStudent from './EditStudent.svelte'
@@ -24,9 +24,9 @@
     return `${g.name} (${g.semester.name})`
   }).join(', ')
 
-  const showEdit = () => editShowing = true
-  const showDelete = () => deleteShowing = true
-  const showGroups = () => groupsShowing = true
+  const showEdit = () => { editShowing = true }
+  const showDelete = () => { deleteShowing = true }
+  const showGroups = () => { groupsShowing = true }
 
   const getAge = (dateString) => {
     const today = new Date()
@@ -38,7 +38,6 @@
     }
     return age
   }
-  $: currentOrNextClass = getCurrentOrNextClass(student.groups)
 
   const getCurrentOrNextClass = (groups) => {
     if (!groups) return
@@ -54,8 +53,10 @@
       })
       if (nextGroup) return `Next ${nextGroup.name} class`
     }
-    return "Not enrolled"
+    return 'Not enrolled'
   }
+
+  $: currentOrNextClass = getCurrentOrNextClass(student.groups)
 </script>
 
 <style>

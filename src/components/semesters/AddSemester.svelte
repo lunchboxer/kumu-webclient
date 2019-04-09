@@ -1,16 +1,15 @@
 <script>
   import { semesters } from './data'
-  import { onMount } from 'svelte'
   import { notifications } from '../notifications'
   import Modal from '../Modal.svelte'
   import SemesterForm from './SemesterForm.svelte'
 
   let loading = false
-  let errors = ""
+  let errors = ''
   let open = false
 
   const reset = () => {
-    errors = ""
+    errors = ''
     open = false
   }
 
@@ -23,9 +22,9 @@
     } catch (error) {
       errors = error
       notifications.add({
-        text: "Could not save new semester.",
-        type: "danger"
-      });
+        text: 'Could not save new semester.',
+        type: 'danger'
+      })
     } finally {
       loading = false
     }

@@ -10,7 +10,7 @@
   $: startDate = (new Date(semester.startDate)).toDateString()
   $: endDate = (new Date(semester.endDate)).toDateString()
 
-  const showDeleteDialog = () => confirmDelete = true
+  const showDeleteDialog = () => { confirmDelete = true }
 </script>
 
 <style>

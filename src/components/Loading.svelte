@@ -1,5 +1,5 @@
 <script>
-  export let what = "things";
+  export let what = 'things'
 </script>
 
 <style>

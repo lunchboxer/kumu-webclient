@@ -4,12 +4,12 @@
   import Modal from '../Modal.svelte'
   import GroupForm from './GroupForm.svelte'
 
-  let errors = ""
+  let errors = ''
   let loading = false
   let open = false
 
   const reset = () => {
-    errors = ""
+    errors = ''
     open = false
   }
 
@@ -22,7 +22,7 @@
       reset()
     } catch (error) {
       errors = error
-      notifications.add({ text: "Could not save changes to group", type: "danger" })
+      notifications.add({ text: 'Could not save changes to group', type: 'danger' })
     } finally {
       loading = false
     }
