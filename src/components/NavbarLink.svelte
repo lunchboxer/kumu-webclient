@@ -7,6 +7,8 @@
 <style>
   i {
     margin-right: 0.3rem;
+    width: 20px;
+    text-align: center;
   }
 
   @media only screen and (max-width: 1024px) {
@@ -21,7 +23,7 @@
 
 <a class="navbar-item" class:is-active={active===url} href={url}>
   {#if icon}
-  <i class="fas {icon}"></i>
+  <i class="fas fa-{icon}"></i>
   {/if}
   {text} 
 </a>

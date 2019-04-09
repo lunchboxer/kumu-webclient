@@ -78,18 +78,18 @@
     >
       <div class="navbar-start">
         {#if $auth.username}
-        <NavbarLink url="/" text="Dashboard" {active} />
-        <NavbarLink url="sessions" text="Schedule" {active} />
-        <NavbarLink url="groups" text="Groups" {active} />
-        <NavbarLink url="students" text="Students" {active}/>
-        <NavbarLink url="semesters" text="Semesters" {active} />
+        <NavbarLink url="/" text="Dashboard" icon="chalkboard-teacher" {active}/>
+        <NavbarLink url="sessions" text="Schedule" icon="calendar-alt" {active} />
+        <NavbarLink url="groups" text="Groups" icon="users" {active} />
+        <NavbarLink url="students" text="Students" icon="address-card" {active}/>
+        <NavbarLink url="semesters" text="Semesters" icon="school" {active} />
         {/if}
       </div>
   
       <div class="navbar-end">
         {#if $auth.username}
         
-          <NavbarLink url="me" icon="fa-user" text={$auth.username}/>
+          <NavbarLink url="me" icon="user-circle" text={$auth.username}/>
          
           <div class="buttons">
             <button class="button is-text" on:click={logout}>
