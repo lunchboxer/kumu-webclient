@@ -1,8 +1,8 @@
 <script>
   import { formatDistance, format, formatRelative } from 'date-fns'
-  import DeleteSession from './DeleteSession'
-  import EditSession from './EditSession'
-  import Modal from '../Modal'
+  import Modal from '../Modal.svelte'
+  import DeleteSession from './DeleteSession.svelte'
+  import EditSession from './EditSession.svelte'
 
   export let session
   export let time

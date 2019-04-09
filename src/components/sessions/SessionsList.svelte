@@ -4,9 +4,9 @@
   import { GET_SESSIONS } from './queries'
   import { sessions } from './data'
   import { time } from '../../data/timer'
-  import Loading from '../Loading'
-  import Error from '../Error'
-  import SessionListItem from './SessionListItem'
+  import Loading from '../Loading.svelte'
+  import Error from '../Error.svelte'
+  import SessionListItem from './SessionListItem.svelte'
 </script>
 
 {#if $sessions}

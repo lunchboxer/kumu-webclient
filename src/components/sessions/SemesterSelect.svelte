@@ -1,7 +1,7 @@
 <script>
+  import { onMount } from 'svelte'
   import { semesters } from '../semesters/data'
   import { semester } from './data'
-  import { onMount } from 'svelte'
 
   let semesterSelect
 

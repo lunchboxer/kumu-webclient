@@ -1,9 +1,9 @@
 <script>
-  import { sessions } from './data'
-  import SessionForm from './SessionForm'
-  import Modal from '../Modal'
-  import { notifications } from '../notifications'
   import { formatRelative } from 'date-fns'
+  import { notifications } from '../notifications'
+  import { sessions } from './data'
+  import SessionForm from './SessionForm.svelte'
+  import Modal from '../Modal.svelte'
 
   let errors = null
   let open = false

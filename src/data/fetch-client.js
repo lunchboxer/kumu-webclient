@@ -15,13 +15,9 @@ export const request = async (query, variables) => {
     body: JSON.stringify({ query: miniQuery, variables })
   })
   const result = response && await response.json()
-
   if (response && response.ok && !result.errors && result.data) {
     return result.data
   } else {
-    if (process.env.NODE_ENV === 'development') {
-      console.error('Graphql request returned ERRORS:', result)
-    }
     throw result.errors
   }
 }

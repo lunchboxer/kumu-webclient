@@ -3,12 +3,12 @@
   import { fade } from "svelte/transition";
   import { students } from "./data";
   import { notifications } from '../notifications'
-  import Error from '../Error'
-  import Loading from '../Loading'
-  import StudentList from './StudentList'
+  import Error from '../Error.svelte'
+  import Loading from '../Loading.svelte'
+  import StudentList from './StudentList.svelte'
 
   let errors
-  
+
   onMount(async () => {
     try {
       await students.get();

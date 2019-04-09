@@ -1,9 +1,9 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import { notifications } from '../notifications'
-  import Input from '../Input'
-  import DatePicker from '../DatePicker'
-  import Error from '../Error'
+  import Input from '../Input.svelte'
+  import DatePicker from '../DatePicker.svelte'
+  import Error from '../Error.svelte'
 
   let saveButton
   let form

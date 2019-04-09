@@ -1,5 +1,5 @@
 <script>
-  import GroupForm from './GroupForm'
+  import GroupForm from './GroupForm.svelte'
   import { groups } from './data'
   import { notifications } from '../notifications'
 

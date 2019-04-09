@@ -1,6 +1,6 @@
 <script>
   import { auth } from '../data/auth'
-  import NavbarLink from './NavbarLink'
+  import NavbarLink from './NavbarLink.svelte'
   import { notifications } from './notifications'
   import { fly } from 'svelte/transition'
   let showMenu = false

@@ -1,10 +1,10 @@
 <script>
   import { onMount } from 'svelte';
   import { request } from '../../data/fetch-client'
-  import { students } from './data'
   import { CURRENT_NEXT_SEMESTER_GROUPS } from '../../data/queries'
-  import Error from '../Error'
   import { notifications } from '../notifications'
+  import { students } from './data'
+  import Error from '../Error.svelte'
 
   let semesters
   let groupedIntoSemesters = {}

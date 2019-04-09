@@ -1,6 +1,6 @@
 <script>
-  import DeleteSemester from './DeleteSemester'
-  import EditSemester from './EditSemester'
+  import DeleteSemester from './DeleteSemester.svelte'
+  import EditSemester from './EditSemester.svelte'
   import Modal from '../Modal.svelte'
 
   let confirmDelete = false

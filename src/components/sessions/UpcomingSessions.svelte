@@ -1,8 +1,8 @@
 <script>
   import { todaysSessions } from './data'
   import { time } from '../../data/timer'
-  import Loading from '../Loading'
-  import SessionListItem from './SessionListItem'
+  import Loading from '../Loading.svelte'
+  import SessionListItem from './SessionListItem.svelte'
 </script>
 
 {#if $todaysSessions}

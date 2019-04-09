@@ -1,8 +1,9 @@
 <script>
-  import SessionForm from './SessionForm'
   import { format, formatRelative } from 'date-fns'
   import { sessions } from './data'
   import { notifications } from '../notifications'
+  import SessionForm from './SessionForm.svelte'
+
   let errors = ""
   let loading = false
   export let open = false
@@ -15,7 +16,7 @@
     open = false
   }
 
-  const save = async ({detail}) => {
+  const save = async ({ detail }) => {
     const { id, groupId, ...input } = detail
     input.startsAt = new Date(input.startsAt).toISOString()
     input.endsAt = new Date(input.endsAt).toISOString()
@@ -33,4 +34,5 @@
     }
   }
 </script>
-<SessionForm {errors} on:submit={save} on:reset={reset} groupId={session.group.id} startsAt={startsAtLocal} endsAt={endsAtLocal} id={session.id} {loading} />
+<SessionForm {errors} on:submit={save} on:reset={reset} groupId={session.group.id} startsAt={startsAtLocal}
+  endsAt={endsAtLocal} id={session.id} {loading} />

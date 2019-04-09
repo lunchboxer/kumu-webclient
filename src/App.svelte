@@ -1,9 +1,9 @@
 <script>
-  import Router from './components/Router'
-  import { auth } from './data/auth'
-  import Login from './components/Login'
-  import Navbar from './components/Navbar'
   import { NotificationList } from './components/notifications'
+  import { auth } from './data/auth'
+  import Router from './components/Router.svelte'
+  import Login from './components/Login.svelte'
+  import Navbar from './components/Navbar.svelte'
 
   let active = "/"
 </script>

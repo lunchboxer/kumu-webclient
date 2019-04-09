@@ -1,48 +1,41 @@
 {
   "name": "kumu-webclient",
   "version": "0.2.0",
+  "scripts": {
+    "build": "npm run clean && rollup -c",
+    "clean": "rm -rf public/bundle",
+    "dev": "rollup -c -w",
+    "start": "sirv public --single"
+  },
   "devDependencies": {
     "bulma": "^0.7.4",
-    "concurrently": "^4.1.0",
-    "cross-env": "^5.2.0",
-    "css-loader": "^2.1.1",
-    "eslint": "^5.15.3",
+    "eslint": "^5.16.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-svelte3": "^0.4.5",
+    "eslint-plugin-svelte3": "^0.4.7",
     "eslint-plugin-unicorn": "^8.0.1",
-    "graphql": "^14.2.0",
-    "ignore-loader": "^0.1.2",
-    "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
-    "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.1",
-    "svelte": "beta",
-    "svelte-loader": "2.13.3",
-    "webpack": "^4.29.6",
-    "webpack-cli": "^3.3.0",
-    "webpack-dev-server": "^3.1.9",
-    "webpack-modules": "^1.0.0"
-  },
-  "scripts": {
-    "build": "npm run build:css && npm run build:svelte",
-    "build:css": "node-sass src/main.scss public/main.css",
-    "build:svelte": "cross-env NODE_ENV=production webpack",
-    "dev": "concurrently npm:watch-*",
-    "watch-svelte": "webpack-dev-server --content-base public --host 0.0.0.0",
-    "watch-css": "npm run build:css -- --watch",
-    "serve": "sirv public --single",
-    "lint": "eslint src/**/*"
+    "rollup": "^1.9.0",
+    "rollup-plugin-commonjs": "^9.2.0",
+    "rollup-plugin-commonjs-alternate": "0.0.5",
+    "rollup-plugin-livereload": "^1.0.0",
+    "rollup-plugin-node-resolve": "^4.0.0",
+    "rollup-plugin-notify": "^1.1.0",
+    "rollup-plugin-postcss": "^2.0.3",
+    "rollup-plugin-sass": "^1.2.2",
+    "rollup-plugin-serve": "^1.0.1",
+    "rollup-plugin-svelte": "^5.0.1",
+    "rollup-plugin-terser": "^4.0.2",
+    "sirv-cli": "^0.2.2",
+    "svelte": "beta"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.8.1",
     "date-fns": "^2.0.0-alpha.27",
     "flatpickr": "^4.5.7",
-    "navaid": "^1.0.0",
-    "sirv-cli": "^0.2.2",
-    "svelte-flatpickr": "^1.1.0"
+    "navaid": "^1.0.0"
   }
 }

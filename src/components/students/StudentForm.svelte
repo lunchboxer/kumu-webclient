@@ -3,9 +3,9 @@
   import { notifications } from '../notifications'
   import { request } from '../../data/fetch-client'
   import { ACTIVE_GROUPS } from '../../data/queries'
-  import Error from '../Error'
-  import Input from '../Input'
-  import GroupSelect from '../GroupSelect'
+  import Error from '../Error.svelte'
+  import Input from '../Input.svelte'
+  import GroupSelect from '../GroupSelect.svelte'
 
   const dispatch = createEventDispatcher();
 

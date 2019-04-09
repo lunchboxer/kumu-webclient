@@ -2,8 +2,7 @@
   import { semesters } from './data'
   import { onMount } from 'svelte'
   import { notifications } from '../notifications'
-  import Modal from '../Modal'
-
+  import Modal from '../Modal.svelte'
   import SemesterForm from './SemesterForm.svelte'
 
   export let id

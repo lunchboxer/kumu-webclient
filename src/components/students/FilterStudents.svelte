@@ -1,5 +1,6 @@
 <script>
   import { students } from './data'
+
   let sortParam = 'id'
   let direction = 1
   let searchString = ''

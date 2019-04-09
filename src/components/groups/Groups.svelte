@@ -1,9 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import { groups } from "./data";
-  import GroupsList from './GroupsList'
-  import Error from '../Error'
-  import Loading from '../Loading'
+  import GroupsList from './GroupsList.svelte'
+  import Error from '../Error.svelte'
+  import Loading from '../Loading.svelte'
 
   let errors
 

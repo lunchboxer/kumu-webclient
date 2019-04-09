@@ -1,8 +1,8 @@
 <script>
-  import { sessions } from './data'
-  import { notifications } from '../notifications'
-  import Error from '../Error'
   import { formatRelative } from 'date-fns'
+  import { notifications } from '../notifications'
+  import { sessions } from './data'
+  import Error from '../Error.svelte'
 
   let deleteButton
   export let open = false

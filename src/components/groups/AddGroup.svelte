@@ -1,8 +1,8 @@
 <script>
-  import Modal from '../Modal'
-  import GroupForm from './GroupForm'
   import { groups } from './data'
   import { notifications } from '../notifications'
+  import Modal from '../Modal.svelte'
+  import GroupForm from './GroupForm.svelte'
 
   let errors = ""
   let loading = false

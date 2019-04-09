@@ -1,8 +1,8 @@
 <script>
-  import Modal from '../Modal'
-  import StudentForm from './StudentForm'
   import { students } from './data'
   import { notifications } from '../notifications'
+  import Modal from '../Modal.svelte'
+  import StudentForm from './StudentForm.svelte'
 
   export let open = false
   let errors = null

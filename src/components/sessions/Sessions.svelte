@@ -1,10 +1,10 @@
 <script>
   import { onMount, onDestroy } from 'svelte'
-  import Upcoming from './UpcomingSessions'
-  import SessionsList from './SessionsList'
-  import CurrentSession from './CurrentSession'
-  import AddSession from './AddSession'
   import { sessions, sessionsFilter } from './data'
+  import Upcoming from './UpcomingSessions.svelte'
+  import SessionsList from './SessionsList.svelte'
+  import CurrentSession from './CurrentSession.svelte'
+  import AddSession from './AddSession.svelte'
 
   let activeComponent = Upcoming
   let active = 'upcoming'

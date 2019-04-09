@@ -2,9 +2,9 @@
   import { onMount } from 'svelte'
   import { createEventDispatcher } from 'svelte';
   import { notifications } from '../notifications'
-  import Input from '../Input'
-  import SemesterSelect from './SemesterSelect'
-  import Error from '../Error'
+  import Input from '../Input.svelte'
+  import SemesterSelect from './SemesterSelect.svelte'
+  import Error from '../Error.svelte'
 
   const dispatch = createEventDispatcher();
 

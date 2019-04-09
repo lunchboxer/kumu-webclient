@@ -1,5 +1,6 @@
 <script>
   export let params
-  $: console.log(params)
 </script>
-<h1>Session</h1>
+<h1>Session ID: {params.id}</h1>
+
+<p> this is slow</p>

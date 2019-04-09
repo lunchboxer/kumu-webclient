@@ -3,10 +3,10 @@
   import { fade } from "svelte/transition";
   import { semesters } from "./data";
   import { notifications } from '../notifications'
-  import SemesterList from './SemesterList'
-  import AddSemester from './AddSemester'
-  import Error from '../Error'
-  import Loading from '../Loading'
+  import SemesterList from './SemesterList.svelte'
+  import AddSemester from './AddSemester.svelte'
+  import Error from '../Error.svelte'
+  import Loading from '../Loading.svelte'
 
   let showAddForm = false
   let errors = ""

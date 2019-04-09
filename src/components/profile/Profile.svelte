@@ -1,8 +1,8 @@
 <script>
   import { onMount } from 'svelte'
   import { me } from './data'
-  import Loading from '../Loading'
-  import DL from '../DL'
+  import Loading from '../Loading.svelte'
+  import DL from '../DL.svelte'
 
   onMount(async () => {
     me.get()

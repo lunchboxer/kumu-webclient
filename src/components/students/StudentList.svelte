@@ -4,9 +4,9 @@
   import { students } from "./data";
   import { request } from "../../data/fetch-client"
   import { CURRENT_NEXT_SEMESTER_GROUPS } from '../../data/queries'
-  import StudentListItem from './StudentListItem'
-  import FilterStudents from './FilterStudents'
-  import AddStudent from './AddStudent'
+  import StudentListItem from './StudentListItem.svelte'
+  import FilterStudents from './FilterStudents.svelte'
+  import AddStudent from './AddStudent.svelte'
 
   let semesters
 

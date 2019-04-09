@@ -1,11 +1,11 @@
 <script>
   import { onMount } from 'svelte'
   import { fly, slide } from 'svelte/transition'
-  import Modal from '../Modal'
-  import DeleteStudent from './DeleteStudent'
-  import EditStudent from './EditStudent'
-  import EditStudentGroups from './EditStudentGroups'
-  import DL from '../DL'
+  import Modal from '../Modal.svelte'
+  import DeleteStudent from './DeleteStudent.svelte'
+  import EditStudent from './EditStudent.svelte'
+  import EditStudentGroups from './EditStudentGroups.svelte'
+  import DL from '../DL.svelte'
 
   export let student = {}
   export let semesters = {}

@@ -1,8 +1,9 @@
 <script>
   import { fly } from 'svelte/transition'
-  import Modal from '../Modal'
-  import EditGroup from './EditGroup'
-  import DeleteGroup from './DeleteGroup'
+  import Modal from '../Modal.svelte'
+  import EditGroup from './EditGroup.svelte'
+  import DeleteGroup from './DeleteGroup.svelte'
+
   export let group
   let editShowing = false
   let deleteShowing = false

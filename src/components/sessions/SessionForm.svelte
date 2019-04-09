@@ -1,12 +1,12 @@
 <script>
+  import { format } from 'date-fns'
   import { createEventDispatcher } from 'svelte';
   import { notifications } from '../notifications'
-  import Input from '../Input'
-  import Error from '../Error'
-  import SemesterSelect from './SemesterSelect'
   import { semester } from './data'
-  import GroupSelect from '../GroupSelect'
-  import { format } from 'date-fns' 
+  import Input from '../Input.svelte'
+  import Error from '../Error.svelte'
+  import SemesterSelect from './SemesterSelect.svelte'
+  import GroupSelect from '../GroupSelect.svelte'
 
   const dispatch = createEventDispatcher();
 

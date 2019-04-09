@@ -1,7 +1,7 @@
 <script>
   import { groups } from "./data";
-  import GroupsListItem from './GroupsListItem'
-  import AddGroup from './AddGroup'
+  import GroupsListItem from './GroupsListItem.svelte'
+  import AddGroup from './AddGroup.svelte'
 
   $: sortedGroups = $groups.slice().sort((a, b) => {
     const date1 = a.semester.startDate

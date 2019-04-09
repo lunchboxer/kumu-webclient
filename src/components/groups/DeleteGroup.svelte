@@ -1,7 +1,7 @@
 <script>
   import { groups } from './data'
   import { notifications } from '../notifications'
-  import Error from '../Error'
+  import Error from '../Error.svelte'
 
   let deleteButton
   export let open = false
