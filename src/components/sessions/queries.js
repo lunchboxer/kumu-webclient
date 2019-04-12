@@ -48,3 +48,53 @@ query todaysSessions($now: DateTime, $latest: DateTime){
     }
   }
 }`
+
+export const SESSIONS_SUB = /* GraphQL */`
+subscription {
+  classSessions {
+    mutation
+    updatedFields
+    previousValues{
+      id
+      stage
+      startsAt
+      endsAt
+    }
+      node {
+        id
+        stage
+        startsAt
+        endsAt
+        number
+        group {
+          id
+          name
+        }
+      }
+  }
+}`
+
+export const TODAYS_SESSIONS_SUB = /* GraphQL */`
+subscription {
+  classSessions {
+    mutation
+    updatedFields
+    previousValues {
+      id
+      stage
+      startsAt
+      endsAt
+    }
+    node {
+      id
+      stage
+      startsAt
+      endsAt
+      number
+      group {
+        id
+        name
+      }
+    }
+  }
+}`

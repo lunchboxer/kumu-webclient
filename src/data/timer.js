@@ -7,3 +7,11 @@ export const time = readable(new Date(), set => {
 
   return () => clearInterval(interval)
 })
+
+export const everyMinute = readable(new Date(), set => {
+  const interval = setInterval(() => {
+    set(new Date())
+  }, 6e+4)
+
+  return () => clearInterval(interval)
+})

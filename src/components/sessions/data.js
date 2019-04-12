@@ -1,18 +1,20 @@
-import { writable, readable, get } from 'svelte/store'
+import { writable, get, readable } from 'svelte/store'
 import { request } from '../../data/fetch-client'
-import { GET_SESSIONS, GET_TODAYS_SESSIONS } from './queries'
+import { GET_SESSIONS, SESSIONS_SUB, GET_TODAYS_SESSIONS } from './queries'
 import { CREATE_SESSION, DELETE_SESSION, UPDATE_SESSION } from './mutations'
+import { ws } from '../../data/ws-client2'
 
 export const semester = writable()
 
 const createSessionsStore = () => {
-  const { subscribe, set } = writable()
+  const { subscribe, set, update } = writable()
   return {
     subscribe,
+    update,
     get: async () => {
       const where = (get(sessionsFilter))
-      const getres = await request(GET_SESSIONS, { where })
-      set(getres.classSessions)
+      const response = await request(GET_SESSIONS, { where })
+      set(response.classSessions)
     },
     create: async (input, groupId) => {
       const response = await request(CREATE_SESSION, { input, groupId })
@@ -24,7 +26,7 @@ const createSessionsStore = () => {
       sessions.get()
       return response.deleteClassSession
     },
-    update: async (id, input, groupId) => {
+    patch: async (id, input, groupId) => {
       const response = await request(UPDATE_SESSION, { id, input, groupId })
       sessions.get()
       return response.updateClassSession
@@ -36,14 +38,8 @@ export const sessionsFilter = writable()
 
 export const sessions = createSessionsStore()
 
-const fetchTodaysSessions = async () => {
-  const now = new Date()
-  const latest = new Date(now.getTime() + 24 * 3.6e+6)
-  const response = await request(GET_TODAYS_SESSIONS, { now, latest })
-  return response.classSessions
-}
-
 const sortSessions = (sessions) => {
+  if (!sessions) return
   const time = new Date()
   const in15Min = new Date(time.getTime() + 15 * 60000).toISOString()
   const in24hrs = new Date(time.getTime() + 24 * 3.6e+6).toISOString()
@@ -59,6 +55,19 @@ const sortSessions = (sessions) => {
   return { now, soon, later }
 }
 
+const fetchTodaysSessions = async () => {
+  const now = new Date()
+  const latest = new Date(now.getTime() + 24 * 3.6e+6)
+  const response = await request(GET_TODAYS_SESSIONS, { now, latest })
+  return response.classSessions
+}
+
+// get the initial sessions list from today
+// then resort that list every 15 seconds
+// listen to a subscription on all sessions
+// the new or the old value was within 24 hours, refetch.
+// also automatically refetch if data is stale
+
 export const todaysSessions = readable(null, set => {
   // get the initial data
   let updatedAt = new Date()
@@ -67,11 +76,20 @@ export const todaysSessions = readable(null, set => {
     sessions = result
     set({ ...sortSessions(result), updatedAt })
   })
-
+  const subscription = ws.request({ query: SESSIONS_SUB }).subscribe({
+    next (message) {
+      if (message.data && message.data.classSessions) {
+        fetchTodaysSessions().then(result => {
+          sessions = result
+          set({ ...sortSessions(result), updatedAt: new Date() })
+        })
+      }
+    }
+  })
   const interval = setInterval(() => {
-    // refetch data every 5 minutes
+    // refetch data periodically
     const now = new Date()
-    const expiry = new Date(now - 5 * 60000)
+    const expiry = new Date(now - 3.6e+6)
     if (updatedAt < expiry) {
       fetchTodaysSessions().then(result => {
         sessions = result
@@ -83,5 +101,8 @@ export const todaysSessions = readable(null, set => {
     }
   }, 15000)
 
-  return () => clearInterval(interval)
+  return () => {
+    subscription && subscription.unsubscribe()
+    clearInterval(interval)
+  }
 })

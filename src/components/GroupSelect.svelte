@@ -16,7 +16,6 @@
     }
   })
 
-  $: console.log(groups)
   function checkValidity () {
     error = !selectElement.validity.valid && selectElement.validationMessage
       ? selectElement.validationMessage

@@ -3,6 +3,7 @@ module.exports = {
   plugins: ['svelte3'],
   rules: {
     "unicorn/filename-case": 0,
-    "no-labels": 0
+    "no-labels": 0,
+    "import/first": 0
   }
 }

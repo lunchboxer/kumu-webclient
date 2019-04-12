@@ -22,7 +22,7 @@
     input.endsAt = new Date(input.endsAt).toISOString()
     loading = true
     try {
-      const updatedSession = await sessions.update(id, input, groupId)
+      const updatedSession = await sessions.patch(id, input, groupId)
       const date = formatRelative(new Date(input.startsAt), new Date(), { addSuffix: true })
       notifications.add({ text: `Update session to ${date} with ${updatedSession.group.name} class`, type: 'success' })
       reset()

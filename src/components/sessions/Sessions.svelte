@@ -1,4 +1,5 @@
 <script>
+  import { onMount, onDestroy } from 'svelte'
   import { sessions, sessionsFilter } from './data'
   import Upcoming from './UpcomingSessions.svelte'
   import SessionsList from './SessionsList.svelte'
@@ -7,6 +8,16 @@
 
   let activeComponent = Upcoming
   let active = 'upcoming'
+  let refetch
+
+  onMount(() => {
+    sessions.get()
+    refetch = setInterval(sessions.get, 5 * 6e+4)
+  })
+
+  onDestroy(() => {
+    refetch && clearInterval(refetch)
+  })
 
   const switchTab = (tab) => {
     let where = null
@@ -40,6 +51,8 @@
 <CurrentSession />
 
 <AddSession />
+
+<button class="button" on:click={sessions.get}><i class="fas fa-sync"></i></button>
 
 <nav class="buttons has-addons is-centered">
   <button class="button is-link" class:is-outlined={active!=='upcoming' } on:click={()=>

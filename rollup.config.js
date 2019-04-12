@@ -33,14 +33,14 @@ module.exports = [{
     }),
     resolve(),
     commonjs(),
-    !production && serve({
-      contentBase: 'public',
-      historyApiFallback: true,
-      port: 5050
-    }),
-    !production && livereload({
-      watch: 'public'
-    }),
+    // !production && serve({
+    //   contentBase: 'public',
+    //   historyApiFallback: true,
+    //   port: 5050
+    // }),
+    // !production && livereload({
+    //   watch: 'public'
+    // }),
     notify(),
 
     // If we're building for production (npm run build
