@@ -22,7 +22,7 @@
 <div class="container">
   <section>
     <h1 class="title is-1 primary"><i class="fas fa-frown-open"></i>&nbsp;404</h1>
-    <h2 class="subtitle is-3">Page not found</h2>
+    <h2 class="subtitle is-3">resource not found</h2>
 
     <p>The path '{path}' leads nowhere</p>
     <p>It might be wise to return to the <a href="/">main page</a>.</p>

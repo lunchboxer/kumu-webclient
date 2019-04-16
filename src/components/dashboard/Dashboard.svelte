@@ -1,7 +1,6 @@
 <script>
-  import { todaysSessions } from '../sessions/data'
 
-  $: console.log($todaysSessions)
+  import CurrentSession from '../sessions/CurrentSession.svelte'
 
 </script>
 <svelte:head>
@@ -9,3 +8,5 @@
 </svelte:head>
 
 <h1 class="title">Dashboard</h1>
+
+<CurrentSession />
