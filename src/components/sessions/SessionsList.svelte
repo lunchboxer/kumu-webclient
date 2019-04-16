@@ -7,9 +7,13 @@
 
 {#if $sessions}
 <h3 class="title is-5">Showing {$sessions.length} sessions</h3>
-{#each $sessions as session (session.id)}
+<p>Click a session to view details.</p>
+<ul>
+  {#each $sessions as session (session.id)}
   <SessionListItem {session} time={$time} />
 {/each}
+</ul>
+
 {:else}
   <Loading what="sessions"/>
 {/if}

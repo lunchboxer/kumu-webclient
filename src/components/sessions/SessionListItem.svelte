@@ -17,7 +17,11 @@
 
   const formatTime = (time) => {
     if (!time) return
-    return format(new Date(time), 'p')
+    const dateTime = new Date(time)
+    if (dateTime.getMinutes() === 0) {
+      return format(dateTime, 'h b')
+    }
+    return format(dateTime, 'p')
   }
 
   const maybeDate = (date) => {
@@ -34,28 +38,39 @@
 <style>
   li {
     list-style: none;
-    margin: 1rem;
+    margin: 0;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
-  li.is-active {
-    background: #222;
-    padding: 0.4rem 0.8rem 0.4rem 0.8rem;
-    margin: -0.4rem 0.2rem;
+  li:nth-child(even) {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  @media only screen and (min-width: 600px) {
+    li {
+      padding: 1rem;
+    }
   }
 </style>
 
 {#if session}
-<li class:is-active={showActions}>
-  <span on:click={() => showActions = !showActions}>
+<li>
+  <a href="/session/{session.id}"><span on:click={() => showActions = !showActions}>
     {session.group.name} class {relativeDate(session.startsAt)}, {maybeDate(session.startsAt) || formatTime(session.startsAt)} to {formatTime(session.endsAt)}
-  </span>
-  {#if showActions}
+  </span></a>
+
   <div class="buttons">
-    <button class="button">Go view</button>
-    <button class="button" on:click={()=> showEdit = true}>Edit</button>
-    <button class="button" on:click={()=> showDelete = true}>Delete</button>
+    <button class="button is-small" on:click={()=> showEdit = true}><i class="fas fa-edit"></button>
+    <button class="button is-small" on:click={()=> showDelete = true}><i class="fas fa-minus"></button>
   </div>
-  {/if}
   </li>
 {/if}
 
