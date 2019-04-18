@@ -3,7 +3,6 @@
   import { sessions, sessionsFilter } from './data'
   import Upcoming from './UpcomingSessions.svelte'
   import SessionsList from './SessionsList.svelte'
-  import CurrentSession from './CurrentSession.svelte'
   import AddSession from './AddSession.svelte'
 
   let activeComponent = Upcoming
@@ -47,8 +46,6 @@
 <h1 class="title">
   Class schedule
 </h1>
-
-<CurrentSession />
 
 <AddSession />
 

@@ -5,7 +5,6 @@
   import EditSession from './EditSession.svelte'
 
   export let session
-  export let time
   let showDelete = false
   let showEdit = false
   let showActions = false
@@ -33,6 +32,9 @@
         : `${dateString} ${formatTime(date)}`
     }
     return ''
+  }
+  const isPast = (date) => {
+    return (date < new Date().toISOString())
   }
 </script>
 <style>
@@ -63,9 +65,17 @@
 
 {#if session}
 <li>
-  <a href="/session/{session.id}"><span on:click={() => showActions = !showActions}>
+  {#if isPast(session.startsAt)}
+  <a href="/session/{session.id}">
+    <span on:click={() => showActions = !showActions}>
     {session.group.name} class {relativeDate(session.startsAt)}, {maybeDate(session.startsAt) || formatTime(session.startsAt)} to {formatTime(session.endsAt)}
-  </span></a>
+  </span>
+</a>
+{:else}
+<span on:click={() => showActions = !showActions}>
+    {session.group.name} class {relativeDate(session.startsAt)}, {maybeDate(session.startsAt) || formatTime(session.startsAt)} to {formatTime(session.endsAt)}
+  </span>
+{/if}
 
   <div class="buttons">
     <button class="button is-small" on:click={()=> showEdit = true}><i class="fas fa-edit"></button>
