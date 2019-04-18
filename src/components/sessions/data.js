@@ -41,7 +41,7 @@ export const sessions = createSessionsStore()
 const sortSessions = (sessions) => {
   if (!sessions) return
   const time = new Date()
-  const in15Min = new Date(time.getTime() + 15 * 60000).toISOString()
+  const in15Min = new Date(time.getTime() + 30 * 6e+4).toISOString()
   const in24hrs = new Date(time.getTime() + 24 * 3.6e+6).toISOString()
   const now = sessions.find(session => {
     return session.startsAt < time.toISOString() && session.endsAt > time.toISOString()

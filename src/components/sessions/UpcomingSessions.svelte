@@ -7,7 +7,7 @@
 
 {#if $todaysSessions}
   {#if $todaysSessions && $todaysSessions.soon && $todaysSessions.soon.length}
-    <h3 class="title is-5">{$todaysSessions.soon.length} Lesson{$todaysSessions.soon.length-1 && 's' || ''} starting in the next 15 minutes</h3>
+    <h3 class="title is-5">{$todaysSessions.soon.length} Lesson{$todaysSessions.soon.length-1 && 's' || ''} starting in the next 30 minutes</h3>
     {#each $todaysSessions.soon as session (session.id)}
     <SessionListItem {session} time={$time} />
     {/each}
