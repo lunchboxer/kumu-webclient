@@ -5,5 +5,8 @@ module.exports = {
     "unicorn/filename-case": 0,
     "no-labels": 0,
     "import/first": 0
+  },
+  env: {
+    browser: true
   }
 }
