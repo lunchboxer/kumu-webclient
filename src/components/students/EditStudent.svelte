@@ -18,7 +18,6 @@
     loading = true
     try {
       await students.patch(id, input)
-      // console.log({ id, input })
       notifications.add({ text: `Saved changes to student: '${detail.englishName}'`, type: 'success' })
       reset()
     } catch (error) {

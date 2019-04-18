@@ -27,10 +27,8 @@ const formatRequest = (query, variables, id) => {
 }
 
 export const subRequest = (query, variables, callback) => {
-  console.log(variables)
   const id = randomId()
   const request = formatRequest(query, variables, id)
-  console.log('request:', request)
   if (ws.readyState === 1) {
     ws.send(request)
   } else {
@@ -81,18 +79,14 @@ export const wsQueryRequest = (query, variables) => {
 export const subscribeToMore = (query, variables, store) => {
   const pattern = /{\n?\s*(\w+)/
   const dataName = query.match(pattern)[1]
-  console.log(store)
   subRequest(query, variables, function (data) {
-    console.log('subscribe to more got something')
     if (!data) return
     const { mutation, node, previousValues } = data[dataName]
     if (mutation === 'CREATED') {
-      console.log('CREATED')
       store.update(previous => {
         return [...previous, node]
       })
     } else if (mutation === 'UPDATED') {
-      console.log('UPDATED')
       store.update(previous => {
         return previous.map(item => {
           if (item.id !== node.id) return item
@@ -100,7 +94,6 @@ export const subscribeToMore = (query, variables, store) => {
         })
       })
     } else if (mutation === 'DELETED') {
-      console.log('DELETED')
       store.update(previous => {
         return previous.filter(item => item.id !== previousValues.id)
       })

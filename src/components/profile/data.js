@@ -9,7 +9,6 @@ const createProfileStore = () => {
     subscribe,
     get: async () => {
       const getres = await request(GET_ME)
-      console.log(getres)
       set(getres.me)
     }
   }

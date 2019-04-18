@@ -7,7 +7,6 @@
   export let active = '/'
   export let uri = location.pathname
 
-  $: console.log(uri)
   const dateString = (date) => {
     const dateTime = new Date(date)
     return formatDistance(dateTime, new Date(), { addSuffix: true })
