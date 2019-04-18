@@ -4,7 +4,8 @@
 
   let Route, params
   export let active
-  let uri = location.pathname;
+  export let uri = location.pathname;
+
   $: active = uri.split('/')[1] || '/';
 
   function draw(m, obj) {
