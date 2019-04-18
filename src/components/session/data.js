@@ -1,6 +1,6 @@
 import { writable, readable } from 'svelte/store'
 import { request } from '../../data/fetch-client'
-import { ws } from '../../data/ws-client2'
+import { ws } from '../../data/ws-client'
 import { CLASS_SESSION, CLASS_SESSION_SUB } from './queries'
 
 // have it reset itself to null when not in use

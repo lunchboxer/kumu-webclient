@@ -1,4 +1,5 @@
-import { SubscriptionClient } from 'graphql-subscriptions-client'
+// using plain websockets to communicate with a graphql server
+// https://github.com/apollographql/subscriptions-transport-ws/blob/master/PROTOCOL.md
 
 const randomId = (size = 6) => {
   let id = ''
@@ -11,13 +12,38 @@ const randomId = (size = 6) => {
 }
 
 const host = 'ws://localhost:4000'
+const protocol = 'graphql-ws'
 
-export const ws = new SubscriptionClient(host, {
-  reconnect: true,
-  connectionCallback: error => {
-    error && console.error(error)
+// eslint-disable-next-line no-undef
+const ws = new WebSocket(host, protocol)
+
+const formatRequest = (query, variables, id) => {
+  const miniQuery = query.replace(/\s+/g, ' ')
+  return JSON.stringify({
+    type: 'start',
+    id,
+    payload: { query: miniQuery, variables }
+  })
+}
+
+export const subRequest = (query, variables, callback) => {
+  const id = randomId()
+  const request = formatRequest(query, variables, id)
+  if (ws.readyState === 1) {
+    ws.send(request)
+  } else {
+    ws.addEventListener('open', () => {
+      ws.send(JSON.stringify({ type: 'connection_init', payload: {} }))
+      ws.send(request)
+    })
   }
-})
+  ws.addEventListener('message', (event) => {
+    const data = JSON.parse(event.data)
+    if (data.type === 'data' && data.id === id) {
+      callback(data.payload.data)
+    }
+  })
+}
 
 export const wsQueryRequest = (query, variables) => {
   const id = randomId()
@@ -50,35 +76,9 @@ export const wsQueryRequest = (query, variables) => {
   })
 }
 
-export const maintainStore = (data, store, type) => {
-  if (!data || !data[type]) return
-  const { mutation, node, previousValues } = data[type]
-  const mutateStore = {
-    CREATED: function () {
-      store.update(previous => {
-        return [...previous, node]
-      })
-    },
-    UPDATED: function () {
-      store.update(previous => {
-        return previous.map(item => {
-          if (item.id !== node.id) { return item }
-          return node
-        })
-      })
-    },
-    DELETED: function () {
-      store.update(previous => {
-        return previous.filter(item => item.id !== previousValues.id)
-      })
-    }
-  }
-  mutateStore[mutation]()
-}
 export const subscribeToMore = (query, variables, store) => {
   const pattern = /{\n?\s*(\w+)/
   const dataName = query.match(pattern)[1]
-
   subRequest(query, variables, function (data) {
     if (!data) return
     const { mutation, node, previousValues } = data[dataName]

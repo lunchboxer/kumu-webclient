@@ -2,7 +2,7 @@ import { writable, get, readable } from 'svelte/store'
 import { request } from '../../data/fetch-client'
 import { GET_SESSIONS, SESSIONS_SUB, GET_TODAYS_SESSIONS } from './queries'
 import { CREATE_SESSION, DELETE_SESSION, UPDATE_SESSION } from './mutations'
-import { ws } from '../../data/ws-client2'
+import { ws } from '../../data/ws-client'
 
 export const semester = writable()
 
