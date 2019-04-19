@@ -1,15 +1,5 @@
 import { SubscriptionClient } from 'graphql-subscriptions-client'
 
-const randomId = (size = 6) => {
-  let id = ''
-  // eslint-disable-next-line no-undef
-  let bytes = crypto.getRandomValues(new Uint8Array(size))
-  while (size-- > 0) {
-    id += 'Uint8ArdomValuesObj012345679BCDEFGHIJKLMNPQRSTWXYZ_cfghkpqvwxyz-'[bytes[size] & 63]
-  }
-  return id
-}
-
 const host = 'ws://localhost:4000'
 
 export const ws = new SubscriptionClient(host, {
