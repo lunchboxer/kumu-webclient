@@ -40,6 +40,7 @@
     "eslint-plugin-import": "^2.16.0",
     "flatpickr": "^4.5.7",
     "graphql-subscriptions-client": "^0.11.0",
+    "nanographql": "^2.0.0",
     "navaid": "^1.0.0"
   }
 }

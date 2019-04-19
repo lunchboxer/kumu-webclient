@@ -1,4 +1,6 @@
-export const CLASS_SESSION = /* GraphQL */ `
+import gql from 'nanographql'
+
+export const CLASS_SESSION = gql`
  query classSession($id: ID!){
    classSession (id: $id){
      id
@@ -13,7 +15,7 @@ export const CLASS_SESSION = /* GraphQL */ `
    }
  }`
 
-export const CLASS_SESSION_SUB = /* GraphQL */ `
+export const CLASS_SESSION_SUB = /* GraphQL */`
 subscription classSession($id: ID!){
   classSession (id: $id){
     id
@@ -27,3 +29,20 @@ subscription classSession($id: ID!){
     }
   }
 }`
+
+export const GET_SESSION_STUDENTS = gql`
+query students($groupId: ID!, $classSessionId: ID!){
+  students (where: { groups_some: {id: $groupId}}) {
+    id
+    chineseName
+    pinyinName
+    englishName
+  }
+  attendances (where: {classSession: {id: $classSessionId}}) {
+    student {
+      id
+    }
+    status
+  }
+}
+`

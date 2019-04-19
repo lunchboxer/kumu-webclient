@@ -1,4 +1,6 @@
-export const GET_SESSIONS = /* GraphQL */`
+import gql from 'nanographql'
+
+export const GET_SESSIONS = gql`
  query getSessions($where: ClassSessionWhereInput){
   classSessions (where: $where) {
     id
@@ -13,7 +15,7 @@ export const GET_SESSIONS = /* GraphQL */`
   }
 }`
 
-export const GET_CURRENT_SESSION = /* GraphQL */`
+export const GET_CURRENT_SESSION = gql`
 query currentSession($now: DateTime){
   classSessions(where: {
     startsAt_lt: $now,
@@ -31,7 +33,7 @@ query currentSession($now: DateTime){
   }
 }`
 
-export const GET_TODAYS_SESSIONS = /* GraphQL */`
+export const GET_TODAYS_SESSIONS = gql`
 query todaysSessions($now: DateTime, $latest: DateTime){
   classSessions(where: {
     startsAt_lt: $latest,

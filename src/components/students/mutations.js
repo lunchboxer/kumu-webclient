@@ -1,4 +1,6 @@
-export const CREATE_STUDENT = /* GraphQL */` 
+import gql from 'nanographql'
+
+export const CREATE_STUDENT = gql` 
 mutation createStudent($groupId: ID!, $input: StudentInput!) {
   createStudent(input: $input, groupId: $groupId) {
     id
@@ -20,7 +22,7 @@ mutation createStudent($groupId: ID!, $input: StudentInput!) {
 }
 `
 
-export const DELETE_STUDENT = /* GraphQL */` 
+export const DELETE_STUDENT = gql` 
 mutation deleteStudent($id: ID!) {
   deleteStudent(id:$id) {
     id
@@ -30,7 +32,7 @@ mutation deleteStudent($id: ID!) {
 }
 `
 
-export const UPDATE_STUDENT = /* GraphQL */`
+export const UPDATE_STUDENT = gql`
 mutation updateStudent($id: ID!, $input: StudentInput!) {
   updateStudent(input: $input, id: $id) {
     id
@@ -51,7 +53,7 @@ mutation updateStudent($id: ID!, $input: StudentInput!) {
   }
 }`
 
-export const MOVE_TO_DIFFERENT_GROUP = /* GraphQL */`
+export const MOVE_TO_DIFFERENT_GROUP = gql`
 mutation moveStudentToDifferentGroup($oldGroupId: ID!, $newGroupId: ID!, $studentId: ID! ) {
   moveStudentToDifferentGroup(studentId: $studentId, oldGroupId: $oldGroupId, newGroupId: $newGroupId) {
     id
@@ -73,7 +75,7 @@ mutation moveStudentToDifferentGroup($oldGroupId: ID!, $newGroupId: ID!, $studen
 }
 `
 
-export const ADD_STUDENT_TO_GROUP = /* GraphQL */`
+export const ADD_STUDENT_TO_GROUP = gql`
 mutation addStudentToGroup($groupId: ID!, $studentId: ID! ) {
   addStudentToGroup(studentId: $studentId, groupId: $groupId) {
     id
@@ -95,7 +97,7 @@ mutation addStudentToGroup($groupId: ID!, $studentId: ID! ) {
 }
 `
 
-export const REMOVE_STUDENT_FROM_GROUP = /* GraphQL */`
+export const REMOVE_STUDENT_FROM_GROUP = gql`
 mutation removeStudentFromGroup($groupId: ID!, $studentId: ID! ) {
   removeStudentFromGroup(studentId: $studentId, groupId: $groupId) {
     id

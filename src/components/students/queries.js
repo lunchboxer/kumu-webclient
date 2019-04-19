@@ -1,4 +1,6 @@
-export const GET_STUDENTS = /* GraphQL */ `
+import gql from 'nanographql'
+
+export const GET_STUDENTS = gql`
   query getStudents ($orderBy: StudentOrderByInput, $searchString: String) {
     students (orderBy: $orderBy, searchString: $searchString){
       id

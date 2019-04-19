@@ -1,4 +1,6 @@
-export const GET_GROUPS = /* GraphQL */`
+import gql from 'nanographql'
+
+export const GET_GROUPS = gql`
   {
     groups {
       id
