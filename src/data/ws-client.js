@@ -1,6 +1,6 @@
 import { SubscriptionClient } from 'graphql-subscriptions-client'
 
-const host = 'ws://localhost:4000'
+const host = 'ws://192.168.1.9:4000'
 
 export const ws = new SubscriptionClient(host, {
   reconnect: true,

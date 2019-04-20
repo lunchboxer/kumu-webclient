@@ -22,7 +22,7 @@
 {/if}
 
 {:else if $session && $session.classSession === null}
-<NotFound />
+  <NotFound />
 {:else}
-<Loading what="class session"/>
+  <Loading what="class session"/>
 {/if}

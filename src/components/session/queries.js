@@ -39,6 +39,7 @@ query students($groupId: ID!, $classSessionId: ID!){
     englishName
   }
   attendances (where: {classSession: {id: $classSessionId}}) {
+    id
     student {
       id
     }
@@ -46,3 +47,13 @@ query students($groupId: ID!, $classSessionId: ID!){
   }
 }
 `
+export const ATTENDANCE_SUB = /* GraphQL */`
+subscription attendances($classSessionId: ID!){
+  attendances (classSessionId: $classSessionId){
+    id
+    student {
+      id
+    }
+    status
+  }
+}`
