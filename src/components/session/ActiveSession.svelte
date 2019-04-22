@@ -10,8 +10,9 @@
   let errors = ''
 
   const startClass = () => {
+    const now = new Date().toISOString()
     try {
-      request(START_CLASS, { id: $session.id })
+      request(START_CLASS, { id: $session.id, now })
     } catch (error) {
       errors = error
     }
@@ -32,15 +33,10 @@
   }
 </style>
 
-{#if $session}
-
-  <h2 class="title">{$session.group.name} class lesson {$session.number}</h2>
-  <p class="subtitle" class:late={$session.startsAt < $time.toJSON()}>Scheduled start time: {distance}</p>
-  <Error {errors}/>
-  <AttendanceForm />
-  <button class="button is-primary" on:click={startClass}>
-    <i class="fas fa-play-circle"></i>
-    Start class
-  </button>
-
-{/if}
+<p class="subtitle" class:late={$session.startsAt < $time.toJSON()}>Scheduled start time: {distance}</p>
+<Error {errors} />
+<AttendanceForm />
+<button class="button is-primary" on:click={startClass}>
+  <i class="fas fa-play-circle"></i>
+  Start class
+</button>

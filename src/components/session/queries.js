@@ -6,7 +6,9 @@ export const CLASS_SESSION = gql`
      id
      stage
      startsAt
+     startedAt
      endsAt
+     endedAt
      number
      group {
        id
@@ -21,7 +23,9 @@ subscription classSession($id: ID!){
     id
     stage
     startsAt
+    startedAt
     endsAt
+    endedAt
     number
     group {
       id
@@ -47,6 +51,7 @@ query students($groupId: ID!, $classSessionId: ID!){
   }
 }
 `
+
 export const ATTENDANCE_SUB = /* GraphQL */`
 subscription attendances($classSessionId: ID!){
   attendances (classSessionId: $classSessionId){
@@ -57,3 +62,74 @@ subscription attendances($classSessionId: ID!){
     status
   }
 }`
+
+export const GET_SESSION_POINTS = gql`
+query points($classSessionId: ID!) {
+ points(where: { classSession: {id: $classSessionId}}) {
+      id 
+      value
+      student {
+        englishName
+        chineseName
+        id
+      }
+    }
+}
+`
+export const POINTS_SUB = /* GraphQL */`
+subscription sessionPoints($classSessionId: ID!){
+  points(classSessionId: $classSessionId){
+    mutation
+    previousValues {
+      id
+    }
+    node {
+      id
+      value
+      student {
+        englishName
+        chineseName
+        id
+      }
+    }
+    
+  }
+}
+`
+
+export const SESSION_RESULTS = gql`
+query sessionResults($classSessionId: ID!) {
+  classSession (id: $classSessionId){
+    id
+    stage
+    startsAt
+    startedAt
+    endsAt
+    endedAt
+    number
+    group {
+      id
+      name
+    }
+    attendances {
+      status
+      arrivedAt 
+      student {
+        id
+        chineseName
+        englishName
+        pinyinName
+      }
+    }
+    points {
+      value
+      student {
+        id
+        chineseName
+        englishName
+        pinyinName
+      }
+    }
+  }
+}
+`

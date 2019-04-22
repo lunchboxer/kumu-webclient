@@ -4,9 +4,10 @@
 
   export let student = {}
   export let sessionId = null
+  export let started = false
 
   const updateAttendance = () => {
-    const status = present ? 'Absent' : 'Present'
+    const status = present ? 'Absent' : started ? 'Late' : 'Present'
     try {
       request(UPDATE_ATTENDANCE, { classSessionId: sessionId, studentId: student.id, status })
     } catch (error) {

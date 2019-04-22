@@ -4,6 +4,8 @@
   import NotFound from '../NotFound.svelte'
   import ActiveSession from './ActiveSession.svelte'
   import SessionActivator from './SessionActivator.svelte'
+  import StartedSession from './StartedSession.svelte'
+  import EndedSession from './EndedSession.svelte'
 
   export let params
 
@@ -13,13 +15,17 @@
 </script>
 
 {#if $session}
-
-{#if $session.stage === "Inactive"}
-  <SessionActivator id={params.id} />
-{/if}
-{#if $session.stage === "Active"}
-  <ActiveSession />
-{/if}
+  <h2 class="title">{$session.group.name} class lesson {$session.number}</h2>
+  {#if $session.stage === "Inactive"}
+    <SessionActivator id={params.id} />
+  {:else if $session.stage === "Active"}
+    <ActiveSession />
+  {:else if $session.stage === "Started"}
+    <StartedSession />
+  {:else if $session.stage === "Ended"}
+    <EndedSession />
+  {/if}
+  
 
 {:else if $session && $session.classSession === null}
   <NotFound />

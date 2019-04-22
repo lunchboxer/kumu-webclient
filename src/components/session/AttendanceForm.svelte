@@ -1,33 +1,12 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
   import { sessionStudents, session } from './data'
   import Loading from '../Loading.svelte'
   import Error from '../Error.svelte'
   import AttendanceRow from './AttendanceRow.svelte'
-  import { ws } from '../../data/ws-client'
   import { request } from '../../data/fetch-client'
-  import { ATTENDANCE_SUB } from './queries'
   import { MARK_ALL_PRESENT } from './mutations'
 
   let errors = ''
-
-  let subscription = null
-
-  onMount(() => {
-    // subscribe to attendance changes and update sessionStudent
-    subscription = ws.request({ query: ATTENDANCE_SUB, variables: { classSessionId: $session.id } })
-      .subscribe({
-        next (message) {
-          if (message.data && message.data.attendances) {
-            sessionStudents.update(previous => {
-              return sessionStudents.mapAttendanceToStudents(message.data.attendances, previous)
-            })
-          }
-        }
-      })
-  })
-
-  onDestroy(() => { subscription && subscription.unsubscribe() })
 
   const markAllPresent = () => {
     try {
