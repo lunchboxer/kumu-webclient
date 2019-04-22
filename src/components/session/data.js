@@ -1,4 +1,4 @@
-import { writable, readable } from 'svelte/store'
+import { writable, readable, derived } from 'svelte/store'
 import { request } from '../../data/fetch-client'
 import { ws } from '../../data/ws-client'
 import {
@@ -7,7 +7,8 @@ import {
   ATTENDANCE_SUB,
   GET_SESSION_STUDENTS,
   POINTS_SUB,
-  GET_SESSION_POINTS
+  GET_SESSION_POINTS,
+  SESSION_RESULTS
 } from './queries'
 import { UNDO_POINT, ADD_POINT } from './mutations'
 
@@ -160,3 +161,21 @@ const createPointsStore = () => {
 }
 
 export const points = createPointsStore()
+
+export const results = derived(sessionId, async ($sessionId, set )=> {
+  const response = await request(SESSION_RESULTS, { classSessionId: $sessionId })
+  if (!response.classSession) return
+  const { attendances, points } = response.classSession
+  const withPoints = attendances && attendances.map(attendance => {
+    attendance.points = points && points.filter(point => {
+      return point.student.id === attendance.student.id
+    })
+    attendance.pointsTally = attendance.points.reduce((sum, point) => {
+      return sum + point.value
+    }, 0)
+    return attendance
+  })
+  set(withPoints.slice().sort((a, b) => {
+    return b.pointsTally - a.pointsTally
+  }))
+})
