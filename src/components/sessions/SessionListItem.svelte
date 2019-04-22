@@ -33,8 +33,10 @@
     }
     return ''
   }
-  const isPast = (date) => {
-    return (date < new Date().toISOString())
+  const isCurrentOrPast = (date) => {
+    const now = new Date()
+    const in30 = new Date(now.valueOf() + 30 * 6e+4)
+    return (date < in30.toISOString())
   }
 </script>
 <style>
@@ -65,7 +67,7 @@
 
 {#if session}
 <li>
-  {#if isPast(session.startsAt)}
+  {#if isCurrentOrPast(session.startsAt)}
   <a href="/session/{session.id}">
     <span on:click={() => showActions = !showActions}>
     {session.group.name} class {relativeDate(session.startsAt)}, {maybeDate(session.startsAt) || formatTime(session.startsAt)} to {formatTime(session.endsAt)}

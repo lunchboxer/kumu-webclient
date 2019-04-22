@@ -11,8 +11,6 @@
     if (point.student.id !== student.id) return sum
     return sum + point.value
   }, 0) : 0
-
-  const leftPad = (number) => ('0' + number).slice(-2)
 </script>
 
 <style>
@@ -20,7 +18,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 2rem;
+    font-size: 1.8rem;
     max-width: 500px;
   }
 
@@ -28,11 +26,15 @@
     width: 10rem;
     border: red;
   }
+
+  span.points {
+    text-align: right;
+  }
 </style>
 
 <li>
   <IconButton name="plus-square" color="#55FF66" on:click={()=> addPoint(1)} />
     <span class="name">{student.englishName || student.chineseName}</span>
-    <span>{leftPad(pointsTally)}</span>
+    <span class="points">{pointsTally}</span>
     <IconButton name="minus-square" color="#FF5566" on:click={()=> addPoint(-1)}/>
 </li>

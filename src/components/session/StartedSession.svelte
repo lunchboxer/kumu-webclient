@@ -12,7 +12,7 @@
   $: startedAt = formatDistance(new Date($session.startedAt), new Date(), { addSuffix: true })
   $: endsAt = formatDistance(new Date($session.endsAt), new Date(), { addSuffix: true })
   $: absentStudents = $sessionStudents && $sessionStudents.filter(student => {
-    return student.attendance.status === 'Absent'
+    return student.attendance && student.attendance.status === 'Absent'
   })
 </script>
 

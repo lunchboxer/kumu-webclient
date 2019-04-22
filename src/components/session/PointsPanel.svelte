@@ -15,7 +15,7 @@
   <h3 class="title is-4">Points</h3>
   <ul>
     {#each $sessionStudents as student (student.id)}
-    {#if student.attendance.status !== "Absent"}
+    {#if student.attendance && student.attendance.status !== "Absent"}
       <PointsRow {student} {sessionId} />
     {/if}
   {/each}

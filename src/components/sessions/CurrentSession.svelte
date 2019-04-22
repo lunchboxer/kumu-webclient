@@ -11,7 +11,6 @@
     const dateTime = new Date(date)
     return formatDistance(dateTime, new Date(), { addSuffix: true })
   }
-
 </script>
 
 <style>
@@ -25,7 +24,7 @@
   }
 </style>
 
-{#if $todaysSessions && $todaysSessions.now}
+{#if $todaysSessions && $todaysSessions.now && $todaysSessions.now.stage !== "Ended"}
 {#if uri !== `/session/${$todaysSessions.now.id}`}
   <Warning title="{$todaysSessions.now.group.name} class is on right now!">
     <div class="warning">
