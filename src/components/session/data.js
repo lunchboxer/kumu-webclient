@@ -162,7 +162,7 @@ const createPointsStore = () => {
 
 export const points = createPointsStore()
 
-export const results = derived(sessionId, async ($sessionId, set )=> {
+export const results = derived(sessionId, async ($sessionId, set) => {
   const response = await request(SESSION_RESULTS, { classSessionId: $sessionId })
   if (!response.classSession) return
   const { attendances, points } = response.classSession

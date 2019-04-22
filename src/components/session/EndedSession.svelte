@@ -1,6 +1,4 @@
 <script>
-  import { onMount } from 'svelte'
-  import { request } from '../../data/fetch-client'
   import { session, results } from './data'
   import { time } from '../../data/timer'
   import { formatDistance, formatRelative } from 'date-fns'
