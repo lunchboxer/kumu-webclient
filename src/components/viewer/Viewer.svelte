@@ -17,7 +17,7 @@
     // subscribe to above
     const subscription = ws.request({ query: ACTIVE_SESSION_SUB })
       .subscribe({
-        next (message) {
+        next(message) {
           if (!message.data || !message.data.classSessions) return
           sessionId.set(message.data.classSessions.node.id)
         }
@@ -32,19 +32,26 @@
   $: console.log($session)
 </script>
 
+<style>
+  div {
+    font-family: 'Schoolbell', cursive;
+  }
+</style>
 <svelte:head>
   <title>Viewer</title>
   <link href="https://fonts.googleapis.com/css?family=Schoolbell" rel="stylesheet">
 </svelte:head>
 
-{#if !$sessionId}
-  <h2 class="title">No active session found</h2>
-{:else if !$session}
-  <Loading what="session"/>
-{:else if $session.stage === "Active"}
-  <PreclassBoard />
-{:else if $session.stage === "Started"}
-  <Scoreboard />
-{:else if $session.stage === "Ended"}
-  <ResultsBoard />
-{/if}
+<div>
+  {#if !$sessionId}
+    <h2 class="title">No active session found</h2>
+  {:else if !$session}
+    <Loading what="session"/>
+  {:else if $session.stage === "Active"}
+    <PreclassBoard />
+  {:else if $session.stage === "Started"}
+    <Scoreboard />
+  {:else if $session.stage === "Ended"}
+    <ResultsBoard />
+  {/if}
+</div>

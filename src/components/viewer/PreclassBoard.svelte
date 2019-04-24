@@ -19,7 +19,6 @@
 
 <style>
   main {
-    font-family: 'Schoolbell', cursive;
     display: flex;
     flex-flow: column;
     justify-content: center;
