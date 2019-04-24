@@ -11,6 +11,7 @@
     background: black;
     display: flex;
     justify-content: center;
+    border-radius: 4px;
   }
 
   .modal-content section {

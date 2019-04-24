@@ -3,7 +3,7 @@ const isObject = object => object && typeof object === 'object'
 
 const hasKey = (object, key) => key in object
 
-export function getIfExists(object, property, callback) {
+export function getIfExists (object, property, callback) {
   return property.split('.').reduce((item, key) => {
     if (isObject(item) && hasKey(item, key)) {
       return item[key]

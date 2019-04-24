@@ -29,6 +29,7 @@
   const showGroups = () => { groupsShowing = true }
 
   const getAge = (dateString) => {
+    if (dateString === 'none') return
     const today = new Date()
     const birthDate = new Date(dateString)
     let age = today.getFullYear() - birthDate.getFullYear()
@@ -166,7 +167,9 @@
       <div class="media-content">
         <p><strong>{student.englishName}</strong> <span class="chinese">{student.chineseName}</span></p>
         <p>{currentOrNextClass}</p>
+        {#if student.birthdate}
         <p>{getAge(birthdate)} yrs old</p>
+        {/if}
       </div>
       <i class="expand-button fas fa-angle-{expanded ? 'up' : 'down'}"></i>
     </div>

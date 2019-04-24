@@ -19,19 +19,23 @@
   }
 </style>
 
-<div>
-  <Navbar {active} />
+{#if active !== 'viewer'}
+<Navbar {active} />
+{/if}
 
-  <main>
+<main>
 
-    {#if $auth.username}
+  {#if $auth.username}
+    {#if active !== "viewer"}
       <CurrentSession {active} {uri}/>
-      <Router bind:active bind:uri/>
-    {:else}
-      <Login/>
     {/if}
+    <Router bind:active bind:uri/>
+  {:else}
+    <Login/>
+  {/if}
         
   </main>
   
+  {#if active !== "viewer"}
   <NotificationList/>
-</div>
+  {/if}

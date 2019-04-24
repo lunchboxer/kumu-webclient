@@ -56,7 +56,7 @@
     <Input bind:value={chineseName} label="Chinese name" placeholder="孙悟空" required />
     <Input bind:value={pinyinName} label="Pinyin name" placeholder="Sūn Wùkōng" />
     <Input bind:value={englishName} label="English name" placeholder="Monkey King" required />
-    <Input type="date" bind:value={birthdate} label="Birthdate" max={todaysDate} required />
+    <Input type="date" bind:value={birthdate} label="Birthdate" max={todaysDate} />
     
     <div class="control genders">
 			<label class="radio">

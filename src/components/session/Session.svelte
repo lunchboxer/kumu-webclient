@@ -1,5 +1,6 @@
 <script>
   import { session, sessionId } from './data'
+  import { onDestroy } from 'svelte'
   import Loading from '../Loading.svelte'
   import NotFound from '../NotFound.svelte'
   import ActiveSession from './ActiveSession.svelte'
@@ -12,6 +13,10 @@
   $: if (params && params.id) {
     sessionId.set(params.id)
   }
+
+  onDestroy(() => {
+    sessionId.set(null)
+  })
 </script>
 
 {#if $session}

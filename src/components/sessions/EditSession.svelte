@@ -24,11 +24,11 @@
     try {
       const updatedSession = await sessions.patch(id, input, groupId)
       const date = formatRelative(new Date(input.startsAt), new Date(), { addSuffix: true })
-      notifications.add({ text: `Update session to ${date} with ${updatedSession.group.name} class`, type: 'success' })
+      notifications.add({ text: `Updated session to ${date} with ${updatedSession.group.name} class`, type: 'success' })
       reset()
     } catch (error) {
       errors = error
-      notifications.add({ text: 'Could save changes to session', type: 'danger' })
+      notifications.add({ text: "Couldn't save changes to session", type: 'danger' })
     } finally {
       loading = false
     }

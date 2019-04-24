@@ -18,7 +18,10 @@ export const sessionId = writable(null, set => set(null))
 export const session = readable(null, set => {
   let subscription
   const unsubscribe = sessionId.subscribe(id => {
-    if (!id) return
+    if (!id) {
+      set(null)
+      return
+    }
     if (subscription) {
       subscription.unsubscribe()
     }
@@ -163,6 +166,7 @@ const createPointsStore = () => {
 export const points = createPointsStore()
 
 export const results = derived(sessionId, async ($sessionId, set) => {
+  if (!$sessionId) return
   const response = await request(SESSION_RESULTS, { classSessionId: $sessionId })
   if (!response.classSession) return
   const { attendances, points } = response.classSession
