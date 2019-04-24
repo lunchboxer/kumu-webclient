@@ -7,11 +7,13 @@
   import Loading from '../Loading.svelte'
   import PreclassBoard from './PreclassBoard.svelte'
   import Scoreboard from './Scoreboard.svelte'
+  import ResultsBoard from './ResultsBoard.svelte'
 
   onMount(async () => {
     const response = await request(ACTIVE_SESSION)
-    console.log(response)
-    sessionId.set(response.classSessions[0].id)
+    if (response.classSessions[0]) {
+      sessionId.set(response.classSessions[0].id)
+    }
     // subscribe to above
     const subscription = ws.request({ query: ACTIVE_SESSION_SUB })
       .subscribe({
@@ -43,4 +45,6 @@
   <PreclassBoard />
 {:else if $session.stage === "Started"}
   <Scoreboard />
+{:else if $session.stage === "Ended"}
+  <ResultsBoard />
 {/if}

@@ -98,8 +98,8 @@ subscription sessionPoints($classSessionId: ID!){
 `
 
 export const SESSION_RESULTS = gql`
-query sessionResults($classSessionId: ID!) {
-  classSession (id: $classSessionId){
+query sessionResults($id: ID!) {
+  classSession (id: $id){
     id
     stage
     startsAt

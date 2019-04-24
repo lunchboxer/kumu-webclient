@@ -1,16 +1,39 @@
 <script>
-  import { session, results } from './data'
+  import { session } from './data'
+  import { onMount } from 'svelte'
   import { time } from '../../data/timer'
   import { formatDistance, formatRelative } from 'date-fns'
   import DL from '../DL.svelte'
   import Loading from '../Loading.svelte'
   import Error from '../Error.svelte'
   import ResultsRow from './ResultsRow.svelte'
+  import { request } from '../../data/fetch-client'
+  import { SESSION_RESULTS } from './queries'
 
+  export let id
   let errors = ''
+  let results
 
   $: endedDistance = formatDistance(new Date($session.endedAt), new Date($time), { addSuffix: true })
   const relative = (date) => date && formatRelative(new Date(date), new Date())
+
+  onMount(async () => {
+    const response = await request(SESSION_RESULTS, { id })
+    if (!response.classSession) return
+    const { attendances, points } = response.classSession
+    const withPoints = attendances && attendances.map(attendance => {
+      attendance.points = points && points.filter(point => {
+        return point.student.id === attendance.student.id
+      })
+      attendance.pointsTally = attendance.points.reduce((sum, point) => {
+        return sum + point.value
+      }, 0)
+      return attendance
+    })
+    results = withPoints.slice().sort((a, b) => {
+      return b.pointsTally - a.pointsTally
+    })
+  })
 </script>
 
 <style>
@@ -37,11 +60,11 @@
 
 <Error {errors} />
 
-{#if $results}
+{#if results}
 <section class="results">
     <h3 class="title is-4">Results</h3>
     <ul>
-      {#each $results as result (result.id)}
+      {#each results as result (result.id)}
         <ResultsRow {result} />
       {/each}
     </ul>

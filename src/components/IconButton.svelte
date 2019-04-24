@@ -1,6 +1,7 @@
 <script>
   export let name = ''
   export let color = 'white'
+  export let disabled = false
 </script>
 
 <style>
@@ -15,9 +16,17 @@
     outline: none;
   }
 
+  i {
+    color: var(--color);
+  }
+
+  button:disabled i {
+    color: grey;
+  }
+
   button:hover {
     color: #bbb;
   }
 </style>
 
-<button on:click><i class="fas fa-{name}" style="color:{color}"></i></button>
+<button on:click {disabled}><i class="fas fa-{name}" style="--color: {color}"></i></button>

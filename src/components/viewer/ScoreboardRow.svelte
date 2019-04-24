@@ -1,6 +1,6 @@
 <script>
   import { fly, fade } from 'svelte/transition'
-  import { points } from '../session/data'
+  import { points } from './data'
   import Star from './Star.svelte'
   export let student
   export let sessionId
@@ -21,6 +21,7 @@
   .name {
     font-size: 4rem;
     margin: 1rem;
+    width: 15rem;
   }
 
   .absent {

@@ -28,7 +28,7 @@
   {:else if $session.stage === "Started"}
     <StartedSession />
   {:else if $session.stage === "Ended"}
-    <EndedSession />
+    <EndedSession id={params.id} />
   {/if}
   
 
