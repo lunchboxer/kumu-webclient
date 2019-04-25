@@ -33,6 +33,10 @@
   }
 </style>
 
+<svelte:head>
+  <title>Active Session</title>
+</svelte:head>
+
 <p class="subtitle" class:late={$session.startsAt < $time.toJSON()}>Scheduled start time: {distance}</p>
 <Error {errors} />
 <AttendanceForm />

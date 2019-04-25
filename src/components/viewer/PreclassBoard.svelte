@@ -13,8 +13,6 @@
   $: absentStudents = $sessionStudents && $sessionStudents.filter(student => {
     return !student.attendance || student.attendance.status !== 'Present'
   }).map(student => (student.englishName || student.chineseName)).join(', ')
-  $: console.log($sessionStudents)
-  $: console.log(absentStudents)
 </script>
 
 <style>

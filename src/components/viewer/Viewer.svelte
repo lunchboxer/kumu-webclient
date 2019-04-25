@@ -34,6 +34,7 @@
 
 <style>
   div {
+    height: 100%;
     font-family: 'Schoolbell', cursive;
   }
 </style>

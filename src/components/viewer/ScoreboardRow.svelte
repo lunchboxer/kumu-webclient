@@ -1,4 +1,3 @@
-<svelte:options immutable />
 <script>
   import { fly, fade } from 'svelte/transition'
   import { points } from './data'
@@ -11,6 +10,7 @@
     if (point.student.id !== student.id) return sum
     return sum + point.value
   }, 0) : 0
+  $: console.log(student)
 </script>
 
 <style>

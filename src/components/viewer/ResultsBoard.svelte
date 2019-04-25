@@ -8,8 +8,6 @@
   let results = null
 
   onMount(async () => {
-    const closing = new Audio('sounds/gamelan_glissando_downward_004_536.mp3')
-    closing.play()
     results = await getResults($session.id)
   })
 
@@ -46,6 +44,7 @@
     padding: 2rem 0;
     margin-bottom: 2rem;
     width: auto;
+    text-align: center;
     border-radius: 3rem;
     box-shadow:
       0 0 0 10px black,
@@ -99,7 +98,7 @@
   }
 </style>
 
-<audio preload>
+<audio preload autoplay>
   <source type='audio/mp3' src='sounds/gamelan_glissando_downward_004_536.mp3'>
 </audio>
 

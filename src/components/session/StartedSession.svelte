@@ -34,6 +34,10 @@
   }
 </style>
 
+<svelte:head>
+  <title>Started Session</title>
+</svelte:head>
+
 <p class="subtitle">
   <span class="start">Started: {startedAt}</span>
   <br>

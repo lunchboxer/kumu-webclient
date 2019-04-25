@@ -19,6 +19,10 @@
   }
 </style>
 
+<svelte:head>
+  <title>Ended Session</title>
+</svelte:head>
+
 <p class="subtitle">Ended {endedDistance}</p>
 
 <DL>
