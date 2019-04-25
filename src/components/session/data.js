@@ -183,3 +183,21 @@ export const results = derived(sessionId, async ($sessionId, set) => {
     return b.pointsTally - a.pointsTally
   }))
 })
+
+export const getResults = async (id) => {
+  const response = await request(SESSION_RESULTS, { id })
+  if (!response.classSession) return
+  const { attendances, points } = response.classSession
+  const withPoints = attendances && attendances.map(attendance => {
+    attendance.points = points && points.filter(point => {
+      return point.student.id === attendance.student.id
+    })
+    attendance.pointsTally = attendance.points.reduce((sum, point) => {
+      return sum + point.value
+    }, 0)
+    return attendance
+  })
+  return withPoints.slice().sort((a, b) => {
+    return b.pointsTally - a.pointsTally
+  })
+}

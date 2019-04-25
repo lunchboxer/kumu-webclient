@@ -17,7 +17,7 @@
     // subscribe to above
     const subscription = ws.request({ query: ACTIVE_SESSION_SUB })
       .subscribe({
-        next(message) {
+        next (message) {
           if (!message.data || !message.data.classSessions) return
           sessionId.set(message.data.classSessions.node.id)
         }
@@ -37,9 +37,15 @@
     font-family: 'Schoolbell', cursive;
   }
 </style>
+
 <svelte:head>
   <title>Viewer</title>
   <link href="https://fonts.googleapis.com/css?family=Schoolbell" rel="stylesheet">
+  <style>
+    body {
+      background: black;
+    }
+  </style>
 </svelte:head>
 
 <div>

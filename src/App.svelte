@@ -13,7 +13,6 @@
 
 <style>
   main {
-    height: 100%;
     padding: 1rem;
     margin: 0;
   }

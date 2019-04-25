@@ -15,6 +15,20 @@
     margin: 0.5rem;
     height: var(--size);
     fill: hsl(var(--hue), 100%, 50%);
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .group {
