@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte'
+  import { onMount } from 'svelte'
   import { sessions, sessionsFilter } from './data'
   import Upcoming from './UpcomingSessions.svelte'
   import SessionsList from './SessionsList.svelte'
@@ -7,15 +7,11 @@
 
   let activeComponent = Upcoming
   let active = 'upcoming'
-  let refetch
 
   onMount(() => {
     sessions.get()
-    refetch = setInterval(sessions.get, 5 * 6e+4)
-  })
-
-  onDestroy(() => {
-    refetch && clearInterval(refetch)
+    const refetch = setInterval(sessions.get, 5 * 6e+4)
+    return () => { refetch && clearInterval(refetch) }
   })
 
   const switchTab = (tab) => {

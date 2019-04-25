@@ -53,9 +53,9 @@
     {#if errors}
     <Error {errors}/>
     {/if}
-    <Input bind:value={chineseName} label="Chinese name" placeholder="孙悟空" required />
+    <Input bind:value={chineseName} label="Chinese name" placeholder="孙悟空" />
     <Input bind:value={pinyinName} label="Pinyin name" placeholder="Sūn Wùkōng" />
-    <Input bind:value={englishName} label="English name" placeholder="Monkey King" required />
+    <Input bind:value={englishName} label="English name" placeholder="Monkey King" />
     <Input type="date" bind:value={birthdate} label="Birthdate" max={todaysDate} />
     
     <div class="control genders">
