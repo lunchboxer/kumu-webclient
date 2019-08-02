@@ -1,10 +1,10 @@
 const svelte = require('rollup-plugin-svelte')
 const resolve = require('rollup-plugin-node-resolve')
 const commonjs = require('rollup-plugin-commonjs')
+const replace = require('rollup-plugin-replace')
 const { terser } = require('rollup-plugin-terser')
 const postcss = require('rollup-plugin-postcss')
 const sass = require('rollup-plugin-sass')
-const serve = require('rollup-plugin-serve')
 const livereload = require('rollup-plugin-livereload')
 const notify = require('rollup-plugin-notify')
 
@@ -31,16 +31,18 @@ module.exports = [{
     postcss({
       extensions: ['.css']
     }),
-    resolve(),
+    resolve({
+      browser: true,
+      dedupe: importee =>
+        importee === 'svelte' || importee.startsWith('svelte/')
+    }),
     commonjs(),
-    // !production && serve({
-    //   contentBase: 'public',
-    //   historyApiFallback: true,
-    //   port: 5050
-    // }),
-    // !production && livereload({
-    //   watch: 'public'
-    // }),
+    replace({
+      'process.env.NODE_ENV': JSON.stringify('development')
+    }),
+    !production && livereload({
+      watch: 'public'
+    }),
     notify(),
 
     // If we're building for production (npm run build
