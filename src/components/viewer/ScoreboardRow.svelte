@@ -10,7 +10,6 @@
     if (point.student.id !== student.id) return sum
     return sum + point.value
   }, 0) : 0
-  $: console.log(student)
 </script>
 
 <style>

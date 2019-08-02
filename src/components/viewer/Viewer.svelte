@@ -28,8 +28,6 @@
     // this is all basically identical to the controller's session data
     // reuse it here?
   })
-
-  $: console.log($session)
 </script>
 
 <style>
