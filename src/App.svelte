@@ -8,7 +8,6 @@
 
   let active = '/'
   let uri = location.pathname
-
 </script>
 
 <style>
@@ -26,7 +25,7 @@
 <main>
 
   {#if $auth.username}
-    {#if active !== "viewer"}
+    {#if active !== 'viewer'}
       <CurrentSession {active} {uri}/>
     {/if}
     <Router bind:active bind:uri/>
@@ -36,6 +35,6 @@
         
   </main>
   
-  {#if active !== "viewer"}
+  {#if active !== 'viewer'}
   <NotificationList/>
   {/if}
