@@ -31,7 +31,7 @@
   }
 </script>
 
-<button class="button is-primary" on:click={()=> open = true}>Add semester</button>
+<button class="button is-primary" on:click={() => { open = true }}>Add semester</button>
 <Modal bind:open>
   <SemesterForm on:reset={reset} on:submit={save} {errors} {loading} />
 </Modal>

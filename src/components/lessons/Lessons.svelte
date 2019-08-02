@@ -1,10 +1,35 @@
 <script>
+  import { onMount } from 'svelte'
+  import { notifications } from '../notifications'
   import CreateLesson from './CreateLesson.svelte'
+  import LessonList from './LessonList.svelte'
+  import { lessons } from './data'
+  import Error from '../Error.svelte'
+  import Loading from '../Loading.svelte'
+
+  let errors = ''
+
+  onMount(async () => {
+    try {
+      await lessons.get()
+    } catch (error) {
+      errors = error
+      notifications.add({ text: "Couldn't get lessons from server.", type: 'danger' })
+    }
+  })
 </script>
+
 <svelte:head>
   <title>Lessons</title>
 </svelte:head>
 
 <h1 class="title">Lessons</h1>
 
-<CreateLesson />
+<Error {errors} />
+
+{#if $lessons}
+  <CreateLesson />
+  <LessonList />
+{:else if !errors}
+  <Loading what="lessons"/>
+{/if}
