@@ -1,13 +1,11 @@
-import gql from 'nanographql'
-
-export const ACTIVATE_SESSION = gql`
+export const ACTIVATE_SESSION = /* GraphQL */`
  mutation activateSession($id:ID!){
    activateSession(id:$id) {
      id
    }
  }`
 
-export const START_CLASS = gql`
+export const START_CLASS = /* GraphQL */`
 mutation startClass($id: ID!, $now: DateTime!) {
   updateClassSession(id: $id, input: {stage: Started, startedAt: $now}) {
     id
@@ -16,14 +14,14 @@ mutation startClass($id: ID!, $now: DateTime!) {
 }
 `
 
-export const END_CLASS = gql`
+export const END_CLASS = /* GraphQL */`
 mutation endClass($id: ID!, $now: DateTime!) {
   updateClassSession(id: $id, input: {stage: Ended, endedAt: $now}) {
     id
   }
 }`
 
-export const UPDATE_ATTENDANCE = gql`
+export const UPDATE_ATTENDANCE = /* GraphQL */`
 mutation updateAttendance($classSessionId: ID!, $studentId: ID!, $status: String!){
   updateAttendance(classSessionId: $classSessionId, studentId: $studentId, status: $status){
     id
@@ -31,13 +29,13 @@ mutation updateAttendance($classSessionId: ID!, $studentId: ID!, $status: String
 }
 `
 
-export const MARK_ALL_PRESENT = gql`
+export const MARK_ALL_PRESENT = /* GraphQL */`
 mutation markAllPresent($classSessionId: ID!) {
   markAllPresent(classSessionId: $classSessionId)
 }
 `
 
-export const UNDO_POINT = gql`
+export const UNDO_POINT = /* GraphQL */`
 mutation undoPoint($id: ID!) {
   undoPoint(id: $id) {
     id
@@ -45,7 +43,7 @@ mutation undoPoint($id: ID!) {
 }
 `
 
-export const ADD_POINT = gql`
+export const ADD_POINT = /* GraphQL */`
 mutation addPoint($value: Int!, $studentId: ID!, $classSessionId: ID!) {
   addPoint(value: $value, studentId: $studentId, classSessionId: $classSessionId) {
     id

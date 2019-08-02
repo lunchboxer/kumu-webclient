@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const ACTIVE_SESSION = gql`
+export const ACTIVE_SESSION = /* GraphQL */`
 {
   classSessions(where: {stage_in: [Active, Started]}) {
     id

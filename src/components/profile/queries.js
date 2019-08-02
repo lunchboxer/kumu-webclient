@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const GET_ME = gql`
+export const GET_ME = /* GraphQL */`
 {
   me {
     id

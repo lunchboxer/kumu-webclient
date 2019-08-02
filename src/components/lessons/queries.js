@@ -1,10 +1,9 @@
-import gql from 'nanographql'
 import { LessonFields } from './fragments'
 
-export const GET_LESSONS = gql`
+export const GET_LESSONS = /* GraphQL */`
   query {
     lessons {
       ...LessonFields
     }
-    ${LessonFields}
-  }`
+  }
+  ${LessonFields}`

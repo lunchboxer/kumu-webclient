@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const CLASS_SESSION = gql`
+export const CLASS_SESSION = /* GraphQL */`
  query classSession($id: ID!){
    classSession (id: $id){
      id
@@ -34,7 +32,7 @@ subscription classSession($id: ID!){
   }
 }`
 
-export const GET_SESSION_STUDENTS = gql`
+export const GET_SESSION_STUDENTS = /* GraphQL */`
 query students($groupId: ID!, $classSessionId: ID!){
   students (where: { groups_some: {id: $groupId}}) {
     id
@@ -63,7 +61,7 @@ subscription attendances($classSessionId: ID!){
   }
 }`
 
-export const GET_SESSION_POINTS = gql`
+export const GET_SESSION_POINTS = /* GraphQL */`
 query points($classSessionId: ID!) {
  points(where: { classSession: {id: $classSessionId}}) {
       id 
@@ -97,7 +95,7 @@ subscription sessionPoints($classSessionId: ID!){
 }
 `
 
-export const SESSION_RESULTS = gql`
+export const SESSION_RESULTS = /* GraphQL */`
 query sessionResults($id: ID!) {
   classSession (id: $id){
     id

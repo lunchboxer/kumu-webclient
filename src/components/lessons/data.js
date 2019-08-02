@@ -9,7 +9,6 @@ const createLessonStore = () => {
   return {
     subscribe,
     get: async () => {
-      console.log(GET_LESSONS)
       const response = await request(GET_LESSONS)
       set(response.lessons)
     },

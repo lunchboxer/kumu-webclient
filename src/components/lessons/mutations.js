@@ -1,7 +1,6 @@
-import gql from 'nanographql'
 import { LessonFields } from './fragments'
 
-export const CREATE_LESSON = gql`
+export const CREATE_LESSON = /* GraphQL */`
   mutation CreateLesson($input: LessonCreateInput!){
     createLesson(input: $input) {
       ...LessonFields

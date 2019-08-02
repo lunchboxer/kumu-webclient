@@ -1,13 +1,11 @@
-import gql from 'nanographql'
-
-export const LessonFields = gql`
+export const LessonFields = /* GraphQL */`
   fragment LessonFields on Lesson {
     id
     name
-    summary_EN
-    summary_ZH
-    homework_EN
-    homework_ZH
+    summaryEN
+    summaryZH
+    homeworkEN
+    homeworkZH
     tags {
       id
       name

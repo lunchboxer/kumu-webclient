@@ -1,6 +1,4 @@
-import gql from 'nanographql'
-
-export const LOGIN = gql`
+export const LOGIN = /* GraphQL */`
   mutation Login($username: String!, $password: String!) {
     login(username: $username, password: $password) {
       token
