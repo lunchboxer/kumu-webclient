@@ -9,6 +9,7 @@
 
   const reset = () => {
     errors = ''
+    push('/lessons')
   }
 
   const save = async ({ detail }) => {
@@ -17,7 +18,6 @@
       await lessons.create(detail)
       notifications.add({ text: `Saved new lesson '${detail.name}'`, type: 'success' })
       reset()
-      push('/lessons')
     } catch (error) {
       errors = error
       notifications.add({
@@ -34,6 +34,6 @@
   <title>New Lesson</title>
 </svelte:head>
 
-<h1 class="title">Lessons</h1>
+<h1 class="title">New Lesson</h1>
 
 <LessonForm on:reset={reset} on:submit={save} {errors} {loading} />

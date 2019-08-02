@@ -6,6 +6,8 @@ import Groups from './components/groups/Groups.svelte'
 import Sessions from './components/sessions/Sessions.svelte'
 import Session from './components/session/Session.svelte'
 import Lessons from './components/lessons/Lessons.svelte'
+import Lesson from './components/lessons/Lesson.svelte'
+import EditLesson from './components/lessons/EditLesson.svelte'
 import CreateLesson from './components/lessons/CreateLesson.svelte'
 import Materials from './components/materials/Materials.svelte'
 import Words from './components/words/Words.svelte'
@@ -21,6 +23,8 @@ export default {
   '/sessions': Sessions,
   '/session/:id': Session,
   '/lessons': Lessons,
+  '/lesson/:id': Lesson,
+  '/edit-lesson/:id': EditLesson,
   '/new-lesson': CreateLesson,
   '/materials': Materials,
   '/words': Words,

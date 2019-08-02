@@ -14892,3 +14892,7 @@ body {
 .button i {
   margin-right: 0.5rem;
 }
+
+ol {
+  list-style-position: inside;
+}

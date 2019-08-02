@@ -7,3 +7,11 @@ export const CREATE_LESSON = /* GraphQL */`
     }
   }
   ${LessonFields}`
+
+export const UPDATE_LESSON = /* GraphQL */`
+mutation UpdateLesson($input: LessonUpdateInput!, $id: ID!){
+  updateLesson(input: $input, id: $id) {
+    ...LessonFields
+  }
+}
+${LessonFields}`

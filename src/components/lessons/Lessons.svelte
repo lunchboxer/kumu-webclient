@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import { notifications } from '../notifications'
-  import CreateLesson from './CreateLesson.svelte'
   import LessonList from './LessonList.svelte'
   import { lessons } from './data'
   import Error from '../Error.svelte'
@@ -19,6 +18,12 @@
   })
 </script>
 
+<style>
+  .button.create-lesson {
+    margin: 1rem;
+  }
+</style>
+
 <svelte:head>
   <title>Lessons</title>
 </svelte:head>
@@ -27,7 +32,7 @@
 
 <Error {errors} />
 
-<a href="#/new-lesson" class="button is-primary">
+<a href="#/new-lesson" class="button is-primary create-lesson">
   <i class="fas fa-plus"></i>Create new lesson
 </a>
 

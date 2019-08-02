@@ -15,6 +15,7 @@
   export let homeworkZH = ''
   export let summaryZH = ''
   export let id = ''
+  export let tags = []
 
   const dispatch = createEventDispatcher()
 
@@ -38,45 +39,42 @@
     padding: 1rem;
   }
 
-  /* form {
-    max-width: 308px;
-  } */
   .field {
     margin: 1rem;
+    max-width: 700px;
   }
 </style>
 
-<h1 class="title">{#if id}Edit{:else}Create{/if} lesson</h1>
-  
-    <form novalidate bind:this={form} on:submit|preventDefault={handleSubmit} on:reset >
-      <Error {errors}/>
-      <div class="field">
-        <Input bind:value={name} label="Name" placeholder="i.e. 'My Body part 3'" required />
-      </div>
+<form novalidate bind:this={form} on:submit|preventDefault={handleSubmit} on:reset>
+  <Error {errors} />
+  <div class="field">
+    <Input bind:value={name} label="Name" placeholder="i.e. 'My Body part 3'" required />
+  </div>
 
-      <div class="field">
-        <label class="label">Summary in English</label>
-        <textarea class="textarea is-primary" bind:value={summaryEN}></textarea>
-      </div>
+  <div class="field">
+    <label class="label">Summary in English</label>
+    <textarea class="textarea is-primary" bind:value={summaryEN}></textarea>
+  </div>
 
-      <div class="field">
-          <label class="label">Homework in English</label>
-          <textarea class="textarea is-primary" bind:value={homeworkEN}></textarea>
-        </div>
+  <div class="field">
+    <label class="label">Homework in English</label>
+    <textarea class="textarea is-primary" bind:value={homeworkEN}></textarea>
+  </div>
 
-      <div class="field">
-        <label class="label">Summary in Chinese</label>
-        <textarea class="textarea is-info" bind:value={summaryZH}></textarea>
-      </div>
+  <div class="field">
+    <label class="label">Summary in Chinese</label>
+    <textarea class="textarea is-info" bind:value={summaryZH}></textarea>
+  </div>
 
-      <div class="field">
-          <label class="label">Homework in Chinese</label>
-          <textarea class="textarea is-info" bind:value={homeworkZH}></textarea>
-        </div>
-      
+  <div class="field">
+    <label class="label">Homework in Chinese</label>
+    <textarea class="textarea is-info" bind:value={homeworkZH}></textarea>
+  </div>
 
-      <div class="buttons">
-        <button type="submit" class="button is-primary" class:is-loading={loading} bind:this={saveButton}>Save lesson</button>
-        <input type="reset" class="button" value="Cancel">
-      </div>
-    </form>
+
+  <div class="buttons">
+    <button type="submit" class="button is-primary" class:is-loading={loading} bind:this={saveButton}>Save
+      lesson</button>
+    <input type="reset" class="button" value="Cancel">
+  </div>
+</form>

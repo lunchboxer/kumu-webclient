@@ -8,11 +8,9 @@
   import StartedSession from './StartedSession.svelte'
   import EndedSession from './EndedSession.svelte'
 
-  export let params
+  export let params = {}
 
-  $: if (params && params.id) {
-    sessionId.set(params.id)
-  }
+  sessionId.set(params.id)
 
   onDestroy(() => {
     sessionId.set(null)
@@ -21,13 +19,13 @@
 
 {#if $session}
   <h2 class="title">{$session.group.name} class lesson {$session.number}</h2>
-  {#if $session.stage === "Inactive"}
+  {#if $session.stage === 'Inactive'}
     <SessionActivator id={params.id} />
-  {:else if $session.stage === "Active"}
+  {:else if $session.stage === 'Active'}
     <ActiveSession />
-  {:else if $session.stage === "Started"}
+  {:else if $session.stage === 'Started'}
     <StartedSession />
-  {:else if $session.stage === "Ended"}
+  {:else if $session.stage === 'Ended'}
     <EndedSession id={params.id} />
   {/if}
   

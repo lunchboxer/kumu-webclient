@@ -16,6 +16,10 @@
     margin-right: 0.3rem;
   }
 
+  .appname {
+    margin: 0;
+  }
+
   .logo {
     margin-right: 0.8rem;
   }
@@ -53,7 +57,7 @@
   <div class="navbar-brand">
     <a class="navbar-item" href="#/">
       <img class="logo" src="kumu-logo.png" height="28" alt="levitation logo" />
-      <span class="title is-4">Kumu</span>
+      <span class="title is-4 appname">Kumu</span>
     </a>
 
     {#if $auth.username}
