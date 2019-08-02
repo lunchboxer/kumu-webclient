@@ -20,7 +20,7 @@ const createLessonStore = () => {
     // },
     create: async (input) => {
       const response = await request(CREATE_LESSON, { input })
-      update(previous => [...previous, response.createLesson])
+      update(previous => !previous ? [response.createLesson] : [...previous, response.createLesson])
     }
     // patch: async (id, input) => {
     //   const response = await request(UPDATE_LESSON, { id, input })

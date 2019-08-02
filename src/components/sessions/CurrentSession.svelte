@@ -24,7 +24,7 @@
   }
 </style>
 
-{#if $todaysSessions && $todaysSessions.now && $todaysSessions.now.stage !== "Ended"}
+{#if $todaysSessions && $todaysSessions.now && $todaysSessions.now.stage !== 'Ended'}
 {#if uri !== `/session/${$todaysSessions.now.id}`}
   <Warning title="{$todaysSessions.now.group.name} class is on right now!">
     <div class="warning">
@@ -36,7 +36,7 @@
         <dt>Status:</dt>
         <dd>{$todaysSessions.now.stage}</dd>
       </DL>
-      <a href="/session/{$todaysSessions.now.id}" class="button is-link"><i class="fas fa-running"></i>&nbsp; Go now</a>
+      <a href="#/session/{$todaysSessions.now.id}" class="button is-link"><i class="fas fa-running"></i>&nbsp; Go now</a>
     </div>
   </Warning>
   {/if}

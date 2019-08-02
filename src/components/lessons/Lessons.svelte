@@ -27,8 +27,11 @@
 
 <Error {errors} />
 
+<a href="#/new-lesson" class="button is-primary">
+  <i class="fas fa-plus"></i>Create new lesson
+</a>
+
 {#if $lessons}
-  <CreateLesson />
   <LessonList />
 {:else if !errors}
   <Loading what="lessons"/>

@@ -68,20 +68,20 @@
 {#if session}
 <li>
   {#if isCurrentOrPast(session.startsAt)}
-  <a href="/session/{session.id}">
-    <span on:click={() => showActions = !showActions}>
+  <a href="#/session/{session.id}">
+    <span on:click={() => { showActions = !showActions }}>
     {session.group.name} class {relativeDate(session.startsAt)}, {maybeDate(session.startsAt) || formatTime(session.startsAt)} to {formatTime(session.endsAt)}
   </span>
 </a>
 {:else}
-<span on:click={() => showActions = !showActions}>
+<span on:click={() => { showActions = !showActions }}>
     {session.group.name} class {relativeDate(session.startsAt)}, {maybeDate(session.startsAt) || formatTime(session.startsAt)} to {formatTime(session.endsAt)}
   </span>
 {/if}
 
   <div class="buttons">
-    <button class="button is-small" on:click={()=> showEdit = true}><i class="fas fa-edit"></button>
-    <button class="button is-small" on:click={()=> showDelete = true}><i class="fas fa-minus"></button>
+    <button class="button is-small" on:click={() => showEdit = true}><i class="fas fa-edit"></button>
+    <button class="button is-small" on:click={() => showDelete = true}><i class="fas fa-minus"></button>
   </div>
   </li>
 {/if}

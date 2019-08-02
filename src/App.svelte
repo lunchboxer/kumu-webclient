@@ -1,13 +1,11 @@
 <script>
   import { NotificationList } from './components/notifications'
   import { auth } from './data/auth'
-  import Router from './components/Router.svelte'
+  import Router, { location } from 'svelte-spa-router'
+  import routes from './routes'
   import Login from './components/Login.svelte'
   import Navbar from './components/Navbar.svelte'
   import CurrentSession from './components/sessions/CurrentSession.svelte'
-
-  let active = '/'
-  let uri = location.pathname
 </script>
 
 <style>
@@ -18,23 +16,23 @@
   }
 </style>
 
-{#if active !== 'viewer'}
-<Navbar {active} />
+{#if $location !== '/viewer'}
+<Navbar />
 {/if}
 
 <main>
 
   {#if $auth.username}
-    {#if active !== 'viewer'}
-      <CurrentSession {active} {uri}/>
+    {#if $location !== '/viewer'}
+      <CurrentSession />
     {/if}
-    <Router bind:active bind:uri/>
+    <Router {routes} />
   {:else}
-    <Login/>
+    <Login />
   {/if}
         
   </main>
   
-  {#if active !== 'viewer'}
+  {#if location !== '/viewer'}
   <NotificationList/>
   {/if}

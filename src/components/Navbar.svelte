@@ -2,8 +2,9 @@
   import { auth } from '../data/auth'
   import NavbarLink from './NavbarLink.svelte'
   import { notifications } from './notifications'
+
   let showMenu = false
-  export let active
+
   const logout = async () => {
     const username = await auth.logout()
     notifications.add({ text: `Logged out user '${username}'`, type: 'success' })
@@ -50,7 +51,7 @@
 
 <nav class="navbar is-black" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <a class="navbar-item" href="/">
+    <a class="navbar-item" href="#/">
       <img class="logo" src="kumu-logo.png" height="28" alt="levitation logo" />
       <span class="title is-4">Kumu</span>
     </a>
@@ -81,29 +82,23 @@
     >
       <div class="navbar-start">
         {#if $auth.username}
-        <NavbarLink url="/" text="Dashboard" icon="chalkboard-teacher" {active}/>
-        <NavbarLink url="sessions" text="Schedule" icon="calendar-alt" {active} />
-        <NavbarLink url="groups" text="Groups" icon="users" {active} />
-        <NavbarLink url="students" text="Students" icon="address-card" {active}/>
-        <NavbarLink url="semesters" text="Semesters" icon="school" {active} />
+        <NavbarLink url="/" text="Dashboard" icon="chalkboard-teacher" />
+        <NavbarLink url="/sessions" text="Schedule" icon="calendar-alt" />
+        <NavbarLink url="/groups" text="Groups" icon="users"  />
+        <NavbarLink url="/students" text="Students" icon="address-card" />
+        <NavbarLink url="/semesters" text="Semesters" icon="school" />
         <div class="navbar-item has-dropdown is-hoverable">
           <span class="navbar-link">
             <i class="fas fa-book"></i>Contents
           </span>
           <div class="navbar-dropdown">
-            <a href="lessons" class="navbar-item">
-              Lessons
-            </a>
-            <a href="materials" class="navbar-item">
-              Materials
-            </a>
-            <a href="words" class="navbar-item">
-              Words
-            </a>
+            <NavbarLink url="/lessons" text="Lessons" />
+            <NavbarLink url="/materials" text="Materials" />
+            <NavbarLink url="/words" text="Words" />
+            
             <hr class="navbar-divider">
-            <a href="tags" class="navbar-item">
-              Tags
-            </a>
+
+            <NavbarLink url="/tags" text="Tags" />
           </div>
         </div>
         {/if}
@@ -112,7 +107,7 @@
       <div class="navbar-end">
         {#if $auth.username}
         
-          <NavbarLink url="me" icon="user-circle" text={$auth.username}/>
+          <NavbarLink url="/me" icon="user-circle" text={$auth.username}/>
          
           <div class="buttons">
             <button class="button is-text" on:click={logout}>

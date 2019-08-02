@@ -1,8 +1,8 @@
 <script>
+  import { location } from 'svelte-spa-router'
   export let url = ''
   export let text = ''
   export let icon = null
-  export let active = ''
 </script>
 <style>
   i {
@@ -21,7 +21,7 @@
   }
 </style>
 
-<a class="navbar-item" class:is-active={active === url} href={url}>
+<a class="navbar-item" class:is-active={$location === url} href='#{url}'>
   {#if icon}
     <i class="fas fa-{icon}"></i>
   {/if}

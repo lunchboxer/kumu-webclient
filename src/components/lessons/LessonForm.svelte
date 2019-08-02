@@ -14,7 +14,7 @@
   export let homeworkEN = ''
   export let homeworkZH = ''
   export let summaryZH = ''
-  export let id
+  export let id = ''
 
   const dispatch = createEventDispatcher()
 
