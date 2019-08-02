@@ -52,11 +52,11 @@
     <h2 class="title">No active session found</h2>
   {:else if !$session}
     <Loading what="session"/>
-  {:else if $session.stage === "Active"}
+  {:else if $session.stage === 'Active'}
     <PreclassBoard />
-  {:else if $session.stage === "Started"}
+  {:else if $session.stage === 'Started'}
     <Scoreboard />
-  {:else if $session.stage === "Ended"}
+  {:else if $session.stage === 'Ended'}
     <ResultsBoard />
   {/if}
 </div>

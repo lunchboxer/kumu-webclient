@@ -21,7 +21,7 @@
   }
 </style>
 
-<a class="navbar-item" class:is-active={active===url} href={url}>
+<a class="navbar-item" class:is-active={active === url} href={url}>
   {#if icon}
     <i class="fas fa-{icon}"></i>
   {/if}

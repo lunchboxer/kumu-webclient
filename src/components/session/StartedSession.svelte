@@ -21,10 +21,6 @@
     color: red;
   }
 
-  button i {
-    margin-right: 0.5rem;
-  }
-
   section {
     margin: 1rem 0;
   }
@@ -46,7 +42,7 @@
 {#if $pointsLog && $pointsLog.length}
   <button class="button is-white" on:click={() => points.undo($pointsLog[0].id)}>
     <i class="fas fa-undo"></i>
-    Undo {$pointsLog[0].value} point{$pointsLog[0].value-1 && 's' || ''} for {$pointsLog[0].student.englishName || $pointsLog[0].student.chineseName}
+    Undo {$pointsLog[0].value} point{$pointsLog[0].value - 1 && 's' || ''} for {$pointsLog[0].student.englishName || $pointsLog[0].student.chineseName}
   </button>
 {/if}
 
@@ -63,7 +59,7 @@
   {/if}
 {/if}
 
-<button class="button is-primary end" on:click={()=> {showEndModal = true}}>
+<button class="button is-primary end" on:click={() => { showEndModal = true }}>
   <i class="fas fa-hourglass-end"></i>
   End class
 </button>

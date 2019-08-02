@@ -32,6 +32,10 @@
     .on('/groups', () => import('./groups/Groups.svelte').then(draw))
     .on('/sessions', () => import('./sessions/Sessions.svelte').then(draw))
     .on('/session/:id', obj => import('./session/Session.svelte').then(m => draw(m, obj)))
+    .on('/lessons', () => import('./lessons/Lessons.svelte').then(draw))
+    .on('/materials', () => import('./materials/Materials.svelte').then(draw))
+    .on('/words', () => import('./words/Words.svelte').then(draw))
+    .on('/tags', () => import('./tags/Tags.svelte').then(draw))
     .on('/me', () => import('./profile/Profile.svelte').then(draw))
     .on('/viewer', () => import('./viewer/Viewer.svelte').then(draw))
     .listen();

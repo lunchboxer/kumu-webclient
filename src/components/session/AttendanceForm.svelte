@@ -25,10 +25,6 @@
   button {
     margin-bottom: 1rem;
   }
-
-  i {
-    margin-right: 0.5rem;
-  }
 </style>
 
 <section class="attendance-form">

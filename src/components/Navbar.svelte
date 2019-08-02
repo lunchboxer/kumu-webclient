@@ -11,6 +11,10 @@
 </script>
 
 <style>
+  i {
+    margin-right: 0.3rem;
+  }
+
   .logo {
     margin-right: 0.8rem;
   }
@@ -59,7 +63,7 @@
         aria-label="menu"
         aria-expanded="false"
         data-target="navmenu"
-        on:click={() => showMenu = !showMenu}
+        on:click={() => { showMenu = !showMenu }}
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -72,7 +76,7 @@
     <div
       id="navmenu"
       class="navbar-menu"
-      on:click={() => showMenu = !showMenu}
+      on:click={() => { showMenu = !showMenu }}
       class:is-active={showMenu}
     >
       <div class="navbar-start">
@@ -82,6 +86,26 @@
         <NavbarLink url="groups" text="Groups" icon="users" {active} />
         <NavbarLink url="students" text="Students" icon="address-card" {active}/>
         <NavbarLink url="semesters" text="Semesters" icon="school" {active} />
+        <div class="navbar-item has-dropdown is-hoverable">
+          <span class="navbar-link">
+            <i class="fas fa-book"></i>Contents
+          </span>
+          <div class="navbar-dropdown">
+            <a href="lessons" class="navbar-item">
+              Lessons
+            </a>
+            <a href="materials" class="navbar-item">
+              Materials
+            </a>
+            <a href="words" class="navbar-item">
+              Words
+            </a>
+            <hr class="navbar-divider">
+            <a href="tags" class="navbar-item">
+              Tags
+            </a>
+          </div>
+        </div>
         {/if}
       </div>
   

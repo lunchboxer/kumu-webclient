@@ -33,10 +33,6 @@
     margin-top: 2rem;
     float: right;
   }
-
-  .button i {
-    margin-right: 0.5rem;
-  }
 </style>
 
 <h1 class="title">End {$session.group.name} class lesson {$session.number}</h1>
@@ -50,5 +46,5 @@
     <i class="fas fa-thumbs-up"></i>
     End class
   </button>
-  <button class="button" on:click={()=>{ open = false }}>Nevermind</button>
+  <button class="button" on:click={() => { open = false }}>Nevermind</button>
 </div>
