@@ -5,12 +5,13 @@
   import marked from 'marked'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
+  import DeleteLesson from './DeleteLesson.svelte'
 
   export let params = {}
   let errors = ''
 
   onMount(async () => {
-    if (!$lesson || $lesson.id === params.id) {
+    if (!$lesson || $lesson.id !== params.id) {
       try {
         await lesson.get(params.id)
       } catch (error) {
@@ -72,7 +73,7 @@
   
   <section class="buttons">
     <a class="button is-primary" href="#/edit-lesson/{$lesson.id}"><i class="fas fa-edit"></i>Edit</a>
-    <button class="button is-danger"><i class="fas fa-trash"></i>Delete</button>
+    <DeleteLesson lesson={$lesson} />
   </section>
 
 {:else if !errors}

@@ -1,7 +1,6 @@
 <script>
   import { students } from './data'
   import { notifications } from '../notifications'
-  import Error from '../Error.svelte'
   import ConfirmDelete from '../ConfirmDelete.svelte'
 
   export let open = false
@@ -24,7 +23,6 @@
       loading = false
     }
   }
-
 </script>
 
 <ConfirmDelete name="student" on:delete={handleDelete} {errors} {loading} bind:open>

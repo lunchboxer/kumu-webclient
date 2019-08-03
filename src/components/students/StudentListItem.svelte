@@ -1,5 +1,4 @@
 <script>
-
   import { slide } from 'svelte/transition'
   import Modal from '../Modal.svelte'
   import DeleteStudent from './DeleteStudent.svelte'
@@ -13,7 +12,7 @@
   let deleteShowing = false
   let editShowing = false
   let groupsShowing = false
-  let gender = student.gender === 'M' ? 'boy' : 'girl'
+  const gender = student.gender === 'M' ? 'boy' : 'girl'
 
   $: birthdate = !student.birthdate ? 'none' : student.birthdate.slice(0, 10)
   $: groups = !student.groups ? 'none' : student.groups.map(g => {
@@ -40,13 +39,13 @@
   const getCurrentOrNextClass = (groups) => {
     if (!groups) return
     if (semesters.currentSemester) {
-      let currentGroup = groups.find(group => {
+      const currentGroup = groups.find(group => {
         return group.semester.id === semesters.currentSemester.id
       })
       if (currentGroup) return `Current ${currentGroup.name} class`
     }
     if (semesters.nextSemester) {
-      let nextGroup = groups.find(group => {
+      const nextGroup = groups.find(group => {
         return group.semester.id === semesters.nextSemester.id
       })
       if (nextGroup) return `Next ${nextGroup.name} class`
@@ -155,7 +154,7 @@
 
 <div class="card">
   <div class="card-content">
-    <div class="media" on:click={()=> expanded = !expanded }>
+    <div class="media" on:click={() => { expanded = !expanded }}>
       <div class="media-left">
         <figure class="image">
           <img src="images/{gender}.jpg" alt="portrait" class="is-rounded portrait {student.gender}">
@@ -171,7 +170,7 @@
       <i class="expand-button fas fa-angle-{expanded ? 'up' : 'down'}"></i>
     </div>
     {#if expanded}
-    <div transition:slide|local="{{duration: 200}}">
+    <div transition:slide|local="{{ duration: 200 }}">
       <DL>
         <dt>Groups:</dt>
         <dd>
