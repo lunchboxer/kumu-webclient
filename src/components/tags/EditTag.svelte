@@ -35,7 +35,7 @@
   }
 </script>
 
-<h2 class="title">Edit tag</h2>
+<h2 class="title">Tag details</h2>
 
 <TagForm {errors} {loading} on:submit={handleSubmit} on:reset={reset} {...openTag} />
 

@@ -6,6 +6,8 @@
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
   import DeleteLesson from './DeleteLesson.svelte'
+  import LessonTag from './LessonTag.svelte'
+  import AddTag from './AddTag.svelte'
 
   export let params = {}
   let errors = ''
@@ -47,11 +49,16 @@
 
 {#if $lesson && $lesson.id === params.id}
   <h1 class="title">{$lesson.name}</h1>
-  {#if $lesson.tags}
-    {#each $lesson.tags as tag (tag.id)}
-      <span class="tag">{tag.name}</span>
-    {/each}
+
+  {#if $lesson.tags && $lesson.tags.length > 0}
+    <div class="tags">
+      {#each $lesson.tags as tag (tag.id)}
+        <LessonTag {tag} lessonId={$lesson.id} />
+      {/each}
+    </div>
   {/if}
+
+  <AddTag lesson={$lesson} />
 
   <section class="summaries">
     <h2 class="title is-4">Lesson Summary</h2>

@@ -40,7 +40,7 @@
    <Error {errors}/>
   {/if}
 
-  <Input type="text" bind:value={name} label={id ? 'Tag name' : 'New tag name'} />
+  <Input type="text" bind:value={name} label={id ? 'Name' : 'New tag name'} />
 
   <div class="buttons">
     <button type="submit" class="button is-primary" class:is-loading={loading} bind:this={saveButton}>Save Tag</button>

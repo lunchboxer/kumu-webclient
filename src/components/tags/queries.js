@@ -8,8 +8,8 @@ export const TAGS = /* GraphQL */ `
  }`
 
 export const TAG = /* GraphQL */ `
- {
-   tag {
+ query ($id: ID!){
+   tag (id: $id) {
      id
      name
      materials {

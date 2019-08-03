@@ -40,9 +40,9 @@ const createTagStore = () => {
 
   return {
     subscribe,
-    get: async () => {
-      const response = await request(TAG)
-      set(response.tags)
+    get: async (id) => {
+      const response = await request(TAG, { id })
+      set(response.tag)
     }
   }
 }

@@ -9,9 +9,9 @@
   let errors = ''
 
   onMount(async () => {
-    if ($tag || $tag.id !== id) {
+    if (!$tag || $tag.id !== id) {
       try {
-        await tag.get()
+        await tag.get(id)
       } catch (error) {
         errors = error
         notifications.add({ text: 'Could not get related items from server', type: 'danger' })
@@ -20,9 +20,17 @@
   })
 </script>
 
-<Error {errors} />
+<style>
+  section {
+    margin: 1rem 0;
+    padding: 1rem 0;
+  }
+</style>
 
-{#if $tag && $tag.id === id}
+<section class="connections">
+  <Error {errors} />
+
+  {#if $tag && $tag.id === id}
 
   {#if $tag.materials.length > 0}
     <h2 class="title is-4">Materials</h2>
@@ -48,3 +56,4 @@
 {:else if !errors}
   <Loading what="connections"/>
 {/if}
+</section>

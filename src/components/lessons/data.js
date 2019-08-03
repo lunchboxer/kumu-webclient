@@ -25,12 +25,17 @@ const createLessonsStore = () => {
       const response = await request(CREATE_LESSON, { input })
       update(previous => !previous ? [response.createLesson] : [...previous, response.createLesson])
     },
-    patch: async (input, id) => {
+    patch: async ({ input, id }) => {
       const response = await request(UPDATE_LESSON, { id, input })
       update(previous => !previous ? [response.updateLesson] : previous.map((lesson) => {
         if (lesson.id !== id) return lesson
         return response.updateLesson
       }))
+      lesson.update(previous => {
+        if (previous && previous.id === response.updateLesson.id) {
+          return response.updateLesson
+        }
+      })
     }
   }
 }
@@ -38,10 +43,11 @@ const createLessonsStore = () => {
 export const lessons = createLessonsStore()
 
 const createLessonStore = () => {
-  const { subscribe, set } = writable()
+  const { subscribe, set, update } = writable()
 
   return {
     subscribe,
+    update,
     get: async (id) => {
       const response = await request(LESSON, { id })
       set(response.lesson)
