@@ -32,7 +32,7 @@
 
 <Modal bind:open>
   {#if open}
-  <ConfirmDelete name="student" on:delete={handleDelete} {errors} {loading} bind:open>
+  <ConfirmDelete name="lesson" on:delete={handleDelete} {errors} {loading} bind:open>
     the lesson named '{lesson.name}'
   </ConfirmDelete>
   {/if}

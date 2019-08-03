@@ -20,7 +20,7 @@
   let form
   let saveButton
 
-  let todaysDate = new Date().toISOString().slice(0, 10)
+  const todaysDate = new Date().toISOString().slice(0, 10)
   $: if (saveButton) { saveButton.disabled = loading }
 
   const handleSubmit = () => {
@@ -34,7 +34,6 @@
     }
     dispatch('submit', { id, chineseName, birthdate, englishName, pinyinName, gender, groupId })
   }
-
 </script>
 
 <style>
