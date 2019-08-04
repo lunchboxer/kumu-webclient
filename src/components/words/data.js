@@ -1,12 +1,12 @@
 import { writable } from 'svelte/store'
+import { push } from 'svelte-spa-router'
 import { request } from '../../data/fetch-client'
 import { WORDS, WORD } from './queries'
 import {
   CREATE_WORD,
-  UPDATE_WORD
-  // DELETE_MATERIAL
+  UPDATE_WORD,
+  DELETE_WORD
 } from './mutations'
-import { material } from '../materials/data'
 
 const createWordsStore = () => {
   const { subscribe, set, update } = writable()
@@ -22,11 +22,11 @@ const createWordsStore = () => {
       update(previous => !previous ? [response.createWord]
         : [...previous, response.createWord])
     },
-    // remove: async id => {
-    //   await request(DELETE_MATERIAL, { id })
-    //   update(previous => previous && previous.filter(m => m.id !== id))
-    //   material.update(previous => (previous && previous.id === id) ? null : previous)
-    // },
+    remove: async id => {
+      await request(DELETE_WORD, { id })
+      update(previous => previous && previous.filter(w => w.id !== id))
+      word.update(previous => (previous && previous.id === id) ? null : previous)
+    },
     patch: async ({ input, id }) => {
       const response = await request(UPDATE_WORD, { id, input })
       update(previous => !previous ? [response.updateWord] : previous.map(w => {
@@ -54,6 +54,7 @@ const createWordStore = () => {
     patch: words.patch,
     get: async (id) => {
       const response = await request(WORD, { id })
+      if (response.word === null) push(`/not-found/word/${id}`)
       set(response.word)
     }
   }

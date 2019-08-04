@@ -43,5 +43,4 @@
   }
 </script>
 
-
 <SemesterForm on:reset={reset} on:submit={save} {name} {defaultDate} {errors} {loading} />

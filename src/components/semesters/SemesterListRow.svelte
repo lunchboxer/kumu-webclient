@@ -75,7 +75,7 @@
     </div>
     <div class="buttons">
       <i class="fas fa-minus-circle butt" on:click={showDeleteDialog}></i>
-      <i class="fas fa-pencil-alt butt" on:click={()=> showEdit = true}></i>
+      <i class="fas fa-pencil-alt butt" on:click={ () => { showEdit = true }}></i>
     </div>
   </div>
 

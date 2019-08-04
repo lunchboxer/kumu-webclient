@@ -15,3 +15,10 @@ mutation UpdateWord ($input: WordUpdateInput!, $id: ID!){
   }
 }
 ${WordFields}`
+
+export const DELETE_WORD = /* GraphQL */ `
+mutation DeleteWord ($id: ID!){
+  deleteWord (id:$id) {
+    id
+  }
+}`

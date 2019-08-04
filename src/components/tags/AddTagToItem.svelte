@@ -6,6 +6,7 @@
   export let item
   export let store
   export let type = ''
+  let newTag = ''
   let toAdd
 
   onMount(async () => {
@@ -17,16 +18,20 @@
   $: currentTags = item.tags.length > 0 ? item.tags.map(t => t.id) : []
   $: otherTags = ($tags && $tags.length > 0) ? $tags.filter(t => !currentTags.includes(t.id)) : []
 
-  const add = async () => {
-    if (!toAdd) return
+  const add = async kind => {
     const input = {}
-    input[type] = { connect: { id: item.id } }
+    if (kind === 'new') {
+      if (!newTag) return
+      input.tags = { create: { name: newTag } }
+    } else {
+      if (!toAdd) return
+      input.tags = { connect: { id: toAdd } }
+    }
     try {
-      const newTag = await tags.patch({ input, id: toAdd })
-      store.update(previous => {
-        return { ...previous, tags: [...previous.tags, newTag] }
-      })
+      await store.patch({ input, id: item.id })
       notifications.add({ text: 'Added tag to item', type: 'success' })
+      newTag = ''
+      toAdd = ''
     } catch (error) {
       console.error(error)
       notifications.add({ text: "Couldn't add tag to item", type: 'danger' })
@@ -36,7 +41,19 @@
 
 <style>
   .select {
-    margin: 0.5rem 0.5rem 0.5rem 0;
+    margin: 0 0.5rem 0.5rem 0;
+  }
+
+  .field {
+    margin-bottom: 0.5rem;
+  }
+
+  input {
+    width: 15rem;
+  }
+
+  .button {
+    border-radius: 0 4px 4px 0;
   }
 </style>
 
@@ -50,3 +67,13 @@
     </select>
   </div>
 {/if}
+
+<div class="field has-addons">
+  <div class="control new has-icons-left">
+    <input class="input" type="text" bind:value={newTag} on:change={ () => add('new') } placeholder="new tag">
+    <span class="icon is-small is-left">
+      <i class="fas fa-tag"></i>
+    </span>
+  </div>
+  <button class="button is-success" on:change={ () => add('new')}>add</button>
+</div>

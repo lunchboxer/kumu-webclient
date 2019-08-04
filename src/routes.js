@@ -35,5 +35,6 @@ export default {
   '/tags': Tags,
   '/me': Profile,
   '/viewer': Viewer,
+  '/not-found/:item/:id?': NotFound,
   '*': NotFound
 }

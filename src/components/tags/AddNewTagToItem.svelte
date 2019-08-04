@@ -21,10 +21,6 @@
 </script>
 
 <style>
-  .field {
-    margin: 0.5rem;
-  }
-
   input {
     width: 15rem;
   }

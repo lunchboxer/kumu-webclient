@@ -1,18 +1,16 @@
 <script>
   import AddTagToItem from './AddTagToItem.svelte'
   import TagOnItem from './TagOnItem.svelte'
-  import AddNewTagToItem from './AddNewTagToItem.svelte'
 
   export let item
   export let store
   export let type
-
-  console.log(store)
 </script>
 
 <style>
   .tag-inputs {
     display: flex;
+    flex-wrap: wrap;
   }
 </style>
 
@@ -25,7 +23,5 @@
 {/if}
   
 <div class="tag-inputs">
-<AddTagToItem {item} {type} {store} />
-
-<AddNewTagToItem {item} {type} {store} />
+  <AddTagToItem {item} {type} {store} />
 </div>

@@ -1,5 +1,6 @@
 <script>
   import { onMount } from 'svelte'
+  import { push } from 'svelte-spa-router'
   import { notifications } from '../notifications'
   import { material } from './data'
   import Error from '../Error.svelte'
@@ -13,6 +14,7 @@
     if (!$material || $material.id !== params.id) {
       try {
         await material.get(params.id)
+        if ($material === null) push(`/not-found/material/${params.id}`)
       } catch (error) {
         errors = error
         notifications.add({ text: 'Could not fetch material from the server', type: 'danger' })
