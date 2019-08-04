@@ -2,15 +2,16 @@
   import { onMount } from 'svelte'
   import { push } from 'svelte-spa-router'
   import { notifications } from '../notifications'
-  import { word } from './data'
+  import { word, words } from './data'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
   import ItemTagList from '../tags/ItemTagList.svelte'
   import EditWord from './EditWord.svelte'
-  import DeleteWord from './DeleteWord.svelte'
+  import DeleteItem from '../DeleteItem.svelte'
 
   export let params = {}
   let errors = ''
+  let showDelete = false
 
   onMount(async () => {
     if (!$word || $word.id !== params.id) {
@@ -42,7 +43,7 @@
   {#if $word && $word.id === params.id}
     <h1 class="title">{$word.english}</h1>
   
-    <ItemTagList type="words" item={$word} store={word} />
+    <ItemTagList type="words" item={$word} store={words} />
   
     <section class="details">
       <h2 class="title is-4">Details</h2>
@@ -58,7 +59,8 @@
   
     <section class="buttons">
       <EditWord word={$word} />
-      <DeleteWord word={$word} />
+      <button class="button is-danger" on:click={() => { showDelete = true }}><i class="fas fa-trash"></i>Delete</button>
+      <DeleteItem id={$word.id} store={words} type="word" name={$word.english} bind:open={showDelete} />
     </section>
 
   {:else if !errors}

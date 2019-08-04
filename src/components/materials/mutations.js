@@ -15,3 +15,10 @@ mutation UpdateMaterial($input: MaterialUpdateInput!, $id:ID!) {
   }
 }
 ${MaterialFields}`
+
+export const DELETE_MATERIAL = /* GraphQL */ `
+mutation DeleteMaterial($id:ID!) {
+  deleteMaterial(id: $id) {
+    id
+  }
+}`

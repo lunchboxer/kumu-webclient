@@ -5,7 +5,7 @@
   import { tags } from './data'
   import Error from '../Error.svelte'
   import EditTag from './EditTag.svelte'
-  import DeleteTag from './DeleteTag.svelte'
+  import DeleteItem from '../DeleteItem.svelte'
   import Modal from '../Modal.svelte'
 
   let errors = ''
@@ -68,8 +68,13 @@
   {/if}
 </Modal>
 
-<Modal bind:open={deleteTag}>
-  {#if deleteTag}
-    <DeleteTag bind:deleteTag />
-  {/if}
-</Modal>
+{#if deleteTag}
+<DeleteItem
+  id={deleteTag.id} 
+  store={tags} 
+  type="tag" 
+  name={deleteTag.name} 
+  bind:open={deleteTag}
+  next="/tags"
+/>
+{/if}

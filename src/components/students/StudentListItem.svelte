@@ -1,7 +1,8 @@
 <script>
   import { slide } from 'svelte/transition'
+  import { students } from './data'
   import Modal from '../Modal.svelte'
-  import DeleteStudent from './DeleteStudent.svelte'
+  import DeleteItem from '../DeleteItem.svelte'
   import EditStudent from './EditStudent.svelte'
   import EditStudentGroups from './EditStudentGroups.svelte'
   import DL from '../DL.svelte'
@@ -9,7 +10,7 @@
   export let student = {}
   export let semesters = {}
   let expanded = false
-  let deleteShowing = false
+  let showDelete = false
   let editShowing = false
   let groupsShowing = false
   const gender = student.gender === 'M' ? 'boy' : 'girl'
@@ -21,7 +22,6 @@
   }).join(', ')
 
   const showEdit = () => { editShowing = true }
-  const showDelete = () => { deleteShowing = true }
   const showGroups = () => { groupsShowing = true }
 
   const getAge = (dateString) => {
@@ -154,7 +154,7 @@
 
 <div class="card">
   <div class="card-content">
-    <div class="media" on:click={() => { expanded = !expanded }}>
+    <div class="media" on:click={()=> { expanded = !expanded }}>
       <div class="media-left">
         <figure class="image">
           <img src="images/{gender}.jpg" alt="portrait" class="is-rounded portrait {student.gender}">
@@ -194,15 +194,17 @@
   <footer class="card-footer">
     <button class="card-footer-item" on:click={showGroups}>Groups</button>
     <button class="card-footer-item" on:click={showEdit}>Edit</button>
-    <button class="card-footer-item" on:click={showDelete}>Delete</button>
+    <button class="card-footer-item" on:click={() => { showDelete = true }}>Delete</button>
   </footer>
 </div>
 
-<Modal bind:open={deleteShowing}>
-  {#if deleteShowing}
-    <DeleteStudent {student} bind:open={deleteShowing} />
-  {/if}
-</Modal>
+<DeleteItem
+  id={student.id} 
+  store={students} 
+  type="student" 
+  name="{student.englishName} ({student.chineseName})" 
+  bind:open={showDelete} 
+/>
 
 <Modal bind:open={editShowing}>
   {#if editShowing}

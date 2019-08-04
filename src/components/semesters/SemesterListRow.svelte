@@ -1,5 +1,6 @@
 <script>
-  import DeleteSemester from './DeleteSemester.svelte'
+  import { semesters } from './data'
+  import DeleteItem from '../DeleteItem.svelte'
   import EditSemester from './EditSemester.svelte'
   import Modal from '../Modal.svelte'
 
@@ -80,11 +81,9 @@
   </div>
 
   <div class="action">
-    <Modal bind:open={confirmDelete}>
-      {#if confirmDelete}
-        <DeleteSemester {semester} bind:open={confirmDelete}></DeleteSemester>
-      {/if}
-    </Modal>
+
+    <DeleteItem id={semester.id} store={semesters} type="semester" name={semester.name} bind:open={confirmDelete} />
+
     <Modal bind:open={showEdit}>
       {#if showEdit}
         <EditSemester {...semester} bind:open={showEdit}></EditSemester>

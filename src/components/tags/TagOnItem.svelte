@@ -8,14 +8,9 @@
   export let itemId
 
   const remove = async () => {
-    const input = {}
-    input[type] = { disconnect: { id: itemId } }
+    const input = { tags: { disconnect: { id: tag.id } } }
     try {
-      await tags.patch({ input, id: tag.id })
-      store.update(previous => {
-        const tags = previous.tags.filter(t => t.id !== tag.id)
-        return { ...previous, tags }
-      })
+      await store.patch({ input, id: itemId })
       notifications.add({
         text: `Removed tag '${tag.name}' from the item`,
         type: 'success'

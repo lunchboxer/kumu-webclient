@@ -3,8 +3,8 @@ import { request } from '../../data/fetch-client'
 import { MATERIALS, MATERIAL } from './queries'
 import {
   CREATE_MATERIAL,
-  UPDATE_MATERIAL
-  // DELETE_MATERIAL
+  UPDATE_MATERIAL,
+  DELETE_MATERIAL
 } from './mutations'
 
 const createMaterialsStore = () => {
@@ -21,11 +21,11 @@ const createMaterialsStore = () => {
       update(previous => !previous ? [response.createMaterial]
         : [...previous, response.createMaterial])
     },
-    // remove: async id => {
-    //   await request(DELETE_MATERIAL, { id })
-    //   update(previous => previous && previous.filter(m => m.id !== id))
-    //   material.update(previous => (previous && previous.id === id) ? null : previous)
-    // },
+    remove: async id => {
+      await request(DELETE_MATERIAL, { id })
+      update(previous => previous && previous.filter(m => m.id !== id))
+      material.update(previous => (previous && previous.id === id) ? null : previous)
+    },
     patch: async ({ input, id }) => {
       const response = await request(UPDATE_MATERIAL, { id, input })
       update(previous => !previous ? [response.updateMaterial] : previous.map(m => {

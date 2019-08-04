@@ -1,12 +1,13 @@
 <script>
   import { fly } from 'svelte/transition'
+  import { groups } from './data'
   import Modal from '../Modal.svelte'
   import EditGroup from './EditGroup.svelte'
-  import DeleteGroup from './DeleteGroup.svelte'
+  import DeleteItem from '../DeleteItem.svelte'
 
   export let group
   let editShowing = false
-  let deleteShowing = false
+  let showDelete = false
 </script>
 
 <style>
@@ -45,7 +46,7 @@
   }
 </style>
 
-<li class="card" in:fly="{{x: 400}}" out:fly="{{x: -400}}">
+<li class="card" in:fly="{{ x: 400 }}" out:fly="{{ x: -400 }}">
   <div class="card-content">
     <h3 class="title is-4">{group.name} class</h3>
     <h4 class="subtitle is-6">{group.semester.name}</h4>
@@ -60,8 +61,8 @@
   </div>
   
   <footer class="card-footer">
-    <button class="card-footer-item" on:click={() => editShowing = true}>Edit</button>
-    <button class="card-footer-item" on:click={() => deleteShowing = true}>Delete</button>
+    <button class="card-footer-item" on:click={() => { editShowing = true }}>Edit</button>
+    <button class="card-footer-item" on:click={() => { showDelete = true }}>Delete</button>
   </footer>
 </li>
 
@@ -71,8 +72,4 @@
   {/if}
 </Modal>
 
-<Modal bind:open={deleteShowing}>
-    {#if deleteShowing}
-      <DeleteGroup {group} bind:open={deleteShowing} />
-    {/if}
-  </Modal>
+<DeleteItem id={group.id} store={groups} type="group" name="{group.name} class" bind:open={showDelete} />

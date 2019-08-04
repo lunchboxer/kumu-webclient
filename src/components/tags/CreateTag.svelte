@@ -14,6 +14,7 @@
   }
 
   const handleSubmit = async ({ detail }) => {
+    if (!detail.name) return
     loading = true
     try {
       // check if name already exists

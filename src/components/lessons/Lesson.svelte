@@ -1,15 +1,16 @@
 <script>
   import { onMount } from 'svelte'
   import { notifications } from '../notifications'
-  import { lesson } from './data'
+  import { lesson, lessons } from './data'
   import marked from 'marked'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
-  import DeleteLesson from './DeleteLesson.svelte'
+  import DeleteItem from '../DeleteItem.svelte'
   import ItemTagList from '../tags/ItemTagList.svelte'
 
   export let params = {}
   let errors = ''
+  let showDelete = false
 
   onMount(async () => {
     if (!$lesson || $lesson.id !== params.id) {
@@ -71,7 +72,8 @@
   
   <section class="buttons">
     <a class="button is-primary" href="#/edit-lesson/{$lesson.id}"><i class="fas fa-edit"></i>Edit</a>
-    <DeleteLesson lesson={$lesson} />
+    <button class="button is-danger" on:click={() => { showDelete = true }}><i class="fas fa-trash"></i>Delete</button>
+    <DeleteItem id={$lesson.id} store={lessons} type="lesson" name={$lesson.title} bind:open={showDelete} />
   </section>
 
 {:else if !errors}
