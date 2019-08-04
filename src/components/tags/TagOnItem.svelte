@@ -1,16 +1,23 @@
 <script>
-  import { lessons } from './data'
+  import { tags } from './data'
   import { notifications } from '../notifications'
 
   export let tag
-  export let lessonId
+  export let store
+  export let type
+  export let itemId
 
   const remove = async () => {
-    const input = { tags: { disconnect: { id: tag.id } } }
+    const input = {}
+    input[type] = { disconnect: { id: itemId } }
     try {
-      await lessons.patch({ input, id: lessonId })
+      await tags.patch({ input, id: tag.id })
+      store.update(previous => {
+        const tags = previous.tags.filter(t => t.id !== tag.id)
+        return { ...previous, tags }
+      })
       notifications.add({
-        text: `Removed tag '${tag.name}' from the lesson`,
+        text: `Removed tag '${tag.name}' from the item`,
         type: 'success'
       })
     } catch (error) {

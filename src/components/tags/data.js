@@ -23,12 +23,13 @@ const createTagsStore = () => {
       const response = await request(CREATE_TAG, { name })
       update(previous => !previous ? [response.createTag] : [...previous, response.createTag])
     },
-    patch: async (id, name) => {
-      const response = await request(UPDATE_TAG, { id, name })
+    patch: async ({ id, input }) => {
+      const response = await request(UPDATE_TAG, { id, input })
       update(previous => !previous ? [response.updateTag] : previous.map((tag) => {
         if (tag.id !== id) return tag
         return response.updateTag
       }))
+      return response.updateTag
     }
   }
 }

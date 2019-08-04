@@ -10,6 +10,7 @@ import Lesson from './components/lessons/Lesson.svelte'
 import EditLesson from './components/lessons/EditLesson.svelte'
 import CreateLesson from './components/lessons/CreateLesson.svelte'
 import Materials from './components/materials/Materials.svelte'
+import Material from './components/materials/Material.svelte'
 import Words from './components/words/Words.svelte'
 import Tags from './components/tags/Tags.svelte'
 import Profile from './components/profile/Profile.svelte'
@@ -27,6 +28,7 @@ export default {
   '/edit-lesson/:id': EditLesson,
   '/new-lesson': CreateLesson,
   '/materials': Materials,
+  '/material/:id': Material,
   '/words': Words,
   '/tags': Tags,
   '/me': Profile,

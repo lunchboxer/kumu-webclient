@@ -8,8 +8,8 @@ export const CREATE_TAG = /* GraphQL */ `
  }`
 
 export const UPDATE_TAG = /* GraphQL */ `
-  mutation UpdateTag($id: ID!, $name: String!) {
-    updateTag(id: $id, name:$name) {
+  mutation UpdateTag($id: ID!, $input: TagUpdateInput!) {
+    updateTag(id: $id, input:$input) {
       id
       name
       connections

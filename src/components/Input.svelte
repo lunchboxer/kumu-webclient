@@ -7,7 +7,7 @@
   export let required = false
   export let pattern = '^.+$'
   export let minlength = 1
-  export let maxlength = 100
+  export let maxlength = null
   export let type = 'text'
   export let description = ''
   export let width = '40rem'

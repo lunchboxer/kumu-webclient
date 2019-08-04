@@ -13,13 +13,8 @@ const createLessonsStore = () => {
       set(response.lessons)
     },
     remove: async id => {
-      const response = await request(DELETE_LESSON, { id })
-      update(previous => {
-        if (previous) {
-          return previous.filter(lesson => response.deleteLesson.id !== lesson.id)
-        }
-        return previous
-      })
+      await request(DELETE_LESSON, { id })
+      update(previous => previous && previous.filter(lesson => lesson.id !== id))
     },
     create: async (input) => {
       const response = await request(CREATE_LESSON, { input })
@@ -32,9 +27,10 @@ const createLessonsStore = () => {
         return response.updateLesson
       }))
       lesson.update(previous => {
-        if (previous && previous.id === response.updateLesson.id) {
+        if (previous && previous.id === id) {
           return response.updateLesson
         }
+        return previous
       })
     }
   }

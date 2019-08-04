@@ -20,7 +20,7 @@
       if ($tags && $tags.find(t => t.name === detail.name)) {
         throw new Error(`The tag '${detail.name}' already exists.`)
       }
-      await tags.patch(detail.id, detail.name)
+      await tags.patch({ id: detail.id, input: { name: detail.name } })
       notifications.add({ text: `Updated tag to '${detail.name}'`, type: 'success' })
       reset()
     } catch (error) {

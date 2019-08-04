@@ -1,0 +1,67 @@
+<script>
+  import { onMount } from 'svelte'
+  import { notifications } from '../notifications'
+  import { material } from './data'
+  import Error from '../Error.svelte'
+  import Loading from '../Loading.svelte'
+  import AddTagToItem from '../tags/AddTagToItem.svelte'
+  import TagOnItem from '../tags/TagOnItem.svelte'
+
+  export let params = {}
+  let errors = ''
+
+  onMount(async () => {
+    if (!$material || $material.id !== params.id) {
+      try {
+        await material.get(params.id)
+      } catch (error) {
+        errors = error
+        notifications.add({ text: 'Could not fetch material from the server', type: 'danger' })
+      }
+    }
+  })
+</script>
+
+<style>
+  :global(.details p) {
+    margin: 1rem 0 1rem;
+    max-width: 700px;
+  }
+
+  .title.is-4 {
+    margin-top: 1.5rem;
+  }
+
+  section {
+    margin: 1rem;
+  }
+</style>
+
+<svelte:head>
+  <title>Material Details</title>
+</svelte:head>
+
+{#if errors}
+  <Error {errors} />
+{/if}
+
+{#if $material && $material.id === params.id}
+  <h1 class="title">{$material.title}</h1>
+
+  {#if $material.tags && $material.tags.length > 0}
+    <div class="tags">
+      {#each $material.tags as tag (tag.id)}
+        <TagOnItem {tag} itemId={$material.id} store={material} type="materials" />
+      {/each}
+    </div>
+  {/if}
+
+  <AddTagToItem item={$material} type="materials" store={material} />
+
+  <section class="details">
+    
+  </section>
+
+{:else if !errors}
+  <Loading what="Material"/>
+{/if}
