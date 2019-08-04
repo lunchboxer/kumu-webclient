@@ -2,8 +2,8 @@ import { writable } from 'svelte/store'
 import { request } from '../../data/fetch-client'
 import { MATERIALS, MATERIAL } from './queries'
 import {
-  CREATE_MATERIAL
-  // UPDATE_MATERIAL,
+  CREATE_MATERIAL,
+  UPDATE_MATERIAL
   // DELETE_MATERIAL
 } from './mutations'
 
@@ -20,25 +20,25 @@ const createMaterialsStore = () => {
       const response = await request(CREATE_MATERIAL, { input })
       update(previous => !previous ? [response.createMaterial]
         : [...previous, response.createMaterial])
-    }
+    },
     // remove: async id => {
     //   await request(DELETE_MATERIAL, { id })
     //   update(previous => previous && previous.filter(m => m.id !== id))
     //   material.update(previous => (previous && previous.id === id) ? null : previous)
     // },
-    // patch: async ({ input, id }) => {
-    //   const response = await request(UPDATE_MATERIAL, { id, input })
-    //   update(previous => !previous ? [response.updateMaterial] : previous.map(m => {
-    //     if (m.id !== id) return m
-    //     return response.updateLesson
-    //   }))
-    //   material.update(previous => {
-    //     if (previous && previous.id === id) {
-    //       return response.updateLesson
-    //     }
-    //     return previous
-    //   })
-    // }
+    patch: async ({ input, id }) => {
+      const response = await request(UPDATE_MATERIAL, { id, input })
+      update(previous => !previous ? [response.updateMaterial] : previous.map(m => {
+        if (m.id !== id) return m
+        return response.updateMaterial
+      }))
+      material.update(previous => {
+        if (previous && previous.id === id) {
+          return response.updateMaterial
+        }
+        return previous
+      })
+    }
   }
 }
 
@@ -50,6 +50,7 @@ const createMaterialStore = () => {
   return {
     subscribe,
     update,
+    patch: materials.patch,
     get: async (id) => {
       const response = await request(MATERIAL, { id })
       set(response.material)

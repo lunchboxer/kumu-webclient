@@ -4,8 +4,7 @@
   import { material } from './data'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
-  import AddTagToItem from '../tags/AddTagToItem.svelte'
-  import TagOnItem from '../tags/TagOnItem.svelte'
+  import ItemTagList from '../tags/ItemTagList.svelte'
 
   export let params = {}
   let errors = ''
@@ -48,15 +47,7 @@
 {#if $material && $material.id === params.id}
   <h1 class="title">{$material.title}</h1>
 
-  {#if $material.tags && $material.tags.length > 0}
-    <div class="tags">
-      {#each $material.tags as tag (tag.id)}
-        <TagOnItem {tag} itemId={$material.id} store={material} type="materials" />
-      {/each}
-    </div>
-  {/if}
-
-  <AddTagToItem item={$material} type="materials" store={material} />
+  <ItemTagList item={$material} type="materials" store={material} />
 
   <section class="details">
     

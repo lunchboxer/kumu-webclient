@@ -34,10 +34,16 @@
   }
 </script>
 
+<style>
+  .select {
+    margin: 0.5rem 0.5rem 0.5rem 0;
+  }
+</style>
+
 {#if otherTags}
 <div class="select">
     <select bind:value={toAdd} on:change={add}>
-      <option value="">Add a tag</option>
+      <option value="">Add existing tag</option>
       {#each otherTags as tag (tag.id)}
         <option value={tag.id}>{tag.name}</option>
         {/each}

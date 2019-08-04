@@ -6,5 +6,3 @@
 </svelte:head>
 
 <h1 class="title">Dashboard</h1>
-
-<a href="#/lessons">Lessons</a>

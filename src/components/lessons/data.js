@@ -44,6 +44,7 @@ const createLessonStore = () => {
   return {
     subscribe,
     update,
+    patch: lessons.patch,
     get: async (id) => {
       const response = await request(LESSON, { id })
       set(response.lesson)

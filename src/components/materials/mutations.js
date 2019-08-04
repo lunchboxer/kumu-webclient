@@ -7,3 +7,11 @@ export const CREATE_MATERIAL = /* GraphQL */ `
    }
  }
  ${MaterialFields}`
+
+export const UPDATE_MATERIAL = /* GraphQL */ `
+mutation UpdateMaterial($input: MaterialUpdateInput!, $id:ID!) {
+  updateMaterial(input: $input, id: $id) {
+    ...MaterialFields
+  }
+}
+${MaterialFields}`
