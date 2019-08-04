@@ -7,6 +7,7 @@
   import Loading from '../Loading.svelte'
   import ItemTagList from '../tags/ItemTagList.svelte'
   import DeleteItem from '../DeleteItem.svelte'
+  import EditMaterial from './EditMaterial.svelte'
 
   export let params = {}
   let errors = ''
@@ -65,7 +66,7 @@
   </section>
 
   <section class="buttons">
-    <!-- <EditMaterial material={$material} /> -->
+    <EditMaterial material={$material} />
     <button class="button is-danger" on:click={() => { showDelete = true }}><i class="fas fa-trash"></i>Delete</button>
     <DeleteItem id={$material.id} store={materials} type="material" name={$material.title} bind:open={showDelete} />
   </section>
