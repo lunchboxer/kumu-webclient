@@ -12,6 +12,7 @@ import CreateLesson from './components/lessons/CreateLesson.svelte'
 import Materials from './components/materials/Materials.svelte'
 import Material from './components/materials/Material.svelte'
 import Words from './components/words/Words.svelte'
+import Word from './components/words/Word.svelte'
 import Tags from './components/tags/Tags.svelte'
 import Profile from './components/profile/Profile.svelte'
 import Viewer from './components/viewer/Viewer.svelte'
@@ -30,6 +31,7 @@ export default {
   '/materials': Materials,
   '/material/:id': Material,
   '/words': Words,
+  '/word/:id': Word,
   '/tags': Tags,
   '/me': Profile,
   '/viewer': Viewer,
