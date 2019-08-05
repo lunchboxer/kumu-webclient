@@ -10,6 +10,11 @@ export const LessonFields = /* GraphQL */`
       id
       name
     }
+    words {
+      id
+      english
+      chinese
+    }
     materials {
         id
         title

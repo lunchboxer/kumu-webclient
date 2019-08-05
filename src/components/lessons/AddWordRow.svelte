@@ -2,16 +2,17 @@
   import { lesson } from './data'
   import { notifications } from '../notifications'
 
-  export let material
+  export let word
+  $: isAdded = !!$lesson.words.find(w => w.id === word.id)
 
   const toggle = async () => {
     const input = {}
-    let text = 'Removed material from lesson'
+    let text = 'Removed word from lesson'
     if (isAdded) {
-      input.materials = { disconnect: { id: material.id } }
+      input.words = { disconnect: { id: word.id } }
     } else {
-      text = 'Added material to lesson'
-      input.materials = { connect: { id: material.id } }
+      text = 'Added word to lesson'
+      input.words = { connect: { id: word.id } }
     }
     try {
       await lesson.patch({ id: $lesson.id, input })
@@ -20,8 +21,6 @@
       console.error(error)
     }
   }
-
-  $: isAdded = !!$lesson.materials.find(m => m.id === material.id)
 </script>
 
 <style>
@@ -38,6 +37,6 @@
 <li on:click={toggle}>
   <label class="checkbox">
     <i class="fas fa-{isAdded ? 'check-' : ''}square status"></i>
-    {material.title} - {material.type}
+    {word.english} ({word.chinese})
   </label>
 </li>

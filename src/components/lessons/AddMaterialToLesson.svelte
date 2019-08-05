@@ -42,7 +42,7 @@
   }
 </style>
 
-<button class="button" on:click={()=> { open = true }}>add material</button>
+<button class="button" on:click={() => { open = true }}>add material</button>
 
 <Modal bind:open>
 
@@ -67,7 +67,7 @@
   </div>
 
   <div class="buttons">
-    <button class="button" on:click={() => { open = false }}>Cancel</button>
+    <button class="button" on:click={() => { open = false }}>Exit</button>
   </div>
 
 

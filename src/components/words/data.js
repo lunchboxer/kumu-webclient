@@ -13,8 +13,8 @@ const createWordsStore = () => {
 
   return {
     subscribe,
-    get: async () => {
-      const response = await request(WORDS)
+    get: async ({ orderBy = null, searchString = null }) => {
+      const response = await request(WORDS, { orderBy, searchString })
       set(response.words)
     },
     create: async (input) => {

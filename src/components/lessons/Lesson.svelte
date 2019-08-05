@@ -8,6 +8,9 @@
   import DeleteItem from '../DeleteItem.svelte'
   import ItemTagList from '../tags/ItemTagList.svelte'
   import AddMaterialToLesson from './AddMaterialToLesson.svelte'
+  import AddWordToLesson from './AddWordToLesson.svelte'
+  import RemoveMaterialButton from './RemoveMaterialButton.svelte'
+  import RemoveWordButton from './RemoveWordButton.svelte'
 
   export let params = {}
   let errors = ''
@@ -80,11 +83,30 @@
     {#if $lesson.materials && $lesson.materials.length > 0}
     <ul class="materials-list">
       {#each $lesson.materials as material (material.id)}
-        <li><a href="#/material/{material.id}">{material.title}</a> - {material.type}</li>
+        <li>
+          <a href="#/material/{material.id}">{material.title}</a>
+           - {material.type} 
+           <RemoveMaterialButton materialId={material.id} /> 
+        </li>
       {/each}
     </ul>
     {/if}
     <AddMaterialToLesson lesson={$lesson} />
+  </section>
+
+  <section class="words">
+    <h2 class="title is-4">Words</h2>
+    {#if $lesson.words && $lesson.words.length > 0}
+    <ul class="words-list">
+      {#each $lesson.words as word (word.id)}
+      <li>
+        <a href="#/word/{word.id}">{word.english} ({word.chinese})</a>
+        <RemoveWordButton wordId={word.id} />
+      </li> 
+      {/each}
+    </ul>
+    {/if}
+    <AddWordToLesson />
   </section>
 
   <section class="actions">
