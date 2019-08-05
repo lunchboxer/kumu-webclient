@@ -4,19 +4,15 @@
   let searchString = ''
   let loading = false
   let tagFilter = ''
-  const where = {}
 
   const getWords = async () => {
+    const where = {}
     loading = true
     if (searchString) {
       where.OR = [{ english_contains: searchString }, { chinese_contains: searchString }]
-    } else {
-      delete where.OR
     }
     if (tagFilter) {
       where.tags_some = { id: tagFilter }
-    } else {
-      delete where.tags_some
     }
     try {
       await words.get({ where })
@@ -47,7 +43,9 @@
     margin: 0.5rem;
   }
 </style>
+
 <section class="filters">
+
   <div class="field">
     <div class="control search has-icons-left" class:is-loading={loading}>
       <input class="input" type="text" bind:value={searchString} on:input={getWords} placeholder="Search words">
@@ -58,9 +56,9 @@
   </div>
 
   {#if tags}
-<div class="field">
-  <div class="control has-icons-left">
-      <div class="select">
+    <div class="field">
+      <div class="control has-icons-left">
+        <div class="select">
           <select on:change={getWords} bind:value={tagFilter}>
             <option value="">No tag filter</option>
             {#each tags as tag (tag.id)}
@@ -69,9 +67,10 @@
           </select>
         </div>
         <div class="icon is-small is-left">
-            <i class="fas fa-tag"></i>
-          </div>
-  </div>
-</div>
-{/if}
+          <i class="fas fa-tag"></i>
+        </div>
+      </div>
+    </div>
+  {/if}
+  
 </section>
