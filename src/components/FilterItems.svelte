@@ -1,21 +1,30 @@
 <script>
-  import { words } from './data'
-
   let searchString = ''
   let loading = false
   let tagFilter = ''
+  export let searchParams
+  export let store
 
-  const getWords = async () => {
+  const getItems = async () => {
     const where = {}
     loading = true
     if (searchString) {
-      where.OR = [{ english_contains: searchString }, { chinese_contains: searchString }]
+      where.OR = []
+      if (typeof searchParams === 'string') {
+        searchParams = [searchParams]
+      }
+      searchParams.forEach(param => {
+        const whereItem = {}
+        whereItem[param + '_contains'] = searchString
+        where.OR.push(whereItem)
+      })
+      // where.OR = [{ english_contains: searchString }, { chinese_contains: searchString }]
     }
     if (tagFilter) {
       where.tags_some = { id: tagFilter }
     }
     try {
-      await words.get({ where })
+      await store.get({ where })
     } catch (error) {
       console.error(error)
     } finally {
@@ -23,8 +32,8 @@
     }
   }
 
-  $: tags = $words && [...new Set($words.reduce((tags, word) => {
-    return [...tags, ...word.tags]
+  $: tags = $store && [...new Set($store.reduce((tags, item) => {
+    return [...tags, ...item.tags]
   }, []))]
 </script>
 
@@ -32,15 +41,12 @@
   .filters {
     display: flex;
     flex-wrap: wrap;
-  }
-
-  .control {
     margin: 1rem 0;
   }
 
   .field {
     max-width: 15rem;
-    margin: 0.5rem;
+    margin-right: 0.5rem;
   }
 </style>
 
@@ -48,7 +54,7 @@
 
   <div class="field">
     <div class="control search has-icons-left" class:is-loading={loading}>
-      <input class="input" type="text" bind:value={searchString} on:input={getWords} placeholder="Search words">
+      <input class="input" type="text" bind:value={searchString} on:input={getItems} placeholder="Search">
       <span class="icon is-small is-left">
         <i class="fas fa-search"></i>
       </span>
@@ -59,7 +65,7 @@
     <div class="field">
       <div class="control has-icons-left">
         <div class="select">
-          <select on:change={getWords} bind:value={tagFilter}>
+          <select on:change={getItems} bind:value={tagFilter}>
             <option value="">No tag filter</option>
             {#each tags as tag (tag.id)}
               <option value={tag.id}>{tag.name}</option>
@@ -72,5 +78,5 @@
       </div>
     </div>
   {/if}
-  
+
 </section>

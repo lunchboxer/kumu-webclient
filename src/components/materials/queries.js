@@ -1,8 +1,8 @@
 import { MaterialFields } from './fragments'
 
 export const MATERIALS = /* GraphQL */ `
-  query Materials($orderBy: MaterialOrderByInput, $searchString: String) {
-    materials (orderBy: $orderBy, searchString: $searchString) {
+  query Materials($orderBy: MaterialOrderByInput, $where: MaterialWhereInput) {
+    materials (orderBy: $orderBy, where:$where) {
       ...MaterialFields
     }
   }

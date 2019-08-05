@@ -16,7 +16,6 @@ const createWordsStore = () => {
     get: async (options = {}) => {
       const response = await request(WORDS, {
         orderBy: options.orderBy,
-        searchString: options.searchString,
         where: options.where
       })
       set(response.words)

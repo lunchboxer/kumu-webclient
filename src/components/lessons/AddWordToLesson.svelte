@@ -4,7 +4,7 @@
   import Modal from '../Modal.svelte'
   import Error from '../Error.svelte'
   import AddWordRow from './AddWordRow.svelte'
-  import FilterWords from '../words/FilterWords.svelte'
+  import FilterItems from '../FilterItems.svelte'
 
   let open = false
   let errors = ''
@@ -34,7 +34,7 @@
 
   <h2 class="title is-4">Add word to lesson</h2>
 
-  <FilterWords />
+  <FilterItems store={words} searchParams={['english', 'chinese']} />
 
   <Error {errors} />
 

@@ -6,6 +6,7 @@
   import Loading from '../Loading.svelte'
   import MaterialsList from './MaterialsList.svelte'
   import CreateMaterial from './CreateMaterial.svelte'
+  import FilterItems from '../FilterItems.svelte'
 
   let errors = ''
 
@@ -27,6 +28,8 @@
 <Error {errors} />
 
 <CreateMaterial />
+
+<FilterItems searchParams='title' store={materials} />
 
 {#if $materials}
   <MaterialsList materials={$materials} />

@@ -13,8 +13,9 @@ const createMaterialsStore = () => {
   return {
     subscribe,
     update,
-    get: async ({ orderBy, searchString }) => {
-      const response = await request(MATERIALS, { orderBy, searchString })
+    get: async (options = {}) => {
+      const { orderBy, where } = options
+      const response = await request(MATERIALS, { orderBy, where })
       set(response.materials)
     },
     create: async (input) => {
