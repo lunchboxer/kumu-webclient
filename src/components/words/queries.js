@@ -1,8 +1,8 @@
 import { WordFields } from './fragments'
 
 export const WORDS = /* GraphQL */ `
- query Words ($orderBy: WordOrderByInput, $searchString: String){
-   words (orderBy: $orderBy, searchString: $searchString){
+ query Words ($orderBy: WordOrderByInput, $searchString: String, $where: WordWhereInput){
+   words (orderBy: $orderBy, searchString: $searchString, where:$where){
      ...WordFields
    }
  }
