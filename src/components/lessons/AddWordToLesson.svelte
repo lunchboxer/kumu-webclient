@@ -4,27 +4,18 @@
   import Modal from '../Modal.svelte'
   import Error from '../Error.svelte'
   import AddWordRow from './AddWordRow.svelte'
+  import FilterWords from '../words/FilterWords.svelte'
 
   let open = false
-  let searchString = ''
-  let loading = false
   let errors = ''
 
-  onMount(() => {
-    getWords()
-  })
-
-  const getWords = async () => {
-    console.log(searchString)
-    loading = true
+  onMount(async () => {
     try {
-      await words.get({ searchString })
+      await words.get()
     } catch (error) {
       errors = error
-    } finally {
-      loading = false
     }
-  }
+  })
 </script>
 
 <style>
@@ -35,10 +26,6 @@
   .add {
     margin-top: 1rem;
   }
-
-  .control {
-    margin: 1rem 0;
-  }
 </style>
 
 <button class="button add" on:click={() => { open = true }}>add words</button>
@@ -47,15 +34,10 @@
 
   <h2 class="title is-4">Add word to lesson</h2>
 
-  <div class="control search has-icons-left">
-    <input class="input" class:is-loading={loading} type="text" bind:value={searchString} on:input={getWords}
-      placeholder="Search words">
-    <span class="icon is-small is-left">
-      <i class="fas fa-search"></i>
-    </span>
-  </div>
+  <FilterWords />
 
   <Error {errors} />
+
   <div class="results">
     {#if $words }
       <p>{$words.length} matches:</p>

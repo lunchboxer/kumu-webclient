@@ -6,6 +6,7 @@
   import Loading from '../Loading.svelte'
   import WordList from './WordList.svelte'
   import CreateWord from './CreateWord.svelte'
+  import FilterWords from './FilterWords.svelte'
 
   let errors = ''
 
@@ -27,6 +28,8 @@
 <Error {errors} />
 
 <CreateWord />
+
+<FilterWords />
 
 {#if $words}
     <WordList words={$words} />
