@@ -22,7 +22,8 @@ const createstudentstore = () => {
     sort: (orderBy, direction) => {
       update(previous => {
         return previous.slice().sort((a, b) => {
-          return a[orderBy].localeCompare(b[orderBy]) * direction
+          if (!a[orderBy]) return 1
+          return a[orderBy].localeCompare(b[orderBy] || '') * direction
         })
       })
     },
