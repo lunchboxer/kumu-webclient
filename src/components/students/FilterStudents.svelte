@@ -43,6 +43,6 @@
     </select>
   </div>
 
-  <button class="button is-link" on:click={reverse}><i class="fas fa-sort-{direction === -1 ? 'up':'down'}"></i>
+  <button class="button is-link" on:click={reverse}><i class="fas fa-sort-{direction === -1 ? 'up' : 'down'}"></i>
   </button>
 </div>

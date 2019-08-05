@@ -11,7 +11,7 @@
 
   onMount(async () => {
     try {
-      await materials.get()
+      await materials.get({})
     } catch (error) {
       errors = error
       notifications.add({ text: "Couldn't get materials from server.", type: 'danger' })

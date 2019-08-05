@@ -1,6 +1,5 @@
 <script>
-
-  export let materials = []
+  export let materials
 </script>
 
 <style>
@@ -10,10 +9,10 @@
   }
 </style>
 
-{#if materials.length > 0}
+{#if materials && materials.length > 0}
   <section class="materials-list">
     {#each materials as material (material.id)}
-      <li><a href="#/material/{material.id}">{material.title}</a></li>
+      <li><a href="#/material/{material.id}">{material.title}</a> {material.type}</li>
     {/each}
   </section>
 {/if}

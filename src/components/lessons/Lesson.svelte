@@ -7,6 +7,7 @@
   import Loading from '../Loading.svelte'
   import DeleteItem from '../DeleteItem.svelte'
   import ItemTagList from '../tags/ItemTagList.svelte'
+  import AddMaterialToLesson from './AddMaterialToLesson.svelte'
 
   export let params = {}
   let errors = ''
@@ -25,6 +26,10 @@
 </script>
 
 <style>
+  .materials-list {
+    margin-bottom: 1rem;
+  }
+
   :global(.summaries p) {
     margin: 1rem 0 1rem;
     max-width: 700px;
@@ -70,10 +75,25 @@
     {@html marked($lesson.homeworkZH, { breaks: true })}
   </section>
   
-  <section class="buttons">
+  <section class="materials">
+    <h2 class="title is-4">Materials</h2>
+    {#if $lesson.materials && $lesson.materials.length > 0}
+    <ul class="materials-list">
+      {#each $lesson.materials as material (material.id)}
+        <li><a href="#/material/{material.id}">{material.title}</a> - {material.type}</li>
+      {/each}
+    </ul>
+    {/if}
+    <AddMaterialToLesson lesson={$lesson} />
+  </section>
+
+  <section class="actions">
+    <h2 class="title is-4">Lesson actions</h2>
+    <div class="buttons">
     <a class="button is-primary" href="#/edit-lesson/{$lesson.id}"><i class="fas fa-edit"></i>Edit</a>
     <button class="button is-danger" on:click={() => { showDelete = true }}><i class="fas fa-trash"></i>Delete</button>
     <DeleteItem id={$lesson.id} store={lessons} type="lesson" name={$lesson.title} bind:open={showDelete} />
+  </div>
   </section>
 
 {:else if !errors}

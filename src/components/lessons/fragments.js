@@ -10,4 +10,9 @@ export const LessonFields = /* GraphQL */`
       id
       name
     }
+    materials {
+        id
+        title
+        type
+      }
   }`

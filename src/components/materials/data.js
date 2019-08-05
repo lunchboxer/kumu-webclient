@@ -12,8 +12,9 @@ const createMaterialsStore = () => {
 
   return {
     subscribe,
-    get: async () => {
-      const response = await request(MATERIALS)
+    update,
+    get: async ({ orderBy, searchString }) => {
+      const response = await request(MATERIALS, { orderBy, searchString })
       set(response.materials)
     },
     create: async (input) => {
