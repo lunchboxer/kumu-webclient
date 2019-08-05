@@ -27,7 +27,7 @@
         {#if lesson.tags.length > 0}
         <div class="tags">
             {#each lesson.tags as tag (tag.id)}
-            <span class="tag">{tag.name}</span>
+            <span class="tag is-dark">{tag.name}</span>
           {/each}
         </div>
           

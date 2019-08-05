@@ -29,7 +29,7 @@ const createstudentstore = () => {
     },
     create: async (input, groupId) => {
       const response = await request(CREATE_STUDENT, { input, groupId })
-      update(previous => [...previous, response.createStudent])
+      update(previous => previous && [...previous, response.createStudent])
     },
     remove: async id => {
       const response = await request(DELETE_STUDENT, { id })
