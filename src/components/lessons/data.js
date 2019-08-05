@@ -8,8 +8,9 @@ const createLessonsStore = () => {
 
   return {
     subscribe,
-    get: async () => {
-      const response = await request(GET_LESSONS)
+    get: async (options = {}) => {
+      const { orderBy, where } = options
+      const response = await request(GET_LESSONS, { orderBy, where })
       set(response.lessons)
     },
     remove: async id => {

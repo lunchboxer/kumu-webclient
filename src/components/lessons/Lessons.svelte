@@ -5,6 +5,7 @@
   import { lessons } from './data'
   import Error from '../Error.svelte'
   import Loading from '../Loading.svelte'
+  import FilterItems from '../FilterItems.svelte'
 
   let errors = ''
 
@@ -19,9 +20,6 @@
 </script>
 
 <style>
-  .button.create-lesson {
-    margin: 1rem;
-  }
 </style>
 
 <svelte:head>
@@ -35,6 +33,8 @@
 <a href="#/new-lesson" class="button is-primary create-lesson">
   <i class="fas fa-plus"></i>Create new lesson
 </a>
+
+<FilterItems searchParams='name' store={lessons} />
 
 {#if $lessons}
   <LessonList />

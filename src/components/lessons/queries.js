@@ -1,8 +1,8 @@
 import { LessonFields } from './fragments'
 
 export const GET_LESSONS = /* GraphQL */`
-  query {
-    lessons {
+  query ($orderBy: LessonOrderByInput, $where: LessonWhereInput) {
+    lessons (orderBy: $orderBy, where: $where) {
       id
       name
       tags {
