@@ -1,16 +1,25 @@
 <script>
   import { session, getResults } from './data'
   import { time } from '../../data/timer'
-  import { formatDistance, formatRelative } from 'date-fns'
+  import { formatDistance, format } from 'date-fns'
   import DL from '../DL.svelte'
   import Loading from '../Loading.svelte'
   import Error from '../Error.svelte'
   import ResultsRow from './ResultsRow.svelte'
+  import EditTimes from './EditTimes.svelte'
 
   export let id
 
   $: endedDistance = formatDistance(new Date($session.endedAt), new Date($time), { addSuffix: true })
-  const relative = (date) => date && formatRelative(new Date(date), new Date())
+
+  const formatTime = (time) => {
+    if (!time) return
+    const dateTime = new Date(time)
+    if (dateTime.getMinutes() === 0) {
+      return format(dateTime, 'h b')
+    }
+    return format(dateTime, 'p')
+  }
 </script>
 
 <style>
@@ -27,17 +36,19 @@
 
 <DL>
   <dt>Schedule start:</dt>
-  <dd>{relative($session.startsAt)}</dd>
+  <dd>{formatTime($session.startsAt)}</dd>
 
   <dt>Actual start:</dt>
-  <dd>{relative($session.startedAt)}</dd>
+  <dd>{formatTime($session.startedAt)}</dd>
 
   <dt>Schedule end:</dt>
-  <dd>{relative($session.endsAt)}</dd>
+  <dd>{formatTime($session.endsAt)}</dd>
 
   <dt>Actual end:</dt>
-  <dd>{relative($session.endedAt)}</dd>
+  <dd>{formatTime($session.endedAt)}</dd>
 </DL>
+
+<EditTimes />
 
 {#await getResults(id)}
   <Loading what="results"/>

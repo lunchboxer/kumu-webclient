@@ -70,7 +70,7 @@ const fetchTodaysSessions = async () => {
 
 export const todaysSessions = readable(null, set => {
   // get the initial data
-  let updatedAt = new Date()
+  const updatedAt = new Date()
   let sessions = []
   fetchTodaysSessions().then(result => {
     sessions = result
@@ -93,7 +93,7 @@ export const todaysSessions = readable(null, set => {
     if (updatedAt < expiry) {
       fetchTodaysSessions().then(result => {
         sessions = result
-        let updatedAt = new Date()
+        const updatedAt = new Date()
         set({ ...sortSessions(sessions), updatedAt })
       })
     } else {
