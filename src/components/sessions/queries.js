@@ -10,6 +10,9 @@ export const GET_SESSIONS = /* GraphQL */`
       id
       name
     }
+    lesson {
+      id
+    }
   }
 }`
 

@@ -10,7 +10,7 @@
 <p>Click a session to view details.</p>
 <ul>
   {#each $sessions as session (session.id)}
-  <SessionListItem {session} time={$time} />
+  <SessionListItem {session} />
 {/each}
 </ul>
 

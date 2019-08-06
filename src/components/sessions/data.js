@@ -16,8 +16,8 @@ const createSessionsStore = () => {
       const response = await request(GET_SESSIONS, { where })
       set(response.classSessions)
     },
-    create: async (input, groupId) => {
-      const response = await request(CREATE_SESSION, { input, groupId })
+    create: async (input, groupId, lessonId) => {
+      const response = await request(CREATE_SESSION, { input, groupId, lessonId })
       sessions.get()
       return response.createClassSession
     },
@@ -26,8 +26,8 @@ const createSessionsStore = () => {
       sessions.get()
       return response.deleteClassSession
     },
-    patch: async (id, input, groupId) => {
-      const response = await request(UPDATE_SESSION, { id, input, groupId })
+    patch: async (id, input, groupId, lessonId) => {
+      const response = await request(UPDATE_SESSION, { id, input, groupId, lessonId })
       sessions.get()
       return response.updateClassSession
     }

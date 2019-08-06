@@ -1,3 +1,5 @@
+import { AllSessionFields } from './fragments'
+
 export const ACTIVATE_SESSION = /* GraphQL */`
  mutation activateSession($id:ID!){
    activateSession(id:$id) {
@@ -55,3 +57,19 @@ mutation addPoint($value: Int!, $studentId: ID!, $classSessionId: ID!) {
     }
   }
 } `
+
+export const CREATE_REPORT = /* GraphQL */ `
+ mutation CreateReport($classSessionId: ID!, $input: ReportCreateInput) {
+   createReport(classSessionId: $classSessionId, input: $input) {
+     ...AllSessionFields
+   }
+ }
+ ${AllSessionFields}`
+
+export const ADD_LESSON_TO_SESSION = /* GraphQL */ `
+mutation AddLessonToSession($id: ID!, $lessonId: ID!) {
+  addLessonToClassSession(id: $id, lessonId: $lessonId) {
+    ...AllSessionFields
+  }
+}
+${AllSessionFields}`

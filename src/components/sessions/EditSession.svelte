@@ -15,14 +15,15 @@
     errors = ''
     open = false
   }
+  $: lessonId = session.lesson ? session.lesson.id : null
 
   const save = async ({ detail }) => {
-    const { id, groupId, ...input } = detail
+    const { id, groupId, lessonId, ...input } = detail
     input.startsAt = new Date(input.startsAt).toISOString()
     input.endsAt = new Date(input.endsAt).toISOString()
     loading = true
     try {
-      const updatedSession = await sessions.patch(id, input, groupId)
+      const updatedSession = await sessions.patch(id, input, groupId, lessonId)
       const date = formatRelative(new Date(input.startsAt), new Date(), { addSuffix: true })
       notifications.add({ text: `Updated session to ${date} with ${updatedSession.group.name} class`, type: 'success' })
       reset()
@@ -35,4 +36,4 @@
   }
 </script>
 <SessionForm {errors} on:submit={save} on:reset={reset} groupId={session.group.id} startsAt={startsAtLocal}
-  endsAt={endsAtLocal} id={session.id} {loading} />
+  endsAt={endsAtLocal} id={session.id} {lessonId} {loading} />

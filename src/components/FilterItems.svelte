@@ -2,7 +2,7 @@
   let searchString = ''
   let loading = false
   let tagFilter = ''
-  export let searchParams
+  export let searchParams = 'name'
   export let store
 
   const getItems = async () => {
@@ -41,7 +41,7 @@
   .filters {
     display: flex;
     flex-wrap: wrap;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
   }
 
   .field {

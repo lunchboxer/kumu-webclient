@@ -33,8 +33,8 @@
 </style>
 
 <li>
-  <IconButton name="plus-square" color="#55FF66" on:click={()=> addPoint(1)} />
+  <IconButton name="plus-square" color="#55FF66" on:click={() => addPoint(1)} />
     <span class="name">{student.englishName || student.chineseName}</span>
     <span class="points">{pointsTally}</span>
-    <IconButton name="minus-square" color="#FF3344" disabled={pointsTally < 1} on:click={()=> addPoint(-1)}/>
+    <IconButton name="minus-square" color="#FF3344" disabled={pointsTally < 1} on:click={ () => addPoint(-1)}/>
 </li>

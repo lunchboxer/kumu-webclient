@@ -32,6 +32,7 @@ export const session = readable(null, set => {
     subscription = ws.request({ query: CLASS_SESSION_SUB, variables: { id } })
       .subscribe({
         next (message) {
+          console.log('got sometihg', message.data)
           if (message.data && message.data.classSession) {
             set(message.data.classSession)
           }

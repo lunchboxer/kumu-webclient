@@ -7,6 +7,8 @@
   import Error from '../Error.svelte'
   import ResultsRow from './ResultsRow.svelte'
   import EditTimes from './EditTimes.svelte'
+  import AddLessonToSession from './AddLessonToSession.svelte'
+  import Report from '../report/Report.svelte'
 
   export let id
 
@@ -64,3 +66,15 @@
 {:catch errors}
   <Error {errors} />
 {/await}
+
+<setion class="lesson">
+  <h3 class="title is-4">Lesson</h3>
+  {#if !$session.lesson}
+    <p>No lesson has been selected yet.</p>
+    <AddLessonToSession id={$session.id} />
+    {:else}
+    <p>{$session.lesson.name}</p>
+  {/if}
+</setion>
+
+<Report />

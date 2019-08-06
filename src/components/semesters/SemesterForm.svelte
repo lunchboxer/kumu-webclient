@@ -13,7 +13,7 @@
   export let loading
   export let name = ''
   export let defaultDate = null
-  let options = {
+  const options = {
     inline: true,
     mode: 'range',
     enableTime: false,
@@ -63,8 +63,8 @@
     <label class="label" >
       Start and end dates
     </label>
-    <DatePicker bind:value={defaultDate} placeholder="Pick two dates below" className="input" {options} on:change={(e)=>
-      handleChange(...e.detail)} />
+    <DatePicker bind:value={defaultDate} placeholder="Pick two dates below" className="input" {options} 
+      on:change={(event) => handleChange(...event.detail)} />
     <div class="buttons">
       <button type="submit" class="button is-primary" class:is-loading={loading} bind:this={saveButton}>Save semester</button>
       <input type="reset" class="button" value="Cancel">

@@ -1,36 +1,20 @@
+import { AllSessionFields } from './fragments'
+
 export const CLASS_SESSION = /* GraphQL */`
- query classSession($id: ID!){
-   classSession (id: $id){
-     id
-     stage
-     startsAt
-     startedAt
-     endsAt
-     endedAt
-     number
-     group {
-       id
-       name
-     }
-   }
- }`
+  query classSession($id: ID!){
+    classSession (id: $id){
+      ...AllSessionFields
+    }
+  }
+  ${AllSessionFields}`
 
 export const CLASS_SESSION_SUB = /* GraphQL */`
 subscription classSession($id: ID!){
   classSession (id: $id){
-    id
-    stage
-    startsAt
-    startedAt
-    endsAt
-    endedAt
-    number
-    group {
-      id
-      name
-    }
+    ...AllSessionFields
   }
-}`
+}
+${AllSessionFields}`
 
 export const GET_SESSION_STUDENTS = /* GraphQL */`
 query students($groupId: ID!, $classSessionId: ID!){
