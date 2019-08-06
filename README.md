@@ -15,6 +15,8 @@ npm install
 
 This app also uses fontawesome icons font so you'll need to copy the solid font files into the directory `public/font-awesome`
 
+It also serves the nunito font locally, so that should be copied from node_modules/nunito-fontface into `public/nunito`
+
 ...then start webpack:
 
 ```bash
