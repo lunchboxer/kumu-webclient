@@ -1,11 +1,12 @@
 <script>
-  import EditReport from './EditReport.svelte'
+  import { request } from '../../data/fetch-client'
+  import { CREATE_REPORT } from './mutations'
 
-  let show = false
+  export let classSessionId
 
   const create = async () => {
     // create a report from lesson
-    show = true
+    await request(CREATE_REPORT, { classSessionId })
   }
 </script>
 
@@ -15,8 +16,4 @@
   }
 </style>
 
-{#if show}
-  <EditReport show="true"/>
-{:else}
-  <button class="button" on:click={create}>Create report</button>
-{/if}
+<button class="button" on:click={create}>Create report</button>

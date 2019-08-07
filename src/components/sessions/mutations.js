@@ -1,5 +1,5 @@
 export const CREATE_SESSION = /* GraphQL */`
-mutation newClassSession($groupId: ID!, $lessonId: ID, $input: ClassSessionInput!) {
+mutation newClassSession($groupId: ID!, $lessonId: ID, $input: ClassSessionCreateInput!) {
   createClassSession(input: $input, groupId: $groupId, lessonId: $lessonId) {
     id
     stage
@@ -25,7 +25,7 @@ mutation deleteClassSession($id: ID!) {
 `
 
 export const UPDATE_SESSION = /* GraphQL */`
-mutation updateClassSession($id: ID!, $lessonId: ID, $groupId: ID, $input: ClassSessionInput) {
+mutation updateClassSession($id: ID!, $lessonId: ID, $groupId: ID, $input: ClassSessionUpdateInput) {
   updateClassSession(id: $id, input: $input, groupId: $groupId, lessonId: $lessonId) {
     id
     stage

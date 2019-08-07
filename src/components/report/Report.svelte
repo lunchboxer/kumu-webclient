@@ -1,8 +1,8 @@
 <script>
   import { session } from '../session/data'
   import CreateReport from './CreateReport.svelte'
-  import EditReport from './EditReport.svelte'
-  import DeleteReport from './DeleteReport.svelte'
+  import ReportDetails from './ReportDetails.svelte'
+  import PublishReportButton from './PublishReportButton.svelte'
 </script>
 
 <style>
@@ -17,10 +17,10 @@
       <p>A lesson must be added before a report can be created.</p>
     {:else if $session && !$session.report}
       <p>No report exists for this session.</p>
-      <CreateReport />
+      <CreateReport classSessionId={$session.id} />
     {:else}
+      <PublishReportButton classSessionId={$session.id} />
       <!-- show the detials of the report here -->
-      <EditReport />
-      <DeleteReport />
+      <ReportDetails report={$session.report} classSessionId={$session.id} />
     {/if}
 </section>
