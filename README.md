@@ -1,5 +1,11 @@
 # Kumu-webclient
 
+---
+
+**this repo is no longer developed; got merged into [kumu-server](https://github.com/lunchboxer/kumu-server)**
+
+---
+
 This is [Svelte](https://svelte.technology) app to provide classroom tool for Chinese ESL teachers. It's based on [svelte v3 webpack template](https://github.com/sveltejs/template-webpack#v3).
 
 ## Get started
